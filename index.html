@@ -1,232 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Note For You</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #f43f5e;
+      --accent-hover: #e11d48;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
 
-    <meta name="theme-color" content="#120b0d">
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
 
-    <title>For Mhlungu Nice ❤️</title>
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 580px;
+      width: 100%;
+      padding: 2.5rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap"
-        rel="stylesheet"
-    >
+    .status-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
 
-    <link rel="stylesheet" href="style.css">
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.025em;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    p {
+      color: #cbd5e1;
+      line-height: 1.7;
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .highlight {
+      color: var(--text-main);
+      font-weight: 600;
+      background: rgba(244, 63, 94, 0.1);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      border-left: 3px solid var(--accent);
+      display: block;
+      margin: 1.5rem 0;
+    }
+
+    .interactive-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .interactive-title {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border);
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- ==============================
-         OPENING
-    =============================== -->
-
-    <main class="site">
-
-        <section class="opening" id="opening">
-
-            <div class="stars" aria-hidden="true"></div>
-
-            <div class="glow glow-one"></div>
-            <div class="glow glow-two"></div>
-
-            <div class="opening-content">
-
-                <p class="eyebrow">
-                    a little something
-                </p>
-
-                <h1>
-                    For
-                    <span>Mhlungu Nice</span>
-                    <strong>❤️</strong>
-                </h1>
-
-                <p class="intro">
-                    I made you something.
-                </p>
-
-                <button
-                    class="open-button"
-                    id="openButton"
-                    type="button"
-                >
-                    <span>open it</span>
-                    <span>→</span>
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==============================
-             LETTER
-        =============================== -->
-
-        <section
-            class="letter-page hidden"
-            id="letterPage"
-        >
-
-            <div class="letter-background">
-
-                <div class="floating-heart heart-one">♡</div>
-                <div class="floating-heart heart-two">♡</div>
-                <div class="floating-heart heart-three">♡</div>
-                <div class="floating-heart heart-four">♡</div>
-
-            </div>
-
-
-            <article class="letter-card">
-
-                <div class="letter-top">
-
-                    <span>
-                        For Mhlungu Nice
-                    </span>
-
-                    <span>
-                        ❤️
-                    </span>
-
-                </div>
-
-
-                <div class="letter-content">
-
-                    <p class="greeting">
-                        Hey Mhlungu Nice,
-                    </p>
-
-
-                    <p>
-                        It’s been a little while since I made you
-                        something like this. 😭
-                    </p>
-
-
-                    <p>
-                        I know this week has been a lot, so I just
-                        wanted to make you a little something to
-                        hopefully put a smile on your face.
-                    </p>
-
-
-                    <p class="highlight">
-                        I really appreciate you, you know that? ❤️
-                    </p>
-
-
-                    <p>
-                        If your day is getting hectic or heavy,
-                        breathe a little slower.
-                        <br>
-                        And if it’s good,
-                        smile a little longer.
-                    </p>
-
-
-                    <p>
-                        I didn’t see you today,
-                        but I already know you looked so cute. 😭😂
-                        <br>
-                        I just know you did.
-                    </p>
-
-
-                    <p>
-                        I never really find the right words to
-                        describe how I feel about you, but I hope
-                        little things like this say some of it for me.
-                    </p>
-
-
-                    <p>
-                        So yeah… this one's just for you.
-                    </p>
-
-
-                    <p>
-                        I hope it makes you smile,
-                        even just a little.
-                    </p>
-
-
-                    <div class="signature">
-
-                        <p>
-                            Love always,
-                        </p>
-
-                        <strong>
-                            — Bigduggmustfall ❤️
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <!-- MUSIC -->
-
-                <div class="music-section">
-
-                    <p class="music-label">
-                        and this one is for the background mood 🎧
-                    </p>
-
-                    <a
-                        class="music-button"
-                        href="https://music.apple.com/za/album/325/1816194011?i=1816194215"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <span class="music-icon">
-                            ♫
-                        </span>
-
-                        <span class="music-info">
-
-                            <strong>
-                                325
-                            </strong>
-
-                            <small>
-                                Samthing Soweto
-                            </small>
-
-                        </span>
-
-                        <span class="music-arrow">
-                            ↗
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <p class="footer-note">
-                made with a little bit of code & a lot of thought.
-            </p>
-
-        </section>
-
-    </main>
-
-
-    <script src="script.js"></script>
+  <div class="card">
+    <div class="status-bar">
+      <div><span class="status-indicator"></span>Status: Online</div>
+      <div>v1.0.0</div>
+    </div>
+
+    <h1>A quick note for <span>[Her Name]</span></h1>
+
+    <p>I’ve been spending time thinking about us lately, and I wanted to put together something simple and genuine to share what’s on my mind.</p>
+
+    <p>Having you around has been one of the absolute best parts of my days. Whether we're sharing laughs, having long conversations, or just chilling, everything feels effortles with you. I really admire your energy, your warmth, and just who you are.</p>
+
+    <div class="highlight">
+      I know we haven't explicitly mapped out where we stand yet, and that's okay. I don't want to rush anything—I just wanted to be honest: I really care about you, and I’d love to see where this journey leads us.
+    </div>
+
+    <div class="interactive-section">
+      <div class="interactive-title">Current State</div>
+      <div class="actions">
+        <a href="https://wa.me/?text=Hey!%20I%20saw%20your%20site..." class="btn btn-primary">Let's talk about it</a>
+        <a href="https://wa.me/?text=Hey,%20thanks%20for%20sharing%20that..." class="btn btn-secondary">Taking it day by day</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      Designed with care by [Your Name]
+    </div>
+  </div>
 
 </body>
 </html>
