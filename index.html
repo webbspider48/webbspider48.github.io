@@ -1,289 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#17110f">
-  <title>For Momo Smiles ❤️</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f0a09">
+<title id="pageTitle">For Momo Smiles ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <!-- OPENING -->
   <section class="opening" id="opening">
+    <div class="ember-field" id="emberField" aria-hidden="true"></div>
     <div class="opening-card">
       <p class="small-note">a little something</p>
-
-      <h1>
-        For Momo Smiles <span>❤️</span>
-      </h1>
-
+      <h1>For <span class="name" id="heroName">Momo</span> Smiles <span class="heart">❤️</span></h1>
       <p>come here for a second.</p>
-
       <button id="enterBtn">
-        open →
+        <span>open</span> <span class="arrow">→</span>
       </button>
     </div>
   </section>
-
 
   <!-- GARDEN -->
   <section class="garden hidden" id="garden">
 
     <header class="garden-header">
-
       <div>
-        <p class="eyebrow">Momo's little garden</p>
+        <p class="eyebrow" id="gardenEyebrow">Momo's little garden</p>
         <h2>Pick a few.</h2>
       </div>
-
-      <button class="music-btn" id="musicBtn">
-        ♫ 325
+      <button class="music-btn" id="musicBtn" aria-pressed="false">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span id="musicLabel">325</span>
       </button>
-
     </header>
 
-    <p class="instruction" id="instruction">
+    <p class="instruction" id="instruction" aria-live="polite">
       Take your time. Pick whichever ones you like.
     </p>
 
-
-    <div class="garden-scene">
-
+    <div class="garden-scene" id="gardenScene">
       <div class="moon"></div>
-
       <div class="stars"></div>
-
+      <div class="fireflies" id="fireflies" aria-hidden="true"></div>
       <div class="ground"></div>
 
-
-      <!-- RED -->
-      <button
-        class="flower rose-red"
-        data-flower="red"
-        aria-label="Pick red rose">
-
+      <button class="flower rose-red" data-flower="red" aria-label="Pick red rose">
         <span class="stem"></span>
         <span class="leaf leaf-left"></span>
         <span class="leaf leaf-right"></span>
         <span class="bloom"></span>
-
       </button>
 
-
-      <!-- PINK -->
-      <button
-        class="flower rose-pink"
-        data-flower="pink"
-        aria-label="Pick pink rose">
-
+      <button class="flower rose-pink" data-flower="pink" aria-label="Pick pink rose">
         <span class="stem"></span>
         <span class="leaf leaf-left"></span>
         <span class="leaf leaf-right"></span>
         <span class="bloom"></span>
-
       </button>
 
-
-      <!-- WHITE -->
-      <button
-        class="flower rose-white"
-        data-flower="white"
-        aria-label="Pick white rose">
-
+      <button class="flower rose-white" data-flower="white" aria-label="Pick white rose">
         <span class="stem"></span>
         <span class="leaf leaf-left"></span>
         <span class="leaf leaf-right"></span>
         <span class="bloom"></span>
-
       </button>
 
-
-      <!-- YELLOW -->
-      <button
-        class="flower rose-yellow"
-        data-flower="yellow"
-        aria-label="Pick yellow rose">
-
+      <button class="flower rose-yellow" data-flower="yellow" aria-label="Pick yellow rose">
         <span class="stem"></span>
         <span class="leaf leaf-left"></span>
         <span class="leaf leaf-right"></span>
         <span class="bloom"></span>
-
       </button>
 
-
-      <!-- ORANGE -->
-      <button
-        class="flower rose-orange"
-        data-flower="orange"
-        aria-label="Pick orange rose">
-
+      <button class="flower rose-orange" data-flower="orange" aria-label="Pick orange rose">
         <span class="stem"></span>
         <span class="leaf leaf-left"></span>
         <span class="leaf leaf-right"></span>
         <span class="bloom"></span>
-
       </button>
 
-
-      <!-- PURPLE -->
-      <button
-        class="flower rose-purple"
-        data-flower="purple"
-        aria-label="Pick purple rose">
-
+      <button class="flower rose-purple" data-flower="purple" aria-label="Pick purple rose">
         <span class="stem"></span>
         <span class="leaf leaf-left"></span>
         <span class="leaf leaf-right"></span>
         <span class="bloom"></span>
-
       </button>
-
     </div>
 
-
     <div class="picked-bar">
-
-      <span>
-        <strong id="flowerCount">0</strong>
-        flowers
-      </span>
-
-      <button id="viewBouquetBtn" disabled>
-        view bouquet →
-      </button>
-
+      <span><strong id="flowerCount">0</strong> flowers</span>
+      <button id="viewBouquetBtn" disabled>view bouquet →</button>
     </div>
 
   </section>
-
-
 
   <!-- BOUQUET -->
   <section class="bouquet hidden" id="bouquet">
 
     <div class="bouquet-header">
-
-      <button class="back-btn" id="backBtn">
-        ← garden
-      </button>
-
+      <button class="back-btn" id="backBtn">← garden</button>
       <div>
         <p class="eyebrow">you made this</p>
         <h2>Your bouquet.</h2>
       </div>
-
-      <button class="top-btn" id="topBtn">
-        top view
-      </button>
-
+      <button class="top-btn" id="topBtn">top view</button>
     </div>
 
-
-    <div
-      class="bouquet-stage"
-      id="bouquetStage">
-
+    <div class="bouquet-stage" id="bouquetStage">
       <div class="wrapper"></div>
-
-      <div
-        class="bouquet-flowers"
-        id="bouquetFlowers">
+      <div class="ribbon-bow" id="ribbonBow" aria-hidden="true">
+        <span class="loop loop-left"></span>
+        <span class="loop loop-right"></span>
+        <span class="knot"></span>
+        <span class="tail tail-left"></span>
+        <span class="tail tail-right"></span>
       </div>
-
+      <div class="bouquet-flowers" id="bouquetFlowers"></div>
     </div>
 
-
-    <p
-      class="bouquet-hint"
-      id="bouquetHint">
-      drag it around.
-    </p>
-
+    <p class="bouquet-hint" id="bouquetHint">drag it around.</p>
 
     <!-- LOVE LETTER -->
-    <article class="note-card">
+    <article class="note-card" id="noteCard">
 
-      <p class="small-note">
-        For Mhlungu Nice ❤️
-      </p>
+      <div class="seal-layer" id="sealLayer">
+        <button class="wax-seal" id="sealBtn" aria-label="Break the seal to read the letter">
+          <span class="seal-initial" id="sealInitial">M</span>
+        </button>
+        <p class="seal-hint">tap the seal to read it</p>
+      </div>
 
-      <p>Hey Mhlungu Nice,</p>
-
-      <p>
-        It’s been a little while since I made you
-        something like this. 😭
-      </p>
-
-      <p>
-        I know this week has been a lot, so I just
-        wanted to make you a little something to
-        hopefully put a smile on your face.
-      </p>
-
-      <p>
-        I really appreciate you, you know that? ❤️
-      </p>
-
-      <p>
-        If your day is getting hectic or heavy,
-        breathe a little slower.<br>
-
-        And if it’s good,
-        smile a little longer.
-      </p>
-
-      <p>
-        I didn’t see you today, but I already know
-        you looked so cute. 😭😂<br>
-
-        I just know you did.
-      </p>
-
-      <p>
-        I never really find the right words to
-        describe how I feel about you, but I hope
-        little things like this say some of it for me.
-      </p>
-
-      <p>
-        So yeah… this one's just for you.
-      </p>
-
-      <p>
-        I hope it makes you smile,
-        even just a little.
-      </p>
-
-      <p>Love always,</p>
-
-      <p>
-        <strong>
-          — Bigduggmustfall ❤️
-        </strong>
-      </p>
+      <div class="letter-inner" id="letterInner">
+        <p class="small-note" id="noteRecipientLabel">For Momo ❤️</p>
+        <div id="letterBody"></div>
+        <p class="signature">Love always,<br><strong id="letterSignature">— Bigduggmustfall ❤️</strong></p>
+      </div>
 
     </article>
 
   </section>
 
-
   <!-- MUSIC -->
-  <audio
-    id="song"
-    loop
-    preload="none">
-
-    <source
-      src="assets/325.mp3"
-      type="audio/mpeg">
-
+  <audio id="song" loop preload="none">
+    <source src="assets/325.mp3" type="audio/mpeg">
   </audio>
 
-
   <script src="script.js"></script>
-
 </body>
 </html>
