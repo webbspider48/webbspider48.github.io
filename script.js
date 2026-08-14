@@ -1,553 +1,499 @@
-const opening =
-  document.getElementById("opening");
+const pages = {
+  opening: document.getElementById("opening"),
+  garden: document.getElementById("garden"),
+  bouquet: document.getElementById("bouquet")
+};
 
-const garden =
-  document.getElementById("garden");
+const enterBtn = document.getElementById("enterBtn");
+const musicBtn = document.getElementById("musicBtn");
+const song = document.getElementById("song");
 
-const bouquet =
-  document.getElementById("bouquet");
+const flowers = [...document.querySelectorAll(".flower")];
+const flowerCount = document.getElementById("flowerCount");
+const viewBouquetBtn = document.getElementById("viewBouquetBtn");
+const bouquetFlowers = document.getElementById("bouquetFlowers");
 
+const backBtn = document.getElementById("backBtn");
+const topBtn = document.getElementById("topBtn");
+const bouquetStage = document.getElementById("bouquetStage");
+const bouquetHint = document.getElementById("bouquetHint");
+const instruction = document.getElementById("instruction");
 
-const enterBtn =
-  document.getElementById("enterBtn");
-
-const musicBtn =
-  document.getElementById("musicBtn");
-
-const song =
-  document.getElementById("song");
-
-
-const flowers =
-  [...document.querySelectorAll(".flower")];
-
-const flowerCount =
-  document.getElementById("flowerCount");
-
-const viewBouquetBtn =
-  document.getElementById("viewBouquetBtn");
-
-const bouquetFlowers =
-  document.getElementById("bouquetFlowers");
-
-const backBtn =
-  document.getElementById("backBtn");
-
-const topBtn =
-  document.getElementById("topBtn");
-
-const bouquetStage =
-  document.getElementById("bouquetStage");
-
-const bouquetHint =
-  document.getElementById("bouquetHint");
-
-const instruction =
-  document.getElementById("instruction");
-
-
-/*
-=========================
-FLOWERS SHE PICKED
-=========================
-*/
+const noteCard = document.getElementById("noteCard");
+const sealBtn = document.getElementById("sealBtn");
 
 const picked = [];
 
-
-/*
-=========================
-OPEN WEBSITE
-=========================
-*/
-
-enterBtn.addEventListener(
-  "click",
-  () => {
-
-    opening.classList.add(
-      "hidden"
-    );
-
-    garden.classList.remove(
-      "hidden"
-    );
+let rotationY = 0;
+let dragging = false;
+let startX = 0;
 
 
-    /*
-    Browser-friendly
-    music start.
-    */
+/* =========================================
+   PAGE CONTROL
+========================================= */
 
-    song.volume = 0.45;
+function showPage(page) {
 
-    song.play()
-      .then(() => {
+  Object.values(pages).forEach(pageElement => {
+    pageElement.classList.add("hidden");
+  });
 
-        musicBtn.textContent =
-          "♫ playing";
+  page.classList.remove("hidden");
 
-      })
-      .catch(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "instant"
+  });
+}
 
-        musicBtn.textContent =
-          "♫ play 325";
 
-      });
+/* =========================================
+   OPENING
+========================================= */
+
+enterBtn.addEventListener("click", () => {
+
+  showPage(pages.garden);
+
+  song.volume = 0.45;
+
+  song.play()
+    .then(() => {
+      musicBtn.setAttribute("aria-pressed", "true");
+      document.getElementById("musicLabel").textContent = "325";
+    })
+    .catch(() => {
+      document.getElementById("musicLabel").textContent = "play 325";
+    });
+
+});
+
+
+/* =========================================
+   MUSIC
+========================================= */
+
+musicBtn.addEventListener("click", () => {
+
+  if (song.paused) {
+
+    song.play();
+
+    musicBtn.setAttribute("aria-pressed", "true");
+
+  } else {
+
+    song.pause();
+
+    musicBtn.setAttribute("aria-pressed", "false");
 
   }
-);
+
+});
 
 
-/*
-=========================
-MUSIC
-=========================
-*/
+/* =========================================
+   CREATE PETALS
+========================================= */
 
-musicBtn.addEventListener(
-  "click",
-  () => {
+function createPetals(x, y, type) {
 
-    if (song.paused) {
+  for (let i = 0; i < 7; i++) {
 
-      song.play();
+    const petal = document.createElement("span");
 
-      musicBtn.textContent =
-        "♫ playing";
+    petal.className = `picked-petal petal-${type}`;
+
+    petal.style.left = `${x}px`;
+    petal.style.top = `${y}px`;
+
+    petal.style.setProperty(
+      "--x",
+      `${(Math.random() - 0.5) * 160}px`
+    );
+
+    petal.style.setProperty(
+      "--y",
+      `${Math.random() * 100 + 30}px`
+    );
+
+    petal.style.setProperty(
+      "--rotate",
+      `${Math.random() * 360}deg`
+    );
+
+    document.body.appendChild(petal);
+
+    setTimeout(() => {
+      petal.remove();
+    }, 1200);
+  }
+
+}
+
+
+/* =========================================
+   PICK FLOWER
+========================================= */
+
+flowers.forEach(flower => {
+
+  flower.addEventListener("click", event => {
+
+    if (flower.classList.contains("picked")) {
+      return;
+    }
+
+    const type = flower.dataset.flower;
+
+    picked.push(type);
+
+    const rect = flower.getBoundingClientRect();
+
+    createPetals(
+      rect.left + rect.width / 2,
+      rect.top + 45,
+      type
+    );
+
+    flower.classList.add("picked");
+
+    flower.style.pointerEvents = "none";
+
+    flowerCount.textContent = picked.length;
+
+    if (picked.length === 1) {
+
+      instruction.textContent =
+        "That one's yours.";
 
     }
 
-    else {
+    else if (picked.length === 2) {
 
-      song.pause();
-
-      musicBtn.textContent =
-        "♫ 325";
+      instruction.textContent =
+        "Okay... I see your taste.";
 
     }
 
+    else if (picked.length === 3) {
+
+      instruction.textContent =
+        "Now we're getting somewhere.";
+
+    }
+
+    else if (picked.length >= 4) {
+
+      instruction.textContent =
+        "Okay Mhlungu... you're building a whole garden.";
+
+    }
+
+    viewBouquetBtn.disabled = false;
+
+    viewBouquetBtn.textContent =
+      "view your bouquet →";
+
+  });
+
+});
+
+
+/* =========================================
+   VIEW BOUQUET
+========================================= */
+
+viewBouquetBtn.addEventListener("click", () => {
+
+  if (picked.length === 0) {
+    return;
   }
-);
+
+  buildBouquet();
+
+  showPage(pages.bouquet);
+
+});
 
 
-/*
-=========================
-PICK FLOWERS
-=========================
-*/
+/* =========================================
+   BACK TO GARDEN
+========================================= */
 
-flowers.forEach(
-  (flower) => {
+backBtn.addEventListener("click", () => {
 
-    flower.addEventListener(
-      "click",
-      () => {
+  showPage(pages.garden);
 
-        /*
-        Don't allow
-        picking the same
-        flower twice.
-        */
-
-        if (
-          flower.classList.contains(
-            "picked"
-          )
-        ) {
-
-          return;
-
-        }
+});
 
 
-        const type =
-          flower.dataset.flower;
-
-
-        /*
-        Save flower
-        */
-
-        picked.push(type);
-
-
-        /*
-        Animate flower
-        */
-
-        flower.classList.add(
-          "picked"
-        );
-
-
-        /*
-        Update counter
-        */
-
-        flowerCount.textContent =
-          picked.length;
-
-
-        /*
-        Small human message
-        */
-
-        if (
-          picked.length === 1
-        ) {
-
-          instruction.textContent =
-            "That one's yours. Keep going if you want.";
-
-        }
-
-
-        if (
-          picked.length === 2
-        ) {
-
-          instruction.textContent =
-            "Okay... I see your taste.";
-
-        }
-
-
-        if (
-          picked.length >= 3
-        ) {
-
-          instruction.textContent =
-            "Yeah, now we're making a bouquet.";
-
-          viewBouquetBtn.disabled =
-            false;
-
-          viewBouquetBtn.textContent =
-            "view your bouquet →";
-
-        }
-
-      }
-    );
-
-  }
-);
-
-
-/*
-=========================
-VIEW BOUQUET
-=========================
-*/
-
-viewBouquetBtn.addEventListener(
-  "click",
-  () => {
-
-    garden.classList.add(
-      "hidden"
-    );
-
-    bouquet.classList.remove(
-      "hidden"
-    );
-
-
-    buildBouquet();
-
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
-);
-
-
-/*
-=========================
-BACK TO GARDEN
-=========================
-*/
-
-backBtn.addEventListener(
-  "click",
-  () => {
-
-    bouquet.classList.add(
-      "hidden"
-    );
-
-    garden.classList.remove(
-      "hidden"
-    );
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
-);
-
-
-/*
-=========================
-BUILD BOUQUET
-=========================
-*/
+/* =========================================
+   BOUQUET
+========================================= */
 
 function buildBouquet() {
 
   bouquetFlowers.innerHTML = "";
 
+  rotationY = 0;
 
-  /*
-  Spread flowers
-  depending on how
-  many she picked.
-  */
+  bouquetFlowers.style.transform =
+    "rotateX(4deg) rotateY(0deg)";
 
-  const spacing =
+
+  picked.forEach((type, index) => {
+
+    const flower =
+      document.createElement("div");
+
+    flower.className =
+      `bouquet-flower rose-${type}`;
+
+
+    const total = picked.length;
+
+    const middle =
+      (total - 1) / 2;
+
+    const distance =
+      index - middle;
+
+
+    const spread =
+      distance * 34;
+
+
+    const rotation =
+      distance * 7;
+
+
+    const height =
+      Math.abs(distance) * 5;
+
+
+    flower.style.setProperty(
+      "--spread",
+      `${spread}px`
+    );
+
+    flower.style.setProperty(
+      "--rotation",
+      `${rotation}deg`
+    );
+
+    flower.style.setProperty(
+      "--height",
+      `${height}px`
+    );
+
+
+    flower.innerHTML = `
+
+      <div class="bouquet-stem"></div>
+
+      <div class="bouquet-leaf left"></div>
+
+      <div class="bouquet-leaf right"></div>
+
+      <div class="bouquet-bloom">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <div class="flower-center"></div>
+
+      </div>
+
+    `;
+
+
+    bouquetFlowers.appendChild(flower);
+
+  });
+
+
+  bouquetHint.textContent =
     picked.length === 1
-      ? 0
-      : 24;
+      ? "one flower. still pretty."
+      : "drag the bouquet around.";
+
+  setTimeout(() => {
+
+    document.getElementById("ribbonBow")
+      .classList.add("tied");
+
+  }, 450);
+
+}
 
 
-  picked.forEach(
-    (type, index) => {
+/* =========================================
+   DRAG BOUQUET
+========================================= */
 
-      const flower =
-        document.createElement(
-          "div"
-        );
+bouquetStage.addEventListener("pointerdown", event => {
 
+  dragging = true;
 
-      flower.className =
-        `bouquet-flower rose-${type}`;
+  startX = event.clientX;
 
-
-      /*
-      Position flowers
-      naturally.
-      */
-
-      const spread =
-        (
-          index -
-          (picked.length - 1) / 2
-        ) * spacing;
-
-
-      const height =
-        Math.abs(
-          index -
-          (picked.length - 1) / 2
-        ) * 5;
-
-
-      const rotation =
-        (
-          index % 2 === 0
-            ? -1
-            : 1
-        ) *
-        (
-          5 +
-          index * 1.5
-        );
-
-
-      flower.style.transform =
-        `
-        translateX(
-          calc(
-            -50% +
-            ${spread}px
-          )
-        )
-
-        translateY(
-          ${height}px
-        )
-
-        rotate(
-          ${rotation}deg
-        )
-        `;
-
-
-      /*
-      Create flower.
-      */
-
-      flower.innerHTML = `
-
-        <span class="stem"></span>
-
-        <span
-          class="leaf leaf-left">
-        </span>
-
-        <span
-          class="leaf leaf-right">
-        </span>
-
-        <span class="bloom"></span>
-
-      `;
-
-
-      bouquetFlowers.appendChild(
-        flower
-      );
-
-    }
+  bouquetStage.setPointerCapture(
+    event.pointerId
   );
 
+});
 
-  if (picked.length === 1) {
 
-    bouquetHint.textContent =
-      "one flower, still pretty.";
+bouquetStage.addEventListener("pointermove", event => {
 
+  if (!dragging) {
+    return;
   }
 
-  else {
+  const delta =
+    event.clientX - startX;
 
-    bouquetHint.textContent =
-      "drag it around.";
+  rotationY += delta * 0.5;
+
+  bouquetFlowers.style.transform =
+    `
+      rotateX(4deg)
+      rotateY(${rotationY}deg)
+    `;
+
+  startX = event.clientX;
+
+});
+
+
+bouquetStage.addEventListener("pointerup", () => {
+
+  dragging = false;
+
+});
+
+
+bouquetStage.addEventListener("pointercancel", () => {
+
+  dragging = false;
+
+});
+
+
+/* =========================================
+   TOP VIEW
+========================================= */
+
+topBtn.addEventListener("click", () => {
+
+  bouquetFlowers.style.transform =
+    `
+      rotateX(70deg)
+      rotateY(0deg)
+      translateY(-20px)
+    `;
+
+  bouquetHint.textContent =
+    "top view.";
+
+});
+
+
+/* =========================================
+   WAX SEAL
+========================================= */
+
+sealBtn.addEventListener("click", () => {
+
+  if (noteCard.classList.contains("opened")) {
+    return;
+  }
+
+  sealBtn.classList.add("cracking");
+
+  setTimeout(() => {
+
+    noteCard.classList.add("opened");
+
+  }, 350);
+
+});
+
+
+/* =========================================
+   FIRELIES
+========================================= */
+
+function createFireflies() {
+
+  const container =
+    document.getElementById("fireflies");
+
+  for (let i = 0; i < 25; i++) {
+
+    const fly =
+      document.createElement("span");
+
+    fly.style.left =
+      `${Math.random() * 100}%`;
+
+    fly.style.top =
+      `${30 + Math.random() * 55}%`;
+
+    fly.style.setProperty(
+      "--dur",
+      `${5 + Math.random() * 6}s`
+    );
+
+    fly.style.animationDelay =
+      `${Math.random() * 5}s`;
+
+    container.appendChild(fly);
 
   }
 
 }
 
 
-/*
-=========================
-BOUQUET ROTATION
-=========================
-*/
+/* =========================================
+   EMBERS
+========================================= */
 
-let dragging =
-  false;
+function createEmbers() {
 
-let startX =
-  0;
+  const container =
+    document.getElementById("emberField");
 
-let rotationY =
-  0;
+  for (let i = 0; i < 35; i++) {
 
+    const ember =
+      document.createElement("span");
 
-bouquetStage.addEventListener(
-  "pointerdown",
-  (event) => {
+    ember.style.left =
+      `${Math.random() * 100}%`;
 
-    dragging = true;
+    ember.style.animationDuration =
+      `${5 + Math.random() * 8}s`;
 
-    startX =
-      event.clientX;
+    ember.style.animationDelay =
+      `${Math.random() * 8}s`;
 
-    bouquetStage.setPointerCapture(
-      event.pointerId
+    ember.style.setProperty(
+      "--drift",
+      `${(Math.random() - 0.5) * 100}px`
     );
 
-  }
-);
-
-
-bouquetStage.addEventListener(
-  "pointermove",
-  (event) => {
-
-    if (!dragging) {
-      return;
-    }
-
-
-    const delta =
-      event.clientX -
-      startX;
-
-
-    rotationY +=
-      delta * 0.45;
-
-
-    bouquetFlowers.style.transform =
-      `
-      rotateX(4deg)
-      rotateY(${rotationY}deg)
-      `;
-
-
-    startX =
-      event.clientX;
+    container.appendChild(ember);
 
   }
-);
+
+}
 
 
-bouquetStage.addEventListener(
-  "pointerup",
-  () => {
-
-    dragging = false;
-
-  }
-);
-
-
-bouquetStage.addEventListener(
-  "pointercancel",
-  () => {
-
-    dragging = false;
-
-  }
-);
-
-
-/*
-=========================
-TOP VIEW
-=========================
-*/
-
-topBtn.addEventListener(
-  "click",
-  () => {
-
-    bouquetFlowers.style.transform =
-      `
-      rotateX(72deg)
-      rotateY(0deg)
-      translateY(-15px)
-      `;
-
-
-    bouquetHint.textContent =
-      "top view.";
-
-
-    setTimeout(
-      () => {
-
-        bouquetFlowers.style.transform =
-          `
-          rotateX(4deg)
-          rotateY(0deg)
-          `;
-
-        bouquetHint.textContent =
-          "drag it around.";
-
-      },
-
-      2200
-    );
-
-  }
-);
+createFireflies();
+createEmbers();
