@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
 
@@ -11,10 +10,10 @@
 
   <meta
     name="theme-color"
-    content="#0f0a09"
+    content="#0d0908"
   >
 
-  <title>For Momo Smiles ❤️</title>
+  <title>For Mhlungu Nice ❤️</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,28 +24,30 @@
     rel="stylesheet"
   >
 
+  <!-- Our CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Three.js -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+  </script>
 </head>
 
-
 <body>
-
 
   <!-- ==================================================
        PAGE 1 — OPENING
   =================================================== -->
 
   <section
-    class="opening"
     id="opening"
-  >
+    class="page opening">
 
     <div
-      class="ember-field"
       id="emberField"
-      aria-hidden="true"
-    ></div>
-
+      class="ember-field"
+      aria-hidden="true">
+    </div>
 
     <div class="opening-card">
 
@@ -54,32 +55,26 @@
         a little something
       </p>
 
-
       <h1>
         For
         <span class="name">
-          Momo
+          Mhlungu Nice
         </span>
-        Smiles
         <span class="heart">
           ❤️
         </span>
       </h1>
 
-
-      <p>
+      <p class="opening-subtitle">
         come here for a second.
       </p>
 
-
       <button
         id="enterBtn"
-        type="button"
-      >
+        class="primary-button"
+        type="button">
 
-        <span>
-          open
-        </span>
+        <span>open</span>
 
         <span class="arrow">
           →
@@ -92,23 +87,20 @@
   </section>
 
 
-
   <!-- ==================================================
        PAGE 2 — FLOWER GARDEN
   =================================================== -->
 
   <section
-    class="garden hidden"
     id="garden"
-  >
-
+    class="page garden hidden">
 
     <header class="garden-header">
 
       <div>
 
         <p class="eyebrow">
-          Momo's little garden
+          Mhlungu's little garden
         </p>
 
         <h2>
@@ -117,23 +109,12 @@
 
       </div>
 
-
       <button
-        class="music-btn"
         id="musicBtn"
-        type="button"
-        aria-pressed="false"
-      >
+        class="music-button"
+        type="button">
 
-        <span
-          class="eq"
-          aria-hidden="true"
-        >
-          <i></i>
-          <i></i>
-          <i></i>
-        </span>
-
+        ♫
         <span id="musicLabel">
           325
         </span>
@@ -144,168 +125,52 @@
 
 
     <p
-      class="instruction"
       id="instruction"
-      aria-live="polite"
-    >
+      class="instruction">
+
       Take your time. Pick whichever ones you like.
+
     </p>
 
 
-
-    <!-- GARDEN WORLD -->
+    <!-- ==================================================
+         3D GARDEN
+    =================================================== -->
 
     <div
-      class="garden-scene"
       id="gardenScene"
-    >
+      class="garden-scene">
 
       <div class="moon"></div>
 
       <div
-        class="stars"
-        aria-hidden="true"
-      ></div>
+        id="stars"
+        class="stars">
+      </div>
 
       <div
-        class="fireflies"
         id="fireflies"
-        aria-hidden="true"
-      ></div>
+        class="fireflies">
+      </div>
 
-      <div class="ground"></div>
+      <div class="garden-ground"></div>
 
+      <!--
+        The flowers will be generated
+        by JavaScript / Three.js.
+      -->
 
-
-      <!-- RED ROSE -->
-
-      <button
-        class="flower rose-red"
-        data-flower="red"
-        type="button"
-        aria-label="Pick the red rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- PINK ROSE -->
-
-      <button
-        class="flower rose-pink"
-        data-flower="pink"
-        type="button"
-        aria-label="Pick the pink rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- WHITE ROSE -->
-
-      <button
-        class="flower rose-white"
-        data-flower="white"
-        type="button"
-        aria-label="Pick the white rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- YELLOW ROSE -->
-
-      <button
-        class="flower rose-yellow"
-        data-flower="yellow"
-        type="button"
-        aria-label="Pick the yellow rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- ORANGE ROSE -->
-
-      <button
-        class="flower rose-orange"
-        data-flower="orange"
-        type="button"
-        aria-label="Pick the orange rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- PURPLE ROSE -->
-
-      <button
-        class="flower rose-purple"
-        data-flower="purple"
-        type="button"
-        aria-label="Pick the purple rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
+      <div
+        id="garden3d"
+        class="garden-3d">
+      </div>
 
     </div>
 
 
-
-    <!-- PICK COUNTER -->
+    <!-- ==================================================
+         PICK COUNTER
+    =================================================== -->
 
     <div class="picked-bar">
 
@@ -317,13 +182,14 @@
         flowers
       </span>
 
-
       <button
         id="viewBouquetBtn"
+        class="secondary-button"
         type="button"
-        disabled
-      >
+        disabled>
+
         view bouquet →
+
       </button>
 
     </div>
@@ -331,30 +197,27 @@
   </section>
 
 
-
   <!-- ==================================================
        PAGE 3 — BOUQUET
   =================================================== -->
 
   <section
-    class="bouquet hidden"
     id="bouquet"
-  >
-
+    class="page bouquet hidden">
 
     <header class="bouquet-header">
 
-
       <button
-        class="back-btn"
         id="backBtn"
-        type="button"
-      >
+        class="back-button"
+        type="button">
+
         ← garden
+
       </button>
 
 
-      <div>
+      <div class="bouquet-title">
 
         <p class="eyebrow">
           you made this
@@ -368,66 +231,45 @@
 
 
       <button
-        class="top-btn"
         id="topBtn"
-        type="button"
-      >
+        class="top-button"
+        type="button">
+
         top view
+
       </button>
 
     </header>
 
 
-
-    <!-- BOUQUET DISPLAY -->
+    <!-- ==================================================
+         REAL 3D BOUQUET
+    =================================================== -->
 
     <div
-      class="bouquet-stage"
-      id="bouquetStage"
-    >
-
-
-      <div class="wrapper"></div>
-
-
-      <!-- RIBBON -->
+      id="bouquet3d"
+      class="bouquet-3d">
 
       <div
-        class="ribbon-bow"
-        id="ribbonBow"
-        aria-hidden="true"
-      >
+        id="bouquetLoading"
+        class="bouquet-loading">
 
-        <span class="loop loop-left"></span>
-
-        <span class="loop loop-right"></span>
-
-        <span class="knot"></span>
-
-        <span class="tail tail-left"></span>
-
-        <span class="tail tail-right"></span>
+        <span></span>
+        <span></span>
+        <span></span>
 
       </div>
-
-
-      <!-- SELECTED FLOWERS GO HERE -->
-
-      <div
-        class="bouquet-flowers"
-        id="bouquetFlowers"
-      ></div>
 
     </div>
 
 
     <p
-      class="bouquet-hint"
       id="bouquetHint"
-    >
-      drag it around.
-    </p>
+      class="bouquet-hint">
 
+      drag it around.
+
+    </p>
 
 
     <!-- ==================================================
@@ -435,33 +277,30 @@
     =================================================== -->
 
     <article
-      class="note-card"
       id="noteCard"
-    >
+      class="note-card">
 
-
-      <!-- WAX SEAL -->
+      <!-- SEALED STATE -->
 
       <div
-        class="seal-layer"
         id="sealLayer"
-      >
+        class="seal-layer">
 
         <button
-          class="wax-seal"
           id="sealBtn"
+          class="wax-seal"
           type="button"
-          aria-label="Break the seal to read the letter"
-        >
+          aria-label="Open love letter">
 
           <span
-            class="seal-initial"
-          >
+            id="sealInitial"
+            class="seal-initial">
+
             M
+
           </span>
 
         </button>
-
 
         <p class="seal-hint">
           tap the seal to read it
@@ -470,19 +309,13 @@
       </div>
 
 
-
       <!-- LETTER -->
 
       <div
-        class="letter-inner"
         id="letterInner"
-      >
+        class="letter-inner">
 
-
-        <p
-          class="small-note"
-          id="noteRecipientLabel"
-        >
+        <p class="small-note">
           For Mhlungu Nice ❤️
         </p>
 
@@ -493,7 +326,6 @@
             Hey Mhlungu Nice,
           </p>
 
-
           <p>
             If your day is getting hectic or heavy,
             breathe a little slower.
@@ -501,10 +333,14 @@
             smile a little longer.
           </p>
 
+          <p>
+            I never find words enough to describe
+            how I feel about you.
+          </p>
 
           <p>
-            I never really find the words enough
-            to describe how I feel about you.
+            I didn't see you today,
+            but I already know you looked so cute. 😭❤️
           </p>
 
         </div>
@@ -527,585 +363,27 @@
   </section>
 
 
-
   <!-- ==================================================
        MUSIC
   =================================================== -->
 
-  <audio
-    id="song"
-    loop
-    preload="none"
-  >
-
-    <source
-      src="assets/325.mp3"
-      type="audio/mpeg"
-    >
-
-  </audio>
-
-
-
-  <!-- JAVASCRIPT -->
-
-  <script src="script.js"></script>
-
-</body>
-
-</html><!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="theme-color"
-    content="#0f0a09"
-  >
-
-  <title>For Momo Smiles ❤️</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
-</head>
-
-
-<body>
-
-
-  <!-- ==================================================
-       PAGE 1 — OPENING
-  =================================================== -->
-
-  <section
-    class="opening"
-    id="opening"
-  >
-
-    <div
-      class="ember-field"
-      id="emberField"
-      aria-hidden="true"
-    ></div>
-
-
-    <div class="opening-card">
-
-      <p class="small-note">
-        a little something
-      </p>
-
-
-      <h1>
-        For
-        <span class="name">
-          Momo
-        </span>
-        Smiles
-        <span class="heart">
-          ❤️
-        </span>
-      </h1>
-
-
-      <p>
-        come here for a second.
-      </p>
-
-
-      <button
-        id="enterBtn"
-        type="button"
-      >
-
-        <span>
-          open
-        </span>
-
-        <span class="arrow">
-          →
-        </span>
-
-      </button>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ==================================================
-       PAGE 2 — FLOWER GARDEN
-  =================================================== -->
-
-  <section
-    class="garden hidden"
-    id="garden"
-  >
-
-
-    <header class="garden-header">
-
-      <div>
-
-        <p class="eyebrow">
-          Momo's little garden
-        </p>
-
-        <h2>
-          Pick a few.
-        </h2>
-
-      </div>
-
-
-      <button
-        class="music-btn"
-        id="musicBtn"
-        type="button"
-        aria-pressed="false"
-      >
-
-        <span
-          class="eq"
-          aria-hidden="true"
-        >
-          <i></i>
-          <i></i>
-          <i></i>
-        </span>
-
-        <span id="musicLabel">
-          325
-        </span>
-
-      </button>
-
-    </header>
-
-
-    <p
-      class="instruction"
-      id="instruction"
-      aria-live="polite"
-    >
-      Take your time. Pick whichever ones you like.
-    </p>
-
-
-
-    <!-- GARDEN WORLD -->
-
-    <div
-      class="garden-scene"
-      id="gardenScene"
-    >
-
-      <div class="moon"></div>
-
-      <div
-        class="stars"
-        aria-hidden="true"
-      ></div>
-
-      <div
-        class="fireflies"
-        id="fireflies"
-        aria-hidden="true"
-      ></div>
-
-      <div class="ground"></div>
-
-
-
-      <!-- RED ROSE -->
-
-      <button
-        class="flower rose-red"
-        data-flower="red"
-        type="button"
-        aria-label="Pick the red rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- PINK ROSE -->
-
-      <button
-        class="flower rose-pink"
-        data-flower="pink"
-        type="button"
-        aria-label="Pick the pink rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- WHITE ROSE -->
-
-      <button
-        class="flower rose-white"
-        data-flower="white"
-        type="button"
-        aria-label="Pick the white rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- YELLOW ROSE -->
-
-      <button
-        class="flower rose-yellow"
-        data-flower="yellow"
-        type="button"
-        aria-label="Pick the yellow rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- ORANGE ROSE -->
-
-      <button
-        class="flower rose-orange"
-        data-flower="orange"
-        type="button"
-        aria-label="Pick the orange rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-
-
-      <!-- PURPLE ROSE -->
-
-      <button
-        class="flower rose-purple"
-        data-flower="purple"
-        type="button"
-        aria-label="Pick the purple rose"
-      >
-
-        <span class="stem"></span>
-
-        <span class="leaf leaf-left"></span>
-
-        <span class="leaf leaf-right"></span>
-
-        <span class="bloom"></span>
-
-      </button>
-
-    </div>
-
-
-
-    <!-- PICK COUNTER -->
-
-    <div class="picked-bar">
-
-      <span>
-        <strong id="flowerCount">
-          0
-        </strong>
-
-        flowers
-      </span>
-
-
-      <button
-        id="viewBouquetBtn"
-        type="button"
-        disabled
-      >
-        view bouquet →
-      </button>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ==================================================
-       PAGE 3 — BOUQUET
-  =================================================== -->
-
-  <section
-    class="bouquet hidden"
-    id="bouquet"
-  >
-
-
-    <header class="bouquet-header">
-
-
-      <button
-        class="back-btn"
-        id="backBtn"
-        type="button"
-      >
-        ← garden
-      </button>
-
-
-      <div>
-
-        <p class="eyebrow">
-          you made this
-        </p>
-
-        <h2>
-          Your bouquet.
-        </h2>
-
-      </div>
-
-
-      <button
-        class="top-btn"
-        id="topBtn"
-        type="button"
-      >
-        top view
-      </button>
-
-    </header>
-
-
-
-    <!-- BOUQUET DISPLAY -->
-
-    <div
-      class="bouquet-stage"
-      id="bouquetStage"
-    >
-
-
-      <div class="wrapper"></div>
-
-
-      <!-- RIBBON -->
-
-      <div
-        class="ribbon-bow"
-        id="ribbonBow"
-        aria-hidden="true"
-      >
-
-        <span class="loop loop-left"></span>
-
-        <span class="loop loop-right"></span>
-
-        <span class="knot"></span>
-
-        <span class="tail tail-left"></span>
-
-        <span class="tail tail-right"></span>
-
-      </div>
-
-
-      <!-- SELECTED FLOWERS GO HERE -->
-
-      <div
-        class="bouquet-flowers"
-        id="bouquetFlowers"
-      ></div>
-
-    </div>
-
-
-    <p
-      class="bouquet-hint"
-      id="bouquetHint"
-    >
-      drag it around.
-    </p>
-
-
-
-    <!-- ==================================================
-         LOVE LETTER
-    =================================================== -->
-
-    <article
-      class="note-card"
-      id="noteCard"
-    >
-
-
-      <!-- WAX SEAL -->
-
-      <div
-        class="seal-layer"
-        id="sealLayer"
-      >
-
-        <button
-          class="wax-seal"
-          id="sealBtn"
-          type="button"
-          aria-label="Break the seal to read the letter"
-        >
-
-          <span
-            class="seal-initial"
-          >
-            M
-          </span>
-
-        </button>
-
-
-        <p class="seal-hint">
-          tap the seal to read it
-        </p>
-
-      </div>
-
-
-
-      <!-- LETTER -->
-
-      <div
-        class="letter-inner"
-        id="letterInner"
-      >
-
-
-        <p
-          class="small-note"
-          id="noteRecipientLabel"
-        >
-          For Mhlungu Nice ❤️
-        </p>
-
-
-        <div id="letterBody">
-
-          <p>
-            Hey Mhlungu Nice,
-          </p>
-
-
-          <p>
-            If your day is getting hectic or heavy,
-            breathe a little slower.
-            And if it's good,
-            smile a little longer.
-          </p>
-
-
-          <p>
-            I never really find the words enough
-            to describe how I feel about you.
-          </p>
-
-        </div>
-
-
-        <p class="signature">
-
-          Love always,<br>
-
-          <strong>
-            — Bigduggmustfall ❤️
-          </strong>
-
-        </p>
-
-      </div>
-
-    </article>
-
-  </section>
-
-
-
-  <!-- ==================================================
-       MUSIC
-  =================================================== -->
+  <!--
+    We are leaving the actual song source out for now.
+    The site will work without it.
+  -->
 
   <audio
     id="song"
     loop
-    preload="none"
-  >
-
-    <source
-      src="assets/325.mp3"
-      type="audio/mpeg"
-    >
-
+    preload="none">
   </audio>
 
 
-
-  <!-- JAVASCRIPT -->
+  <!-- ==================================================
+       JAVASCRIPT
+  =================================================== -->
 
   <script src="script.js"></script>
 
 </body>
-
 </html>
