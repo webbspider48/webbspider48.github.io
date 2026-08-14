@@ -794,4 +794,421 @@ button:focus-visible {
   .note-card {
     font-size: .98rem;
   }
+
+  /* =========================================
+   NEW INTERACTIVE ROSE SYSTEM
+========================================= */
+
+.flower {
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.flower .bloom {
+  transition:
+    transform .35s ease,
+    filter .35s ease;
+}
+
+.flower:hover .bloom {
+  transform: scale(1.08) translateY(-3px);
+}
+
+.flower:active .bloom {
+  transform: scale(.94);
+}
+
+
+/* =========================================
+   PETALS WHEN FLOWER IS PICKED
+========================================= */
+
+.picked-petal {
+  position: fixed;
+  width: 13px;
+  height: 18px;
+  border-radius: 100% 0 100% 0;
+  pointer-events: none;
+  z-index: 9999;
+
+  animation:
+    pickedPetal 1.2s ease-out forwards;
+}
+
+.petal-red {
+  background: #b3332c;
+}
+
+.petal-pink {
+  background: #dd7f9b;
+}
+
+.petal-white {
+  background: #eee5d7;
+}
+
+.petal-yellow {
+  background: #e2b94f;
+}
+
+.petal-orange {
+  background: #d97f3f;
+}
+
+.petal-purple {
+  background: #8d68ac;
+}
+
+@keyframes pickedPetal {
+
+  0% {
+    transform:
+      translate(0, 0)
+      rotate(0deg)
+      scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate(
+        var(--x),
+        var(--y)
+      )
+      rotate(var(--rotate))
+      scale(.4);
+
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================
+   FLOWER PICK ANIMATION
+========================================= */
+
+.flower.picked {
+  animation:
+    flowerPicked .75s
+    cubic-bezier(.55, .05, .675, .19)
+    forwards;
+}
+
+@keyframes flowerPicked {
+
+  0% {
+    transform:
+      rotate(var(--tilt))
+      scale(1);
+  }
+
+  25% {
+    transform:
+      rotate(calc(var(--tilt) + 7deg))
+      scale(1.08);
+  }
+
+  55% {
+    transform:
+      rotate(calc(var(--tilt) - 12deg))
+      translateY(-30px)
+      scale(1.04);
+  }
+
+  100% {
+    transform:
+      rotate(25deg)
+      translateY(-300px)
+      scale(.15);
+
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================
+   BOUQUET FLOWERS
+========================================= */
+
+.bouquet-flower {
+  position: absolute;
+
+  left: 50%;
+  bottom: 35px;
+
+  width: 90px;
+  height: 280px;
+
+  transform:
+    translateX(
+      calc(-50% + var(--spread))
+    )
+    translateY(
+      var(--height)
+    )
+    rotate(
+      var(--rotation)
+    );
+
+  transform-origin: bottom center;
+
+  transition:
+    transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* stem */
+
+.bouquet-stem {
+  position: absolute;
+
+  width: 7px;
+  height: 215px;
+
+  left: 42px;
+  bottom: 0;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #203b27,
+      #55704c,
+      #203b27
+    );
+
+}
+
+
+/* leaves */
+
+.bouquet-leaf {
+  position: absolute;
+
+  width: 42px;
+  height: 20px;
+
+  bottom: 95px;
+
+  background: #426042;
+
+  border-radius:
+    100% 0 100% 0;
+}
+
+.bouquet-leaf.left {
+  left: 3px;
+  transform: rotate(-30deg);
+}
+
+.bouquet-leaf.right {
+  right: 1px;
+  transform:
+    rotate(30deg)
+    scaleX(-1);
+}
+
+
+/* =========================================
+   BETTER BOUQUET ROSE
+========================================= */
+
+.bouquet-bloom {
+
+  position: absolute;
+
+  width: 82px;
+  height: 82px;
+
+  top: 0;
+  left: 4px;
+
+  border-radius: 50%;
+
+  filter:
+    drop-shadow(
+      0 8px 8px
+      rgba(0,0,0,.2)
+    );
+
+}
+
+
+.bouquet-bloom span {
+
+  position: absolute;
+
+  width: 54px;
+  height: 54px;
+
+  left: 14px;
+  top: 14px;
+
+  border-radius:
+    50% 45% 55% 48%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      var(--petal-light),
+      var(--petal) 60%,
+      var(--petal-deep)
+    );
+
+  box-shadow:
+    inset
+    -4px -5px 8px
+    rgba(0,0,0,.16);
+
+}
+
+
+.bouquet-bloom span:nth-child(1) {
+  transform: translateY(-15px);
+}
+
+.bouquet-bloom span:nth-child(2) {
+  transform: translateX(15px) rotate(72deg);
+}
+
+.bouquet-bloom span:nth-child(3) {
+  transform: translateY(15px) rotate(144deg);
+}
+
+.bouquet-bloom span:nth-child(4) {
+  transform: translateX(-15px) rotate(216deg);
+}
+
+.bouquet-bloom span:nth-child(5) {
+  transform: rotate(288deg);
+}
+
+
+.flower-center {
+
+  position: absolute;
+
+  width: 25px;
+  height: 25px;
+
+  left: 29px;
+  top: 29px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      var(--petal-deep),
+      #3c1714
+    );
+
+  box-shadow:
+    inset
+    0 2px 5px
+    rgba(0,0,0,.4);
+
+}
+
+
+/* =========================================
+   COLOUR SYSTEM FOR BOUQUET ROSES
+========================================= */
+
+.rose-red {
+  --petal: #b3332c;
+  --petal-light: #e8796e;
+  --petal-deep: #701d19;
+}
+
+.rose-pink {
+  --petal: #dd7f9b;
+  --petal-light: #f6b8ca;
+  --petal-deep: #9d4965;
+}
+
+.rose-white {
+  --petal: #e9dfd0;
+  --petal-light: #fffaf0;
+  --petal-deep: #c3b29d;
+}
+
+.rose-yellow {
+  --petal: #e2b94f;
+  --petal-light: #f7dc8b;
+  --petal-deep: #a4771f;
+}
+
+.rose-orange {
+  --petal: #d97f3f;
+  --petal-light: #f3ad6b;
+  --petal-deep: #984d1d;
+}
+
+.rose-purple {
+  --petal: #8d68ac;
+  --petal-light: #b99ad2;
+  --petal-deep: #583b73;
+}
+
+
+/* =========================================
+   BOUQUET APPEARANCE
+========================================= */
+
+.bouquet-flower:nth-child(1) {
+  z-index: 6;
+}
+
+.bouquet-flower:nth-child(2) {
+  z-index: 5;
+}
+
+.bouquet-flower:nth-child(3) {
+  z-index: 7;
+}
+
+.bouquet-flower:nth-child(4) {
+  z-index: 4;
+}
+
+.bouquet-flower:nth-child(5) {
+  z-index: 6;
+}
+
+.bouquet-flower:nth-child(6) {
+  z-index: 3;
+}
+
+
+/* =========================================
+   MOBILE FLOWERS
+========================================= */
+
+@media (max-width: 650px) {
+
+  .flower {
+    width: 65px;
+    height: 225px;
+  }
+
+  .flower .stem {
+    height: 175px;
+    left: 30px;
+  }
+
+  .flower .bloom {
+    width: 58px;
+    height: 58px;
+    left: 1px;
+  }
+
+  .bouquet-stage {
+    height: 400px;
+  }
+
+
 }
