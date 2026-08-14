@@ -1,17 +1,26 @@
+/* =========================================================
+   MHLUNGU NICE — LOVE LETTER
+   STYLE
+========================================================= */
+
 * {
   box-sizing: border-box;
 }
 
 :root {
-  --void: #0d0909;
-  --dusk: #24151c;
-  --text: #f7eee8;
-  --muted: #b9aaa2;
-  --ember: #e7b873;
+  --night: #0c0809;
+  --night-soft: #171013;
+  --wine: #35151f;
 
-  --paper: #f1e5d5;
-  --ink: #2b201a;
-  --paper-muted: #806e64;
+  --cream: #f7eee5;
+  --muted: #bbaaa2;
+
+  --gold: #e8bd7a;
+  --gold-soft: rgba(232, 189, 122, 0.2);
+
+  --paper: #f0e4d4;
+  --paper-dark: #ddc9b0;
+  --ink: #2b211d;
 
   --display: "Cormorant Garamond", Georgia, serif;
   --body: "Lora", Georgia, serif;
@@ -21,13 +30,13 @@
 html,
 body {
   margin: 0;
-  padding: 0;
+  width: 100%;
   min-height: 100%;
 }
 
 body {
-  background: var(--void);
-  color: var(--text);
+  background: var(--night);
+  color: var(--cream);
   font-family: var(--body);
   overflow-x: hidden;
 }
@@ -37,7 +46,7 @@ button {
 }
 
 button:focus-visible {
-  outline: 2px solid var(--ember);
+  outline: 2px solid var(--gold);
   outline-offset: 4px;
 }
 
@@ -46,66 +55,88 @@ button:focus-visible {
 }
 
 
-/* ==================================================
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+
+/* =========================================================
    OPENING
-================================================== */
+========================================================= */
 
 .opening {
-  min-height: 100vh;
-  width: 100%;
   position: relative;
 
   display: grid;
   place-items: center;
 
-  overflow: hidden;
+  padding: 30px;
 
-  padding: 24px;
+  overflow: hidden;
 
   background:
     radial-gradient(
       circle at 50% 35%,
-      rgba(231, 184, 115, 0.12),
+      rgba(232, 189, 122, 0.11),
       transparent 35%
     ),
     radial-gradient(
       circle at 80% 80%,
-      rgba(115, 40, 75, 0.18),
+      rgba(125, 39, 70, 0.22),
       transparent 45%
     ),
     linear-gradient(
       145deg,
-      #0b0808,
-      #241219,
-      #0d0909
+      #090707,
+      #241017 65%,
+      #0b0809
     );
 }
 
 .opening::before,
 .opening::after {
   content: "";
+
   position: absolute;
+
+  left: 50%;
+  top: 50%;
 
   border: 1px solid rgba(255, 255, 255, 0.045);
 
   border-radius: 50%;
 
+  transform: translate(-50%, -50%);
+
   pointer-events: none;
 }
 
 .opening::before {
-  width: 520px;
-  height: 520px;
+  width: min(560px, 100vw);
+  height: min(560px, 100vw);
 }
 
 .opening::after {
-  width: 760px;
-  height: 760px;
+  width: min(800px, 145vw);
+  height: min(800px, 145vw);
 }
+
+
+/* =========================================================
+   FLOATING EMBERS
+========================================================= */
 
 .ember-field {
   position: absolute;
   inset: 0;
+
+  overflow: hidden;
 
   pointer-events: none;
 }
@@ -120,21 +151,23 @@ button:focus-visible {
 
   border-radius: 50%;
 
-  background: var(--ember);
+  background: var(--gold);
 
   box-shadow:
-    0 0 8px
-    rgba(231, 184, 115, 0.65);
+    0 0 8px 2px var(--gold-soft);
 
   opacity: 0;
 
   animation:
-    emberRise
+    ember-rise
+    var(--duration, 7s)
     linear
     infinite;
+
+  animation-delay: var(--delay, 0s);
 }
 
-@keyframes emberRise {
+@keyframes ember-rise {
 
   0% {
     transform:
@@ -144,41 +177,48 @@ button:focus-visible {
     opacity: 0;
   }
 
-  15% {
+  10% {
     opacity: 0.8;
   }
 
-  85% {
-    opacity: 0.35;
+  90% {
+    opacity: 0.25;
   }
 
   100% {
     transform:
-      translateY(-100vh)
-      translateX(var(--drift));
+      translateY(-105vh)
+      translateX(var(--drift, 20px));
 
     opacity: 0;
   }
 }
 
-.opening-card {
-  width: min(620px, 100%);
 
+/* =========================================================
+   OPENING CARD
+========================================================= */
+
+.opening-card {
   position: relative;
+
   z-index: 2;
+
+  width: min(650px, 100%);
 
   text-align: center;
 }
 
 .small-note,
 .eyebrow {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 
-  color: #bca9a0;
+  color: #bdaaa0;
 
   font-family: var(--ui);
 
-  font-size: 0.72rem;
+  font-size: 0.7rem;
+  font-weight: 500;
 
   text-transform: uppercase;
 
@@ -190,29 +230,29 @@ button:focus-visible {
 
   font-family: var(--display);
 
-  font-size:
-    clamp(
-      3rem,
-      10vw,
-      6rem
-    );
+  font-size: clamp(
+    3rem,
+    10vw,
+    6.5rem
+  );
 
   font-weight: 500;
 
-  line-height: 0.95;
+  line-height: 0.9;
 }
 
 .opening-card .name {
-  color: var(--ember);
+  color: var(--gold);
+
   font-style: italic;
 }
 
 .opening-card .heart {
-  font-size: 0.55em;
+  font-size: 0.5em;
 }
 
-.opening-card p:not(.small-note) {
-  margin: 22px 0 30px;
+.opening-subtitle {
+  margin: 25px 0 30px;
 
   color: var(--muted);
 
@@ -221,65 +261,75 @@ button:focus-visible {
   font-style: italic;
 }
 
-#enterBtn {
-  border: 0;
 
-  padding: 14px 28px;
+/* =========================================================
+   BUTTONS
+========================================================= */
 
-  border-radius: 999px;
-
-  cursor: pointer;
-
-  color: #241915;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f4e4cc,
-      #dfc49b
-    );
-
+.primary-button {
   display: inline-flex;
 
   align-items: center;
 
-  gap: 9px;
+  gap: 10px;
+
+  padding: 14px 27px;
+
+  border: 0;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f4e2c8,
+      #ddc19a
+    );
+
+  color: #241916;
+
+  font-family: var(--ui);
+
+  font-size: 0.9rem;
+
+  cursor: pointer;
 
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
 
-#enterBtn:hover {
+.primary-button:hover {
   transform: translateY(-3px);
 
   box-shadow:
     0 14px 35px
-    rgba(0, 0, 0, 0.35);
+    rgba(0, 0, 0, 0.4);
 }
 
-#enterBtn .arrow {
-  transition: transform 0.25s ease;
+.primary-button .arrow {
+  transition:
+    transform 0.25s ease;
 }
 
-#enterBtn:hover .arrow {
+.primary-button:hover .arrow {
   transform: translateX(5px);
 }
 
 
-/* ==================================================
-   GARDEN PAGE
-================================================== */
+/* =========================================================
+   GARDEN
+========================================================= */
 
 .garden {
-  min-height: 100vh;
+  position: relative;
 
   padding:
-    28px
+    26px
     clamp(18px, 4vw, 55px);
 
   background:
-    #130e0e;
+    #110c0d;
 }
 
 .garden-header,
@@ -291,7 +341,7 @@ button:focus-visible {
 
   justify-content: space-between;
 
-  gap: 16px;
+  gap: 18px;
 }
 
 .garden-header h2,
@@ -301,169 +351,143 @@ button:focus-visible {
   font-family: var(--display);
 
   font-size:
-    clamp(
-      2.3rem,
-      6vw,
-      4rem
-    );
+    clamp(2.3rem, 6vw, 4.5rem);
 
   font-weight: 500;
+
+  line-height: 0.9;
 }
 
 .instruction {
-  margin: 12px 0 18px;
+  margin:
+    14px 0
+    20px;
 
   color: var(--muted);
+
+  font-size: 0.95rem;
 
   font-style: italic;
 }
 
-.music-btn,
-.back-btn,
-.top-btn {
-  border: 1px solid rgba(255,255,255,0.12);
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+.music-button,
+.back-button,
+.top-button {
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.13);
 
   border-radius: 999px;
 
-  padding: 10px 16px;
-
-  color: var(--text);
+  padding:
+    10px 16px;
 
   background:
-    rgba(255,255,255,0.05);
+    rgba(255, 255, 255, 0.05);
+
+  color: var(--cream);
+
+  font-family: var(--ui);
+
+  font-size: 0.8rem;
 
   cursor: pointer;
 
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 9px;
-
   transition:
-    transform 0.25s ease,
-    background 0.25s ease;
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
-.music-btn:hover,
-.back-btn:hover,
-.top-btn:hover {
+.music-button:hover,
+.back-button:hover,
+.top-button:hover {
   transform: translateY(-2px);
 
   background:
-    rgba(255,255,255,0.09);
+    rgba(255, 255, 255, 0.09);
 }
 
 
-/* ==================================================
-   MUSIC EQUALIZER
-================================================== */
-
-.eq {
-  height: 12px;
-
-  display: flex;
-
-  align-items: flex-end;
-
-  gap: 2px;
-}
-
-.eq i {
-  width: 3px;
-
-  height: 35%;
-
-  border-radius: 2px;
-
-  background: var(--ember);
-
-  animation:
-    equalizer
-    0.9s
-    ease-in-out
-    infinite;
-}
-
-.eq i:nth-child(2) {
-  animation-delay: 0.15s;
-}
-
-.eq i:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.music-btn[aria-pressed="false"] .eq i {
-  animation-play-state: paused;
-}
-
-@keyframes equalizer {
-
-  0%,
-  100% {
-    height: 30%;
-  }
-
-  50% {
-    height: 100%;
-  }
-}
-
-
-/* ==================================================
-   GARDEN WORLD
-================================================== */
+/* =========================================================
+   GARDEN SCENE
+========================================================= */
 
 .garden-scene {
   position: relative;
 
-  height:
-    min(
-      66vh,
-      680px
-    );
+  width: 100%;
 
-  min-height: 480px;
+  height:
+    min(68vh, 700px);
+
+  min-height: 500px;
 
   overflow: hidden;
 
   border-radius: 28px;
 
   background:
+    radial-gradient(
+      circle at 72% 17%,
+      rgba(255, 240, 200, 0.12),
+      transparent 38px
+    ),
     linear-gradient(
       180deg,
-      #241b2c 0%,
-      #382338 35%,
-      #273127 70%,
-      #111815 100%
+      #241827 0%,
+      #352132 38%,
+      #273329 72%,
+      #101814 100%
     );
 
   box-shadow:
-    inset
-    0 0 100px
-    rgba(0,0,0,0.5);
+    inset 0 0 100px
+    rgba(0, 0, 0, 0.5);
 }
+
+
+/* =========================================================
+   MOON
+========================================================= */
 
 .moon {
   position: absolute;
 
-  width: 72px;
-  height: 72px;
+  z-index: 1;
 
   top: 9%;
   right: 12%;
 
+  width: 70px;
+  height: 70px;
+
   border-radius: 50%;
 
-  background: #eee5d1;
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #fff9e8,
+      #eee3c8
+    );
 
   box-shadow:
     0 0 55px
-    rgba(239,230,207,0.18);
+    rgba(245, 231, 194, 0.2);
 }
+
+
+/* =========================================================
+   STARS
+========================================================= */
 
 .stars {
   position: absolute;
+
   inset: 0;
 
   opacity: 0.45;
@@ -475,16 +499,17 @@ button:focus-visible {
       transparent 1.5px
     );
 
-  background-size: 120px 120px;
+  background-size:
+    120px 120px;
 
   animation:
-    starsMove
-    8s
+    stars-float
+    9s
     linear
     infinite;
 }
 
-@keyframes starsMove {
+@keyframes stars-float {
 
   from {
     transform: translateY(0);
@@ -495,9 +520,17 @@ button:focus-visible {
   }
 }
 
+
+/* =========================================================
+   FIREFLIES
+========================================================= */
+
 .fireflies {
   position: absolute;
+
   inset: 0;
+
+  z-index: 2;
 
   pointer-events: none;
 }
@@ -513,62 +546,68 @@ button:focus-visible {
   background:
     radial-gradient(
       circle,
-      #fff0c9,
+      #fff2c9,
       transparent 70%
     );
 
   box-shadow:
-    0 0 8px
-    rgba(255,220,150,0.8);
+    0 0 10px 3px
+    rgba(255, 220, 150, 0.7);
 
   animation:
-    fireflyMove
-    var(--dur)
-    ease-in-out
-    infinite,
-    fireflyGlow
-    2.6s
+    firefly
+    var(--duration, 7s)
     ease-in-out
     infinite;
+
+  animation-delay:
+    var(--delay, 0s);
 }
 
-@keyframes fireflyMove {
-
-  0%,
-  100% {
-    transform: translate(0,0);
-  }
-
-  25% {
-    transform: translate(22px,-26px);
-  }
-
-  50% {
-    transform: translate(-14px,-8px);
-  }
-
-  75% {
-    transform: translate(12px,18px);
-  }
-}
-
-@keyframes fireflyGlow {
+@keyframes firefly {
 
   0%,
   100% {
     opacity: 0;
+
+    transform:
+      translate(0, 0);
+  }
+
+  25% {
+    opacity: 0.8;
+
+    transform:
+      translate(20px, -25px);
   }
 
   50% {
-    opacity: 1;
+    opacity: 0.2;
+
+    transform:
+      translate(-15px, -10px);
+  }
+
+  75% {
+    opacity: 0.9;
+
+    transform:
+      translate(15px, 18px);
   }
 }
 
-.ground {
+
+/* =========================================================
+   GROUND
+========================================================= */
+
+.garden-ground {
   position: absolute;
 
+  z-index: 3;
+
   left: -5%;
-  bottom: -15%;
+  bottom: -17%;
 
   width: 110%;
   height: 45%;
@@ -576,914 +615,302 @@ button:focus-visible {
   border-radius:
     50% 50% 0 0;
 
-  background: #142019;
+  background:
+    radial-gradient(
+      ellipse at center top,
+      #20372a,
+      #101a14 75%
+    );
 
   transform: rotate(-2deg);
 }
 
 
-/* ==================================================
-   GARDEN FLOWERS
-================================================== */
+/* =========================================================
+   THREE.JS GARDEN
+========================================================= */
 
-.flower {
+.garden-3d {
   position: absolute;
 
-  bottom: 15%;
+  z-index: 4;
 
-  width: 78px;
-  height: 250px;
+  inset: 0;
 
-  padding: 0;
-
-  border: 0;
-
-  background: transparent;
-
-  cursor: pointer;
-
-  transform:
-    rotate(var(--tilt));
-
-  transform-origin:
-    50% 100%;
-
-  transition:
-    transform 0.3s ease;
+  touch-action: none;
 }
 
-.flower:hover {
-  transform:
-    rotate(var(--tilt))
-    translateY(-8px)
-    scale(1.05);
-}
+.garden-3d canvas {
+  display: block;
 
-.flower:nth-of-type(1) {
-  left: 5%;
-  --tilt: -6deg;
-}
-
-.flower:nth-of-type(2) {
-  left: 21%;
-  bottom: 19%;
-  --tilt: 5deg;
-}
-
-.flower:nth-of-type(3) {
-  left: 38%;
-  bottom: 14%;
-  --tilt: -3deg;
-}
-
-.flower:nth-of-type(4) {
-  left: 56%;
-  bottom: 20%;
-  --tilt: 6deg;
-}
-
-.flower:nth-of-type(5) {
-  left: 73%;
-  bottom: 15%;
-  --tilt: -5deg;
-}
-
-.flower:nth-of-type(6) {
-  left: 88%;
-  bottom: 19%;
-  --tilt: 4deg;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 
-/* ==================================================
-   STEM
-================================================== */
-
-.stem {
-  position: absolute;
-
-  left: 36px;
-  bottom: 0;
-
-  width: 6px;
-  height: 195px;
-
-  border-radius: 999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #1c3523,
-      #4e6c47,
-      #1c3523
-    );
-}
-
-
-/* ==================================================
-   LEAVES
-================================================== */
-
-.leaf {
-  position: absolute;
-
-  width: 38px;
-  height: 18px;
-
-  bottom: 75px;
-
-  background: #3d5e3e;
-
-  border-radius:
-    100% 0 100% 0;
-}
-
-.leaf-left {
-  left: 3px;
-
-  transform:
-    rotate(-28deg);
-}
-
-.leaf-right {
-  right: 1px;
-
-  bottom: 105px;
-
-  transform:
-    rotate(30deg)
-    scaleX(-1);
-}
-
-
-/* ==================================================
-   ROSE HEAD
-================================================== */
-
-.bloom {
-  position: absolute;
-
-  top: 0;
-  left: 6px;
-
-  width: 68px;
-  height: 68px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle at 35% 25%,
-      var(--petal-light),
-      var(--petal) 58%,
-      var(--petal-deep)
-    );
-
-  box-shadow:
-    inset
-    0 -7px 12px
-    rgba(0,0,0,0.18),
-
-    0 10px 18px
-    rgba(0,0,0,0.25);
-
-  animation:
-    flowerSway
-    3.2s
-    ease-in-out
-    infinite;
-}
-
-.bloom::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 9px;
-
-  border-radius: 50%;
-
-  background:
-    repeating-conic-gradient(
-      var(--petal-deep) 0deg 22deg,
-      var(--petal) 22deg 45deg
-    );
-
-  box-shadow:
-    inset
-    0 0 10px
-    rgba(0,0,0,0.25);
-}
-
-.bloom::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 23px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      var(--petal-light),
-      var(--petal-deep)
-    );
-
-  box-shadow:
-    inset
-    0 2px 5px
-    rgba(0,0,0,0.35);
-}
-
-@keyframes flowerSway {
-
-  0%,
-  100% {
-    transform: rotate(-2deg);
-  }
-
-  50% {
-    transform:
-      rotate(3deg)
-      translateY(-2px);
-  }
-}
-
-
-/* ==================================================
-   ROSE COLOURS
-================================================== */
-
-.rose-red {
-  --petal: #b3332c;
-  --petal-light: #e8796e;
-  --petal-deep: #701d19;
-}
-
-.rose-pink {
-  --petal: #dd7f9b;
-  --petal-light: #f6b8ca;
-  --petal-deep: #9d4965;
-}
-
-.rose-white {
-  --petal: #e9dfd0;
-  --petal-light: #fffaf0;
-  --petal-deep: #c3b29d;
-}
-
-.rose-yellow {
-  --petal: #e2b94f;
-  --petal-light: #f7dc8b;
-  --petal-deep: #a4771f;
-}
-
-.rose-orange {
-  --petal: #d97f3f;
-  --petal-light: #f3ad6b;
-  --petal-deep: #984d1d;
-}
-
-.rose-purple {
-  --petal: #8d68ac;
-  --petal-light: #b99ad2;
-  --petal-deep: #583b73;
-}
-
-
-/* ==================================================
-   PICKED FLOWER
-================================================== */
-
-.flower.picked {
-  animation:
-    flowerPicked
-    0.75s
-    cubic-bezier(.55,.05,.675,.19)
-    forwards;
-}
-
-@keyframes flowerPicked {
-
-  0% {
-    transform:
-      rotate(var(--tilt))
-      scale(1);
-  }
-
-  30% {
-    transform:
-      rotate(calc(var(--tilt) + 8deg))
-      scale(1.08);
-  }
-
-  60% {
-    transform:
-      rotate(calc(var(--tilt) - 12deg))
-      translateY(-35px)
-      scale(1.03);
-  }
-
-  100% {
-    transform:
-      rotate(25deg)
-      translateY(-300px)
-      scale(0.1);
-
-    opacity: 0;
-  }
-}
-
-
-/* ==================================================
-   PICKED PETALS
-================================================== */
-
-.picked-petal {
-  position: fixed;
-
-  width: 12px;
-  height: 17px;
-
-  border-radius:
-    100% 0 100% 0;
-
-  pointer-events: none;
-
-  z-index: 9999;
-
-  animation:
-    pickedPetal
-    1.2s
-    ease-out
-    forwards;
-}
-
-.petal-red {
-  background: #b3332c;
-}
-
-.petal-pink {
-  background: #dd7f9b;
-}
-
-.petal-white {
-  background: #eee5d7;
-}
-
-.petal-yellow {
-  background: #e2b94f;
-}
-
-.petal-orange {
-  background: #d97f3f;
-}
-
-.petal-purple {
-  background: #8d68ac;
-}
-
-@keyframes pickedPetal {
-
-  from {
-    transform:
-      translate(0,0)
-      rotate(0deg)
-      scale(1);
-
-    opacity: 1;
-  }
-
-  to {
-    transform:
-      translate(var(--x),var(--y))
-      rotate(var(--rotate))
-      scale(0.3);
-
-    opacity: 0;
-  }
-}
-
-
-/* ==================================================
+/* =========================================================
    PICKED BAR
-================================================== */
+========================================================= */
 
 .picked-bar {
-  margin-top: 15px;
+  margin-top: 16px;
 
   color: var(--muted);
 
   font-family: var(--ui);
 
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
-#viewBouquetBtn {
-  border: 1px solid rgba(255,255,255,0.12);
+.picked-bar strong {
+  color: var(--cream);
+
+  font-size: 1rem;
+}
+
+.secondary-button {
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.13);
 
   border-radius: 999px;
 
-  padding: 11px 18px;
-
-  color: var(--text);
+  padding:
+    11px 18px;
 
   background:
-    rgba(255,255,255,0.05);
+    rgba(255, 255, 255, 0.05);
+
+  color: var(--cream);
+
+  font-family: var(--ui);
 
   cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
-#viewBouquetBtn:disabled {
-  opacity: 0.35;
+.secondary-button:not(:disabled):hover {
+  transform: translateY(-2px);
+
+  background:
+    rgba(255, 255, 255, 0.1);
+}
+
+.secondary-button:disabled {
+  opacity: 0.3;
 
   cursor: not-allowed;
 }
 
 
-/* ==================================================
+/* =========================================================
    BOUQUET PAGE
-================================================== */
+========================================================= */
 
 .bouquet {
-  min-height: 100vh;
+  position: relative;
 
   padding:
-    28px
-    clamp(18px,4vw,55px);
-
-  color: #2b211d;
+    26px
+    clamp(18px, 4vw, 55px);
 
   background:
     linear-gradient(
       145deg,
-      #eee2d7,
-      #e5d4c8
+      #eee1d6,
+      #e4d3c8
     );
+
+  color: var(--ink);
+}
+
+.bouquet-header {
+  position: relative;
+
+  z-index: 5;
 }
 
 .bouquet-header .eyebrow {
-  color: #806e64;
+  color: #806d63;
 }
 
-.bouquet-header .back-btn,
-.bouquet-header .top-btn {
-  color: #2b211d;
+.bouquet-title {
+  text-align: center;
+}
 
+.bouquet-header h2 {
+  color: var(--ink);
+}
+
+.back-button,
+.top-button {
   border-color:
-    rgba(43,33,29,0.15);
+    rgba(43, 33, 29, 0.16);
 
   background:
-    rgba(43,33,29,0.05);
+    rgba(43, 33, 29, 0.05);
+
+  color: var(--ink);
 }
 
 
-/* ==================================================
-   BOUQUET STAGE
-================================================== */
+/* =========================================================
+   THREE.JS BOUQUET
+========================================================= */
 
-.bouquet-stage {
+.bouquet-3d {
   position: relative;
 
-  width: min(720px,100%);
+  width: min(900px, 100%);
 
-  height: 440px;
+  height:
+    min(62vh, 650px);
+
+  min-height: 390px;
 
   margin:
-    30px
-    auto
-    5px;
-
-  perspective: 1000px;
-
-  display: grid;
-
-  place-items: end center;
-
-  transform-style: preserve-3d;
-
-  cursor: grab;
+    10px auto 0;
 
   touch-action: none;
+
+  cursor: grab;
 }
 
-.bouquet-stage:active {
+.bouquet-3d:active {
   cursor: grabbing;
 }
 
+.bouquet-3d canvas {
+  display: block;
 
-/* ==================================================
-   WRAPPER
-================================================== */
-
-.wrapper {
-  position: absolute;
-
-  bottom: 5px;
-
-  width: 270px;
-  height: 245px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #d7c2ae,
-      #b79b84
-    );
-
-  clip-path:
-    polygon(
-      15% 0,
-      85% 0,
-      100% 100%,
-      0 100%
-    );
-
-  transform:
-    rotate(180deg)
-    rotateX(-8deg);
+  width: 100% !important;
+  height: 100% !important;
 }
 
 
-/* ==================================================
-   BOUQUET FLOWERS CONTAINER
-================================================== */
+/* =========================================================
+   BOUQUET LOADING
+========================================================= */
 
-.bouquet-flowers {
-  position: relative;
-
-  width: 350px;
-  height: 350px;
-
-  transform-style: preserve-3d;
-
-  transform:
-    rotateX(4deg)
-    rotateY(0deg);
-
-  transition:
-    transform 0.5s ease;
-}
-
-
-/* ==================================================
-   BOUQUET FLOWER
-================================================== */
-
-.bouquet-flower {
+.bouquet-loading {
   position: absolute;
+
+  z-index: 2;
 
   left: 50%;
-  bottom: 30px;
+  top: 50%;
 
-  width: 90px;
-  height: 285px;
+  display: flex;
 
-  transform:
-    translateX(
-      calc(-50% + var(--spread))
-    )
-    translateY(var(--height))
-    rotate(var(--rotation));
-
-  transform-origin:
-    bottom center;
-}
-
-
-/* STEM */
-
-.bouquet-stem {
-  position: absolute;
-
-  left: 42px;
-  bottom: 0;
-
-  width: 7px;
-  height: 220px;
-
-  border-radius: 999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #1c3523,
-      #55704c,
-      #1c3523
-    );
-}
-
-
-/* LEAVES */
-
-.bouquet-leaf {
-  position: absolute;
-
-  width: 43px;
-  height: 20px;
-
-  bottom: 95px;
-
-  background: #426042;
-
-  border-radius:
-    100% 0 100% 0;
-}
-
-.bouquet-leaf.left {
-  left: 2px;
+  gap: 5px;
 
   transform:
-    rotate(-30deg);
+    translate(-50%, -50%);
+
+  transition:
+    opacity 0.4s ease;
 }
 
-.bouquet-leaf.right {
-  right: 0;
-
-  transform:
-    rotate(30deg)
-    scaleX(-1);
-}
-
-
-/* ==================================================
-   BOUQUET ROSE
-================================================== */
-
-.bouquet-bloom {
-  position: absolute;
-
-  top: 0;
-  left: 4px;
-
-  width: 82px;
-  height: 82px;
-
-  filter:
-    drop-shadow(
-      0 8px 8px
-      rgba(0,0,0,0.18)
-    );
-}
-
-.bouquet-bloom span {
-  position: absolute;
-
-  width: 54px;
-  height: 54px;
-
-  left: 14px;
-  top: 14px;
+.bouquet-loading span {
+  width: 6px;
+  height: 6px;
 
   border-radius: 50%;
 
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      var(--petal-light),
-      var(--petal) 60%,
-      var(--petal-deep)
-    );
+  background: #92766a;
 
-  box-shadow:
-    inset
-    -4px -5px 8px
-    rgba(0,0,0,0.16);
+  animation:
+    loading 1s ease-in-out infinite;
 }
 
-.bouquet-bloom span:nth-child(1) {
-  transform:
-    translateY(-15px);
+.bouquet-loading span:nth-child(2) {
+  animation-delay: 0.15s;
 }
 
-.bouquet-bloom span:nth-child(2) {
-  transform:
-    translateX(15px)
-    rotate(72deg);
+.bouquet-loading span:nth-child(3) {
+  animation-delay: 0.3s;
 }
 
-.bouquet-bloom span:nth-child(3) {
-  transform:
-    translateY(15px)
-    rotate(144deg);
+@keyframes loading {
+
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
 }
 
-.bouquet-bloom span:nth-child(4) {
-  transform:
-    translateX(-15px)
-    rotate(216deg);
-}
-
-.bouquet-bloom span:nth-child(5) {
-  transform:
-    rotate(288deg);
-}
-
-.flower-center {
-  position: absolute;
-
-  left: 29px;
-  top: 29px;
-
-  width: 25px;
-  height: 25px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      var(--petal-light),
-      var(--petal-deep)
-    );
-
-  box-shadow:
-    inset
-    0 2px 5px
-    rgba(0,0,0,0.4);
+.bouquet-loading.hidden {
+  opacity: 0;
 }
 
 
-/* ==================================================
+/* =========================================================
    BOUQUET HINT
-================================================== */
+========================================================= */
 
 .bouquet-hint {
-  margin: 0 0 25px;
+  margin:
+    -5px auto 28px;
 
   text-align: center;
 
-  color: #806e64;
+  color: #806d63;
 
   font-family: var(--ui);
 
-  font-size: 0.85rem;
+  font-size: 0.82rem;
 }
 
 
-/* ==================================================
-   RIBBON
-================================================== */
-
-.ribbon-bow {
-  position: absolute;
-
-  left: 50%;
-  bottom: 105px;
-
-  width: 90px;
-  height: 60px;
-
-  z-index: 20;
-
-  transform:
-    translateX(-50%)
-    scale(0);
-
-  transition:
-    transform
-    0.6s
-    cubic-bezier(.34,1.56,.64,1);
-}
-
-.ribbon-bow.tied {
-  transform:
-    translateX(-50%)
-    scale(1);
-}
-
-.ribbon-bow .loop {
-  position: absolute;
-
-  top: 8px;
-
-  width: 34px;
-  height: 27px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #c23b4a,
-      #8f2534
-    );
-
-  border-radius:
-    50% 50% 50% 4%;
-}
-
-.loop-left {
-  left: 8px;
-
-  transform:
-    rotate(-18deg);
-}
-
-.loop-right {
-  right: 8px;
-
-  transform:
-    rotate(18deg)
-    scaleX(-1);
-}
-
-.ribbon-bow .knot {
-  position: absolute;
-
-  top: 14px;
-  left: 50%;
-
-  width: 17px;
-  height: 17px;
-
-  background: #a8293b;
-
-  border-radius: 4px;
-
-  transform:
-    translateX(-50%)
-    rotate(45deg);
-}
-
-.ribbon-bow .tail {
-  position: absolute;
-
-  top: 26px;
-
-  width: 11px;
-  height: 35px;
-
-  background:
-    linear-gradient(
-      #a8293b,
-      #7c1f2c
-    );
-
-  clip-path:
-    polygon(
-      0 0,
-      100% 0,
-      100% 80%,
-      50% 100%,
-      0 80%
-    );
-}
-
-.tail-left {
-  left: 39px;
-  transform: rotate(-8deg);
-}
-
-.tail-right {
-  right: 39px;
-  transform: rotate(8deg);
-}
-
-
-/* ==================================================
-   LETTER
-================================================== */
+/* =========================================================
+   LOVE LETTER
+========================================================= */
 
 .note-card {
   position: relative;
 
-  width: min(590px,100%);
+  width:
+    min(600px, 100%);
 
-  min-height: 300px;
+  min-height: 330px;
 
   margin:
-    20px
-    auto
-    70px;
+    10px auto 70px;
 
   overflow: hidden;
 
   background:
     var(--paper);
 
-  color: var(--ink);
-
   border:
     1px solid
-    rgba(43,33,29,0.1);
+    rgba(43, 33, 29, 0.1);
 
   box-shadow:
-    0 22px 50px
-    rgba(60,42,31,0.12);
+    0 25px 60px
+    rgba(65, 45, 35, 0.12);
 }
 
 
-/* ==================================================
-   WAX SEAL
-================================================== */
+/* =========================================================
+   SEAL
+========================================================= */
 
 .seal-layer {
   position: absolute;
 
   inset: 0;
 
-  z-index: 10;
+  z-index: 5;
 
   display: flex;
 
@@ -1493,130 +920,132 @@ button:focus-visible {
 
   justify-content: center;
 
-  gap: 16px;
+  gap: 18px;
 
   background:
     var(--paper);
 
   transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
+    opacity 0.55s ease,
+    transform 0.55s ease;
 }
 
 .note-card.opened .seal-layer {
   opacity: 0;
 
   transform:
-    scale(1.2);
+    scale(1.15);
 
   pointer-events: none;
 }
 
 .wax-seal {
-  width: 80px;
-  height: 80px;
+  width: 84px;
+  height: 84px;
 
   border: 0;
 
   border-radius: 50%;
 
-  cursor: pointer;
-
   display: grid;
 
   place-items: center;
 
+  cursor: pointer;
+
   background:
     radial-gradient(
-      circle at 34% 30%,
-      #c23b4a,
-      #7c1f2c 75%
+      circle at 35% 30%,
+      #ce5360,
+      #862333 75%
     );
 
   box-shadow:
-    0 10px 22px
-    rgba(90,30,30,0.35),
+    0 12px 25px
+    rgba(80, 25, 30, 0.3),
 
-    inset
-    0 3px 6px
-    rgba(255,255,255,0.25);
+    inset 0 4px 7px
+    rgba(255, 255, 255, 0.2);
+
+  transition:
+    transform 0.25s ease;
 }
 
 .wax-seal:hover {
   transform:
-    scale(1.06)
+    scale(1.07)
     rotate(-3deg);
 }
 
 .wax-seal.cracking {
   animation:
-    crack
-    0.5s
+    seal-crack
+    0.55s
     ease
     forwards;
 }
 
-@keyframes crack {
+@keyframes seal-crack {
 
   0% {
-    transform: scale(1);
+    transform:
+      scale(1)
+      rotate(0);
   }
 
-  40% {
+  35% {
     transform:
-      scale(0.92)
-      rotate(-6deg);
+      scale(0.9)
+      rotate(-7deg);
   }
 
   100% {
     transform:
-      scale(1.3)
-      rotate(4deg);
+      scale(1.35)
+      rotate(5deg);
 
     opacity: 0;
   }
 }
 
 .seal-initial {
+  color: #f7dcc7;
+
   font-family: var(--display);
 
-  font-size: 2rem;
+  font-size: 2.2rem;
 
   font-style: italic;
-
-  color: #f3d9c4;
 }
 
 .seal-hint {
   margin: 0;
 
-  color: var(--paper-muted);
+  color: #806d63;
 
   font-family: var(--ui);
 
-  font-size: 0.78rem;
+  font-size: 0.72rem;
 
   text-transform: uppercase;
 
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
 }
 
 
-/* ==================================================
-   LETTER CONTENT
-================================================== */
+/* =========================================================
+   LETTER
+========================================================= */
 
 .letter-inner {
   padding:
-    clamp(
-      28px,
-      5vw,
-      45px
-    );
+    clamp(28px, 6vw, 50px);
 
-  line-height: 1.7;
+  color: var(--ink);
 
-  font-size: 1.02rem;
+  font-size: 1rem;
+
+  line-height: 1.75;
 
   opacity: 0;
 
@@ -1636,88 +1065,116 @@ button:focus-visible {
 }
 
 .letter-inner .small-note {
-  color: var(--paper-muted);
+  color: #806d63;
 }
 
 #letterBody p {
   margin:
-    0 0 16px;
+    0 0 17px;
 }
 
 .signature {
-  margin-top: 25px;
+  margin-top: 24px;
 }
 
 
-/* ==================================================
-   MOBILE
-================================================== */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
+
+  .opening {
+    padding: 20px;
+  }
+
+  .garden,
+  .bouquet {
+    padding:
+      22px 16px;
+  }
 
   .garden-header,
   .bouquet-header {
     align-items: flex-start;
   }
 
+  .garden-header h2,
+  .bouquet-header h2 {
+    font-size: 2.8rem;
+  }
+
   .garden-scene {
     min-height: 540px;
+
+    border-radius: 22px;
   }
 
-  .flower {
-    transform:
-      scale(0.82)
-      rotate(var(--tilt));
-  }
+  .bouquet-3d {
+    height: 430px;
 
-  .flower:nth-of-type(1) {
-    left: 0%;
-  }
-
-  .flower:nth-of-type(2) {
-    left: 18%;
-  }
-
-  .flower:nth-of-type(3) {
-    left: 36%;
-  }
-
-  .flower:nth-of-type(4) {
-    left: 54%;
-  }
-
-  .flower:nth-of-type(5) {
-    left: 71%;
-  }
-
-  .flower:nth-of-type(6) {
-    left: 85%;
-  }
-
-  .bouquet-stage {
-    height: 390px;
+    min-height: 0;
   }
 
   .bouquet-header {
     flex-wrap: wrap;
   }
 
-  .bouquet-header > div {
-    order: -1;
-
+  .bouquet-title {
     width: 100%;
+
+    order: -1;
+  }
+
+  .picked-bar {
+    align-items: center;
   }
 
   .note-card {
-    font-size: 0.98rem;
+    margin-bottom: 40px;
   }
 
+  .letter-inner {
+    font-size: 0.96rem;
+  }
 }
 
 
-/* ==================================================
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 430px) {
+
+  .opening-card h1 {
+    font-size: 3.25rem;
+  }
+
+  .garden-header h2,
+  .bouquet-header h2 {
+    font-size: 2.45rem;
+  }
+
+  .garden-scene {
+    min-height: 500px;
+  }
+
+  .bouquet-3d {
+    height: 380px;
+  }
+
+  .music-button,
+  .back-button,
+  .top-button {
+    padding:
+      9px 13px;
+  }
+}
+
+
+/* =========================================================
    REDUCED MOTION
-================================================== */
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -1725,10 +1182,8 @@ button:focus-visible {
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
-
     animation-iteration-count: 1 !important;
-
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
-
 }
