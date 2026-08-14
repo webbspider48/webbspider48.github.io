@@ -2,20 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="theme-color"
-    content="#0d0908"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#120b0d">
 
   <title>For Mhlungu Nice ❤️</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -24,364 +15,143 @@
     rel="stylesheet"
   >
 
-  <!-- Our CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Three.js -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
-  </script>
 </head>
 
 <body>
 
-  <!-- ==================================================
-       PAGE 1 — OPENING
-  =================================================== -->
+  <!-- BACKGROUND -->
+  <div class="background">
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <div id="particles"></div>
+  </div>
 
-  <section
-    id="opening"
-    class="page opening">
+  <!-- MUSIC -->
+  <button
+    class="music-button"
+    id="musicButton"
+    type="button"
+    aria-label="Open 325">
+    <span class="music-icon">♫</span>
+    <span>325</span>
+  </button>
 
-    <div
-      id="emberField"
-      class="ember-field"
-      aria-hidden="true">
-    </div>
+  <!-- PAGE 1 -->
+  <main id="openingPage" class="page opening-page">
 
-    <div class="opening-card">
+    <div class="opening-content">
 
-      <p class="small-note">
-        a little something
-      </p>
+      <p class="eyebrow">a little something</p>
 
       <h1>
         For
-        <span class="name">
-          Mhlungu Nice
-        </span>
-        <span class="heart">
-          ❤️
-        </span>
+        <span>Mhlungu Nice</span>
+        <b>❤️</b>
       </h1>
 
-      <p class="opening-subtitle">
+      <p class="opening-line">
         come here for a second.
       </p>
 
       <button
-        id="enterBtn"
-        class="primary-button"
+        id="openButton"
+        class="open-button"
         type="button">
 
         <span>open</span>
-
-        <span class="arrow">
-          →
-        </span>
+        <span>→</span>
 
       </button>
 
     </div>
 
-  </section>
+  </main>
 
 
-  <!-- ==================================================
-       PAGE 2 — FLOWER GARDEN
-  =================================================== -->
+  <!-- PAGE 2 -->
+  <main id="letterPage" class="page letter-page hidden">
 
-  <section
-    id="garden"
-    class="page garden hidden">
+    <div class="letter-wrapper">
 
-    <header class="garden-header">
-
-      <div>
-
-        <p class="eyebrow">
-          Mhlungu's little garden
-        </p>
-
-        <h2>
-          Pick a few.
-        </h2>
-
+      <div class="top-line">
+        <span>for you</span>
+        <span>❤️</span>
       </div>
 
-      <button
-        id="musicBtn"
-        class="music-button"
-        type="button">
+      <article class="letter">
 
-        ♫
-        <span id="musicLabel">
-          325
-        </span>
-
-      </button>
-
-    </header>
-
-
-    <p
-      id="instruction"
-      class="instruction">
-
-      Take your time. Pick whichever ones you like.
-
-    </p>
-
-
-    <!-- ==================================================
-         3D GARDEN
-    =================================================== -->
-
-    <div
-      id="gardenScene"
-      class="garden-scene">
-
-      <div class="moon"></div>
-
-      <div
-        id="stars"
-        class="stars">
-      </div>
-
-      <div
-        id="fireflies"
-        class="fireflies">
-      </div>
-
-      <div class="garden-ground"></div>
-
-      <!--
-        The flowers will be generated
-        by JavaScript / Three.js.
-      -->
-
-      <div
-        id="garden3d"
-        class="garden-3d">
-      </div>
-
-    </div>
-
-
-    <!-- ==================================================
-         PICK COUNTER
-    =================================================== -->
-
-    <div class="picked-bar">
-
-      <span>
-        <strong id="flowerCount">
-          0
-        </strong>
-
-        flowers
-      </span>
-
-      <button
-        id="viewBouquetBtn"
-        class="secondary-button"
-        type="button"
-        disabled>
-
-        view bouquet →
-
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- ==================================================
-       PAGE 3 — BOUQUET
-  =================================================== -->
-
-  <section
-    id="bouquet"
-    class="page bouquet hidden">
-
-    <header class="bouquet-header">
-
-      <button
-        id="backBtn"
-        class="back-button"
-        type="button">
-
-        ← garden
-
-      </button>
-
-
-      <div class="bouquet-title">
-
-        <p class="eyebrow">
-          you made this
-        </p>
-
-        <h2>
-          Your bouquet.
-        </h2>
-
-      </div>
-
-
-      <button
-        id="topBtn"
-        class="top-button"
-        type="button">
-
-        top view
-
-      </button>
-
-    </header>
-
-
-    <!-- ==================================================
-         REAL 3D BOUQUET
-    =================================================== -->
-
-    <div
-      id="bouquet3d"
-      class="bouquet-3d">
-
-      <div
-        id="bouquetLoading"
-        class="bouquet-loading">
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-      </div>
-
-    </div>
-
-
-    <p
-      id="bouquetHint"
-      class="bouquet-hint">
-
-      drag it around.
-
-    </p>
-
-
-    <!-- ==================================================
-         LOVE LETTER
-    =================================================== -->
-
-    <article
-      id="noteCard"
-      class="note-card">
-
-      <!-- SEALED STATE -->
-
-      <div
-        id="sealLayer"
-        class="seal-layer">
-
-        <button
-          id="sealBtn"
-          class="wax-seal"
-          type="button"
-          aria-label="Open love letter">
-
-          <span
-            id="sealInitial"
-            class="seal-initial">
-
-            M
-
-          </span>
-
-        </button>
-
-        <p class="seal-hint">
-          tap the seal to read it
-        </p>
-
-      </div>
-
-
-      <!-- LETTER -->
-
-      <div
-        id="letterInner"
-        class="letter-inner">
-
-        <p class="small-note">
+        <p class="recipient">
           For Mhlungu Nice ❤️
         </p>
 
+        <div id="letterText">
 
-        <div id="letterBody">
-
-          <p>
+          <p class="reveal">
             Hey Mhlungu Nice,
           </p>
 
-          <p>
+          <p class="reveal">
+            It’s been a little while since I made you
+            something like this. 😭
+          </p>
+
+          <p class="reveal">
+            I know this week has been a lot, so I just
+            wanted to make you a little something to
+            hopefully put a smile on your face.
+          </p>
+
+          <p class="reveal">
+            I really appreciate you, you know that? ❤️
+          </p>
+
+          <p class="reveal">
             If your day is getting hectic or heavy,
-            breathe a little slower.
-            And if it's good,
-            smile a little longer.
+            breathe a little slower.<br>
+            And if it’s good, smile a little longer.
           </p>
 
-          <p>
-            I never find words enough to describe
-            how I feel about you.
+          <p class="reveal">
+            I didn’t see you today, but I already know
+            you looked so cute. 😭😂<br>
+            I just know you did.
           </p>
 
-          <p>
-            I didn't see you today,
-            but I already know you looked so cute. 😭❤️
+          <p class="reveal">
+            I never really find the right words to
+            describe how I feel about you, but I hope
+            little things like this say some of it for me.
+          </p>
+
+          <p class="reveal">
+            So yeah… this one's just for you.
+          </p>
+
+          <p class="reveal">
+            I hope it makes you smile, even just a little.
+          </p>
+
+          <p class="closing reveal">
+            Love always,
+          </p>
+
+          <p class="signature reveal">
+            — Bigduggmustfall ❤️
           </p>
 
         </div>
 
+      </article>
 
-        <p class="signature">
-
-          Love always,<br>
-
-          <strong>
-            — Bigduggmustfall ❤️
-          </strong>
-
-        </p>
-
+      <div class="bottom-message">
+        made with a little bit of thought ❤️
       </div>
 
-    </article>
+    </div>
 
-  </section>
+  </main>
 
-
-  <!-- ==================================================
-       MUSIC
-  =================================================== -->
-
-  <!--
-    We are leaving the actual song source out for now.
-    The site will work without it.
-  -->
-
-  <audio
-    id="song"
-    loop
-    preload="none">
-  </audio>
-
-
-  <!-- ==================================================
-       JAVASCRIPT
-  =================================================== -->
 
   <script src="script.js"></script>
 
