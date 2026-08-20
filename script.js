@@ -1,4 +1,25 @@
-// PIN Logic
+// --- REAL TIME CLOCK ---
+function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    const timeString = hours + ':' + minutes + ' ' + ampm;
+    
+    // Update all clock elements
+    document.querySelectorAll('.live-clock').forEach(el => el.innerText = timeString);
+    document.getElementById('lock-time-big').innerText = timeString;
+    
+    // Update date
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    document.getElementById('lock-date').innerText = now.toLocaleDateString('en-US', options);
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// --- PIN LOGIC ---
 let pin = "";
 const CORRECT_PIN = "1234";
 
@@ -25,16 +46,16 @@ function pressPin(key) {
     }
 }
 
-// Screen switching
+// --- SCREEN SWITCHING ---
 function switchScreen(id) {
     document.querySelectorAll(".screen-view").forEach(el => el.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
 
-// Go to inbox
+// --- NAVIGATION ---
 function goToInbox() { switchScreen("screen-inbox"); }
 
-// Open letter with typing effect
+// --- TYPING EFFECT ---
 let isTyping = false;
 let charIndex = 0;
 const typingSpeed = 30;
@@ -54,23 +75,23 @@ function openLetter() {
                 textEl.innerText += originalText.charAt(charIndex);
                 charIndex++;
                 setTimeout(typeWriter, typingSpeed);
-            } else {
-                setTimeout(() => {
-                    switchScreen("screen-momo");
-                    setTimeout(() => {
-                        switchScreen("screen-love");
-                    }, 3000);
-                }, 3000);
             }
         }
         typeWriter();
     }, 500);
 }
 
-// Reply button easter egg
-document.querySelectorAll(".soft-keys span:last-child").forEach(btn => {
-    btn.addEventListener("click", () => {
-        if (navigator.vibrate) navigator.vibrate(150);
-        alert("📳 *vibrate*\n\nShe just read everything. You're a real one, Bigduggmustfall.");
-    });
+// --- DONE BUTTON FLOW ---
+document.getElementById("done-btn").addEventListener("click", function() {
+    switchScreen("screen-momo");
+});
+
+document.getElementById("done-momo").addEventListener("click", function() {
+    switchScreen("screen-love");
+});
+
+// --- UNLOCK BUTTON (visual only, since PIN is used) ---
+document.querySelector("#screen-lock .soft-keys span:last-child").addEventListener("click", function() {
+    // If she clicks Unlock instead of using PIN, hint at PIN
+    if (navigator.vibrate) navigator.vibrate(50);
 });
