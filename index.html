@@ -3,58 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message for [Her Name]</title>
+    <title>Nokia 3310</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="lcd-screen">
-        <!-- Top Status Bar -->
-        <div class="status-bar">
-            <span class="signal">■■■■</span>
-            <span class="battery">■■■□</span>
-        </div>
+    <div class="phone-wrapper">
+        <div class="lcd-screen" id="app-screen">
 
-        <!-- Inbox Header -->
-        <div class="msg-header">
-            <span class="icon">✉</span> Inbox
-        </div>
-
-        <!-- The Message -->
-        <div id="message-box" class="message-box">
-            <div class="contact">From: Bigduggmustfall ❤️</div>
-            <div class="time">Just now</div>
-            
-            <div class="text-content">
-                <h1>A quick note for <span class="highlight-name">[Momo Smiles🤭]</span></h1>
-
-                <p>It’s been a little while since I made you something like this. 😭</p>
-
-                <p>I know this week has been a lot, so I just wanted to make you a little something to hopefully put a smile on your face.</p>
-
-                <p>I really appreciate you, you know that? ❤️</p>
-
-                <p>If your day is getting hectic or heavy, breathe a little slower. And if it’s good, smile a little longer.</p>
-
-                <p>I didn’t see you today, but I already know you looked so cute. 😭😂 I just know you did.</p>
-
-                <p>I never really find the right words to describe how I feel about you, but I hope little things like this say some of it for me.</p>
-
-                <p>So yeah… this one's just for you.</p>
-
-                <p>I hope it makes you smile, even just a little.</p>
+            <!-- SCREEN 1: LOCK SCREEN -->
+            <div id="screen-lock" class="screen-view active">
+                <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
+                <div class="lock-content">
+                    <div class="lock-icon">📱</div>
+                    <div class="lock-time">12:41</div>
+                    <div class="lock-notification">✉ 1 new message</div>
+                </div>
+                <div class="soft-keys"><span>Menu</span><span id="unlock-btn">Unlock</span></div>
             </div>
 
-            <div class="signature">
-                <p>Love always,</p>
-                <strong>— Bigduggmustfall ❤️</strong>
+            <!-- SCREEN 2: MAIN MENU -->
+            <div id="screen-menu" class="screen-view">
+                <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
+                <div class="menu-header">Main Menu</div>
+                <div class="menu-list">
+                    <div class="menu-item" onclick="goToInbox()">
+                        <span>✉</span> Messages <span class="badge">1</span>
+                    </div>
+                    <div class="menu-item"><span>📞</span> Contacts</div>
+                </div>
+                <div class="soft-keys"><span>Select</span><span>Back</span></div>
             </div>
+
+            <!-- SCREEN 3: INBOX -->
+            <div id="screen-inbox" class="screen-view">
+                <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
+                <div class="menu-header">Inbox</div>
+                <div class="menu-list">
+                    <div class="menu-item unread" onclick="openLetter()">
+                        <span>✉</span> <strong>Bigduggmustfall</strong>
+                    </div>
+                </div>
+                <div class="soft-keys"><span>Open</span><span>Back</span></div>
+            </div>
+
+            <!-- SCREEN 4: THE LETTER -->
+            <div id="screen-letter" class="screen-view">
+                <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
+                <div class="msg-header">From: Bigduggmustfall</div>
+                
+                <div id="message-box" class="message-box">
+                    <div class="time">Just now</div>
+                    <div id="text-content" class="text-content">
+                        It’s been a little while since I made you something like this. 😭
+
+                        I know this week has been a lot, so I just wanted to make you a little something to hopefully put a smile on your face.
+
+                        I really appreciate you, you know that? ❤️
+
+                        If your day is getting hectic or heavy, breathe a little slower. And if it’s good, smile a little longer.
+
+                        I didn’t see you today, but I already know you looked so cute. 😭😂 I just know you did.
+
+                        I never really find the right words to describe how I feel about you, but I hope little things like this say some of it for me.
+
+                        So yeah… this one's just for you.
+
+                        I hope it makes you smile, even just a little.
+                    </div>
+                </div>
+
+                <div class="soft-keys"><span>Options</span><span>Reply</span></div>
+            </div>
+
+            <!-- SCREEN 5: MAN TO MOMO SMILES -->
+            <div id="screen-momo" class="screen-view">
+                <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
+                <div class="msg-header">From: Bigduggmustfall</div>
+                <div class="message-box">
+                    <div class="time">Just now</div>
+                    <div class="text-content">
+                        Man to Momo smiles 😊
+                    </div>
+                </div>
+                <div class="soft-keys"><span>Options</span><span>Reply</span></div>
+            </div>
+
+            <!-- SCREEN 6: LOVE ALWAYS -->
+            <div id="screen-love" class="screen-view">
+                <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
+                <div class="msg-header">From: Bigduggmustfall</div>
+                <div class="message-box">
+                    <div class="time">Just now</div>
+                    <div class="text-content">
+                        Love always,<br><br>
+                        <strong>Bigduggmustfall ❤️</strong>
+                    </div>
+                </div>
+                <div class="soft-keys"><span>Options</span><span>Reply</span></div>
+            </div>
+
         </div>
 
-        <!-- Bottom Soft Keys -->
-        <div class="soft-keys">
-            <div class="key-left">Options</div>
-            <div class="key-right">Reply</div>
+        <!-- Keypad (Nostalgia) -->
+        <div class="keypad">
+            <div class="row"><span>1</span><span>2</span><span>3</span></div>
+            <div class="row"><span>4</span><span>5</span><span>6</span></div>
+            <div class="row"><span>7</span><span>8</span><span>9</span></div>
+            <div class="row"><span>*</span><span>0</span><span>#</span></div>
         </div>
     </div>
 
