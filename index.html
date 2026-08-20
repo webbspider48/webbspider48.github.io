@@ -1,184 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Note For You</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --card-bg: #1e293b;
-      --accent: #f43f5e;
-      --accent-hover: #e11d48;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: #334155;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1.5rem;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      max-width: 580px;
-      width: 100%;
-      padding: 2.5rem;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-    }
-
-    .status-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-family: monospace;
-      font-size: 0.825rem;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .status-indicator {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background-color: #10b981;
-      border-radius: 50%;
-      margin-right: 6px;
-    }
-
-    h1 {
-      font-size: 1.85rem;
-      font-weight: 700;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.025em;
-    }
-
-    h1 span {
-      color: var(--accent);
-    }
-
-    p {
-      color: #cbd5e1;
-      line-height: 1.7;
-      font-size: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .highlight {
-      color: var(--text-main);
-      font-weight: 600;
-      background: rgba(244, 63, 94, 0.1);
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      border-left: 3px solid var(--accent);
-      display: block;
-      margin: 1.5rem 0;
-    }
-
-    .interactive-section {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .interactive-title {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 600;
-    }
-
-    .actions {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      background-color: transparent;
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      padding: 0.75rem 1.25rem;
-      border-radius: 8px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
-    .btn-primary {
-      background-color: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--accent-hover);
-      border-color: var(--accent-hover);
-    }
-
-    .btn-secondary:hover {
-      background-color: var(--border);
-    }
-
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nokia Love Message</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="card">
-    <div class="status-bar">
-      <div><span class="status-indicator"></span>Status: Online</div>
-      <div>v1.0.0</div>
+    <div class="nokia-container">
+        <!-- Screen Bezel -->
+        <div class="screen">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <span class="signal">■■■■</span>
+                <span class="battery">■■■□</span>
+            </div>
+
+            <!-- Message Header -->
+            <div class="msg-header">
+                <span class="icon">✉</span> Inbox
+            </div>
+
+            <!-- The Text Content -->
+            <div id="message-box" class="message-box">
+                <div class="contact">From: [Your Name]</div>
+                <div class="time">12:41 PM</div>
+                <p class="text">
+                    I haven't seen you yet, but I already know you look cute. 
+                    It's just the way you carry yourself, even from here. 
+                    <br><br>
+                    And out of all the contacts on my phone, you're my favorite notification. 
+                    Every time I hear that old ringtone, my heart skips. 
+                    <br><br>
+                    Just wanted you to know. :)
+                </p>
+            </div>
+
+            <!-- Soft Buttons -->
+            <div class="soft-keys">
+                <div class="key-left">Options</div>
+                <div class="key-right">Reply</div>
+            </div>
+        </div>
+
+        <!-- Physical Keypad (just for show) -->
+        <div class="keypad">
+            <div class="row">
+                <span>1</span><span>2</span><span>3</span>
+            </div>
+            <div class="row">
+                <span>4</span><span>5</span><span>6</span>
+            </div>
+            <div class="row">
+                <span>7</span><span>8</span><span>9</span>
+            </div>
+            <div class="row">
+                <span>*</span><span>0</span><span>#</span>
+            </div>
+        </div>
     </div>
 
-    <h1>A quick note for <span>[Her Name]</span></h1>
-
-    <p>I’ve been spending time thinking about us lately, and I wanted to put together something simple and genuine to share what’s on my mind.</p>
-
-    <p>Having you around has been one of the absolute best parts of my days. Whether we're sharing laughs, having long conversations, or just chilling, everything feels effortles with you. I really admire your energy, your warmth, and just who you are.</p>
-
-    <div class="highlight">
-      I know we haven't explicitly mapped out where we stand yet, and that's okay. I don't want to rush anything—I just wanted to be honest: I really care about you, and I’d love to see where this journey leads us.
-    </div>
-
-    <div class="interactive-section">
-      <div class="interactive-title">Current State</div>
-      <div class="actions">
-        <a href="https://wa.me/?text=Hey!%20I%20saw%20your%20site..." class="btn btn-primary">Let's talk about it</a>
-        <a href="https://wa.me/?text=Hey,%20thanks%20for%20sharing%20that..." class="btn btn-secondary">Taking it day by day</a>
-      </div>
-    </div>
-
-    <div class="footer">
-      Designed with care by [Your Name]
-    </div>
-  </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
