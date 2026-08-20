@@ -3,121 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message for Momo</title>
+    <title>Nokia 3310</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="lcd-screen" id="app-screen">
+    <div class="phone-wrapper">
+        <div class="lcd-screen" id="app-screen">
 
-        <!-- SCREEN 1: LOCK SCREEN -->
-        <div id="screen-lock" class="screen-view active">
-            <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
-            <div class="lock-content">
-                <div class="lock-icon">📱</div>
-                <div class="lock-time">12:41</div>
-                <div class="lock-notification">✉ 1 new message</div>
-                
-                <div class="pin-container">
-                    <div id="pin-display" class="pin-display">____</div>
-                    <div class="pin-pad">
-                        <div class="pin-row">
-                            <span onclick="pressPin('1')">1</span>
-                            <span onclick="pressPin('2')">2</span>
-                            <span onclick="pressPin('3')">3</span>
-                        </div>
-                        <div class="pin-row">
-                            <span onclick="pressPin('4')">4</span>
-                            <span onclick="pressPin('5')">5</span>
-                            <span onclick="pressPin('6')">6</span>
-                        </div>
-                        <div class="pin-row">
-                            <span onclick="pressPin('7')">7</span>
-                            <span onclick="pressPin('8')">8</span>
-                            <span onclick="pressPin('9')">9</span>
-                        </div>
-                        <div class="pin-row">
-                            <span onclick="pressPin('clear')">C</span>
-                            <span onclick="pressPin('0')">0</span>
-                            <span onclick="pressPin('enter')">OK</span>
+            <!-- SCREEN 1: LOCK SCREEN -->
+            <div id="screen-lock" class="screen-view active">
+                <div class="status-bar">
+                    <div class="left-icons">
+                        <span class="signal">◉◉◉◉◉</span>
+                        <span class="carrier">VODACOM</span>
+                    </div>
+                    <div class="right-icons">
+                        <span id="live-clock" class="live-clock">12:41</span>
+                        <span class="battery-icon">🔋</span>
+                    </div>
+                </div>
+                <div class="lock-content">
+                    <div class="lock-icon">📱</div>
+                    <div class="lock-time" id="lock-time-big">12:41</div>
+                    <div class="lock-date" id="lock-date">20 August 2026</div>
+                    <div class="lock-notification">✉ 1 new message</div>
+                    
+                    <div class="pin-container">
+                        <div id="pin-display" class="pin-display">____</div>
+                        <div class="pin-pad">
+                            <div class="pin-row">
+                                <span onclick="pressPin('1')">1</span>
+                                <span onclick="pressPin('2')">2</span>
+                                <span onclick="pressPin('3')">3</span>
+                            </div>
+                            <div class="pin-row">
+                                <span onclick="pressPin('4')">4</span>
+                                <span onclick="pressPin('5')">5</span>
+                                <span onclick="pressPin('6')">6</span>
+                            </div>
+                            <div class="pin-row">
+                                <span onclick="pressPin('7')">7</span>
+                                <span onclick="pressPin('8')">8</span>
+                                <span onclick="pressPin('9')">9</span>
+                            </div>
+                            <div class="pin-row">
+                                <span onclick="pressPin('clear')">C</span>
+                                <span onclick="pressPin('0')">0</span>
+                                <span onclick="pressPin('enter')">OK</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="soft-keys"><span>Menu</span><span>Unlock</span></div>
             </div>
-            <div class="soft-keys"><span>Menu</span><span>Emergency</span></div>
-        </div>
 
-        <!-- SCREEN 2: MAIN MENU -->
-        <div id="screen-menu" class="screen-view">
-            <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
-            <div class="menu-header">Main Menu</div>
-            <div class="menu-list">
-                <div class="menu-item" onclick="goToInbox()">
-                    <span>✉</span> Messages <span class="badge">1</span>
+            <!-- SCREEN 2: MAIN MENU -->
+            <div id="screen-menu" class="screen-view">
+                <div class="status-bar">
+                    <div class="left-icons">
+                        <span class="signal">◉◉◉◉◉</span>
+                        <span class="carrier">VODACOM</span>
+                    </div>
+                    <div class="right-icons">
+                        <span id="live-clock-2" class="live-clock">12:41</span>
+                        <span class="battery-icon">🔋</span>
+                    </div>
                 </div>
-                <div class="menu-item"><span>📞</span> Contacts</div>
-                <div class="menu-item"><span>📅</span> Calendar</div>
-            </div>
-            <div class="soft-keys"><span>Select</span><span>Back</span></div>
-        </div>
-
-        <!-- SCREEN 3: INBOX -->
-        <div id="screen-inbox" class="screen-view">
-            <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
-            <div class="menu-header">Inbox</div>
-            <div class="menu-list">
-                <div class="menu-item unread" onclick="openLetter()">
-                    <span>✉</span> <strong>Bigduggmustfall</strong>
+                <div class="menu-header">Main Menu</div>
+                <div class="menu-list">
+                    <div class="menu-item" onclick="goToInbox()">
+                        <span>✉</span> Messages <span class="badge">1</span>
+                    </div>
+                    <div class="menu-item"><span>📞</span> Contacts</div>
+                    <div class="menu-item"><span>📅</span> Calendar</div>
+                    <div class="menu-item"><span>⚙️</span> Settings</div>
                 </div>
+                <div class="soft-keys"><span>Select</span><span>Back</span></div>
             </div>
-            <div class="soft-keys"><span>Open</span><span>Back</span></div>
-        </div>
 
-        <!-- SCREEN 4: THE LETTER -->
-        <div id="screen-letter" class="screen-view">
-            <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
-            <div class="msg-header">From: Bigduggmustfall</div>
-            
-            <div id="message-box" class="message-box">
-                <div class="time">Just now</div>
-                <div id="text-content" class="text-content">
-                    I've been thinking about you today ngl, I miss you. 😭
-                    You've been on my mind a lot, and seeing your name pop up still makes me smile.
-                    You're genuinely my favourite notification 😂❤️.
-                    And I already know you looked cute today, you don't even have to tell me.
+            <!-- SCREEN 3: INBOX -->
+            <div id="screen-inbox" class="screen-view">
+                <div class="status-bar">
+                    <div class="left-icons">
+                        <span class="signal">◉◉◉◉◉</span>
+                        <span class="carrier">VODACOM</span>
+                    </div>
+                    <div class="right-icons">
+                        <span id="live-clock-3" class="live-clock">12:41</span>
+                        <span class="battery-icon">🔋</span>
+                    </div>
                 </div>
-            </div>
-
-            <div class="soft-keys"><span>Options</span><span>Reply</span></div>
-        </div>
-
-        <!-- SCREEN 5: MAN TO MOMO SMILES -->
-        <div id="screen-momo" class="screen-view">
-            <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
-            <div class="msg-header">From: Bigduggmustfall</div>
-            <div class="message-box">
-                <div class="time">Just now</div>
-                <div class="text-content">
-                    To Momo smiles 😊
+                <div class="menu-header">Inbox</div>
+                <div class="menu-list">
+                    <div class="menu-item unread" onclick="openLetter()">
+                        <span>✉</span> <strong>Bigduggmustfall</strong>
+                        <span class="msg-preview">I've been thinking...</span>
+                    </div>
                 </div>
+                <div class="soft-keys"><span>Open</span><span>Back</span></div>
             </div>
-            <div class="soft-keys"><span>Options</span><span>Reply</span></div>
-        </div>
 
-        <!-- SCREEN 6: LOVE ALWAYS -->
-        <div id="screen-love" class="screen-view">
-            <div class="status-bar"><span>■■■■</span><span>■■■□</span></div>
-            <div class="msg-header">From: Bigduggmustfall</div>
-            <div class="message-box">
-                <div class="time">Just now</div>
-                <div class="text-content">
-                    Love always,<br><br>
-                    <strong>Bigduggmustfall ❤️</strong>
+            <!-- SCREEN 4: THE LETTER -->
+            <div id="screen-letter" class="screen-view">
+                <div class="status-bar">
+                    <div class="left-icons">
+                        <span class="signal">◉◉◉◉◉</span>
+                        <span class="carrier">VODACOM</span>
+                    </div>
+                    <div class="right-icons">
+                        <span id="live-clock-4" class="live-clock">12:41</span>
+                        <span class="battery-icon">🔋</span>
+                    </div>
                 </div>
+                <div class="msg-header">From: Bigduggmustfall ❤️</div>
+                
+                <div id="message-box" class="message-box">
+                    <div class="time">Just now</div>
+                    <div id="text-content" class="text-content">
+                        I've been thinking about you today ngl, I miss you. 😭
+                        You've been on my mind a lot, and seeing your name pop up still makes me smile.
+                        You're genuinely my favourite notification 😂❤️.
+                        And I already know you looked cute today, you don't even have to tell me.
+                    </div>
+                </div>
+
+                <div class="soft-keys"><span>Options</span><span id="done-btn">Done</span></div>
             </div>
-            <div class="soft-keys"><span>Options</span><span>Reply</span></div>
+
+            <!-- SCREEN 5: MAN TO MOMO SMILES -->
+            <div id="screen-momo" class="screen-view">
+                <div class="status-bar">
+                    <div class="left-icons">
+                        <span class="signal">◉◉◉◉◉</span>
+                        <span class="carrier">VODACOM</span>
+                    </div>
+                    <div class="right-icons">
+                        <span id="live-clock-5" class="live-clock">12:41</span>
+                        <span class="battery-icon">🔋</span>
+                    </div>
+                </div>
+                <div class="msg-header">From: Bigduggmustfall ❤️</div>
+                <div class="message-box">
+                    <div class="time">Just now</div>
+                    <div class="text-content momo-text">
+                        Man to Momo smiles 😊
+                    </div>
+                </div>
+                <div class="soft-keys"><span>Options</span><span id="done-momo">Done</span></div>
+            </div>
+
+            <!-- SCREEN 6: LOVE ALWAYS -->
+            <div id="screen-love" class="screen-view">
+                <div class="status-bar">
+                    <div class="left-icons">
+                        <span class="signal">◉◉◉◉◉</span>
+                        <span class="carrier">VODACOM</span>
+                    </div>
+                    <div class="right-icons">
+                        <span id="live-clock-6" class="live-clock">12:41</span>
+                        <span class="battery-icon">🔋</span>
+                    </div>
+                </div>
+                <div class="msg-header">From: Bigduggmustfall ❤️</div>
+                <div class="message-box">
+                    <div class="time">Just now</div>
+                    <div class="text-content love-text">
+                        Love always,<br><br>
+                        <strong>Bigduggmustfall ❤️</strong>
+                    </div>
+                </div>
+                <div class="soft-keys"><span>Options</span><span>End</span></div>
+            </div>
+
         </div>
 
+        <!-- Physical Keypad (Immersive) -->
+        <div class="keypad">
+            <div class="row">
+                <span>1</span><span>2</span><span>3</span>
+            </div>
+            <div class="row">
+                <span>4</span><span>5</span><span>6</span>
+            </div>
+            <div class="row">
+                <span>7</span><span>8</span><span>9</span>
+            </div>
+            <div class="row">
+                <span>*</span><span>0</span><span>#</span>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
