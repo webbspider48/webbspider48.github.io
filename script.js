@@ -1,36 +1,31 @@
-// Wait for the page to load
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Select the message box
-    const messageBox = document.querySelector('.message-box');
-    
-    // Select the "Reply" soft key text
     const replyKey = document.querySelector('.key-right');
-
-    // Add a little typing effect when the page opens
-    const textElement = document.querySelector('.text');
-    const originalText = textElement.innerHTML;
-    textElement.innerHTML = '';
+    const textContainer = document.querySelector('.text-content');
     
+    // Save the original HTML for typing effect
+    const originalHTML = textContainer.innerHTML;
+    textContainer.innerHTML = '';
+
     let charIndex = 0;
-    const typingSpeed = 30; // milliseconds per character
+    const typingSpeed = 18; // Adjust this to make it slower or faster
 
     function typeWriter() {
-        if (charIndex < originalText.length) {
-            textElement.innerHTML += originalText.charAt(charIndex);
+        if (charIndex < originalHTML.length) {
+            textContainer.innerHTML += originalHTML.charAt(charIndex);
             charIndex++;
             setTimeout(typeWriter, typingSpeed);
+        } else {
+            // Add blinking cursor at the end
+            textContainer.innerHTML += `<span style="display:inline-block; animation: blink 1s step-end infinite;">_</span>`;
         }
     }
 
-    // Start typing effect after a tiny delay
-    setTimeout(typeWriter, 500);
+    // Wait 0.8 seconds then start typing
+    setTimeout(typeWriter, 800);
 
-    // Optional: Make the "Reply" button clickable
+    // Reply button easter egg
     replyKey.addEventListener('click', () => {
-        // Classic Nokia vibrating notification popup
-        alert("📳 *vibrate* \n\nYou just sent her a reply!");
-        // You can redirect her to another page here if you want
-        // window.location.href = "reply.html";
+        if (navigator.vibrate) navigator.vibrate(150);
+        alert("📳 *vibrates*\n\nShe just got your message. You're a legend, Bigduggmustfall.");
     });
 });
