@@ -23,7 +23,7 @@ body {
     background: #b3d9a0;
     border-radius: 10px;
     padding: 12px 15px;
-    min-height: 420px;
+    min-height: 450px;
     color: #1f3b17;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@ body {
     border: 3px solid #2a2a2a;
 }
 
-.screen-view { display: none; flex-direction: column; height: 100%; min-height: 390px; }
+.screen-view { display: none; flex-direction: column; height: 100%; min-height: 420px; }
 .screen-view.active { display: flex; }
 
 .status-bar {
@@ -42,11 +42,26 @@ body {
     display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1; text-align: center;
 }
 .lock-icon { font-size: 40px; margin-bottom: 8px; }
-.lock-time { font-size: 30px; font-weight: bold; margin-bottom: 15px; }
+.lock-time { font-size: 30px; font-weight: bold; margin-bottom: 8px; }
 .lock-notification {
-    background: #1f3b17; color: #b3d9a0; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 13px; animation: pulse 2s infinite;
+    background: #1f3b17; color: #b3d9a0; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 13px; animation: pulse 2s infinite; margin-bottom: 15px;
 }
 @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+
+/* PIN PAD */
+.pin-container { width: 100%; max-width: 200px; margin-top: 10px; }
+.pin-display {
+    background: #1f3b17; color: #b3d9a0; font-size: 24px; letter-spacing: 6px;
+    padding: 6px 0; border-radius: 6px; margin-bottom: 12px; text-align: center; font-weight: bold;
+}
+.pin-pad { display: flex; flex-direction: column; gap: 6px; }
+.pin-row { display: flex; justify-content: space-between; gap: 6px; }
+.pin-row span {
+    flex: 1; background: #5a5a5a; color: white; padding: 8px 0; border-radius: 6px;
+    font-size: 16px; box-shadow: 0 3px 0 #222; cursor: pointer; text-align: center; font-family: Arial, sans-serif;
+}
+.pin-row span:active { transform: translateY(3px); box-shadow: 0 0px 0 #222; }
+.pin-row span:last-child { background: #3a7a3a; }
 
 .menu-header { font-size: 16px; font-weight: bold; border-bottom: 2px dashed #1f3b17; padding-bottom: 6px; margin-bottom: 10px; }
 .menu-list { flex-grow: 1; overflow-y: auto; }
