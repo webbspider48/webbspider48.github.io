@@ -37,7 +37,7 @@ function goToInbox() { switchScreen("screen-inbox"); }
 // Open letter with typing effect
 let isTyping = false;
 let charIndex = 0;
-const typingSpeed = 25;
+const typingSpeed = 30;
 
 function openLetter() {
     switchScreen("screen-letter");
@@ -55,10 +55,8 @@ function openLetter() {
                 charIndex++;
                 setTimeout(typeWriter, typingSpeed);
             } else {
-                // After letter finishes, show Man to Momo
                 setTimeout(() => {
                     switchScreen("screen-momo");
-                    // Then after Momo, show Love always
                     setTimeout(() => {
                         switchScreen("screen-love");
                     }, 3000);
