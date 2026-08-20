@@ -18,8 +18,34 @@
                     <div class="lock-icon">📱</div>
                     <div class="lock-time">12:41</div>
                     <div class="lock-notification">✉ 1 new message</div>
+                    
+                    <div class="pin-container">
+                        <div id="pin-display" class="pin-display">____</div>
+                        <div class="pin-pad">
+                            <div class="pin-row">
+                                <span onclick="pressPin('1')">1</span>
+                                <span onclick="pressPin('2')">2</span>
+                                <span onclick="pressPin('3')">3</span>
+                            </div>
+                            <div class="pin-row">
+                                <span onclick="pressPin('4')">4</span>
+                                <span onclick="pressPin('5')">5</span>
+                                <span onclick="pressPin('6')">6</span>
+                            </div>
+                            <div class="pin-row">
+                                <span onclick="pressPin('7')">7</span>
+                                <span onclick="pressPin('8')">8</span>
+                                <span onclick="pressPin('9')">9</span>
+                            </div>
+                            <div class="pin-row">
+                                <span onclick="pressPin('clear')">C</span>
+                                <span onclick="pressPin('0')">0</span>
+                                <span onclick="pressPin('enter')">OK</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="soft-keys"><span>Menu</span><span id="unlock-btn">Unlock</span></div>
+                <div class="soft-keys"><span>Menu</span><span>Emergency</span></div>
             </div>
 
             <!-- SCREEN 2: MAIN MENU -->
@@ -31,6 +57,7 @@
                         <span>✉</span> Messages <span class="badge">1</span>
                     </div>
                     <div class="menu-item"><span>📞</span> Contacts</div>
+                    <div class="menu-item"><span>📅</span> Calendar</div>
                 </div>
                 <div class="soft-keys"><span>Select</span><span>Back</span></div>
             </div>
@@ -55,21 +82,10 @@
                 <div id="message-box" class="message-box">
                     <div class="time">Just now</div>
                     <div id="text-content" class="text-content">
-                        It’s been a little while since I made you something like this. 😭
-
-                        I know this week has been a lot, so I just wanted to make you a little something to hopefully put a smile on your face.
-
-                        I really appreciate you, you know that? ❤️
-
-                        If your day is getting hectic or heavy, breathe a little slower. And if it’s good, smile a little longer.
-
-                        I didn’t see you today, but I already know you looked so cute. 😭😂 I just know you did.
-
-                        I never really find the right words to describe how I feel about you, but I hope little things like this say some of it for me.
-
-                        So yeah… this one's just for you.
-
-                        I hope it makes you smile, even just a little.
+                        I've been thinking about you today ngl, I miss you. 😭
+                        You've been on my mind a lot, and seeing your name pop up still makes me smile.
+                        You're genuinely my favourite notification 😂❤️.
+                        And I already know you looked cute today, you don't even have to tell me.
                     </div>
                 </div>
 
@@ -105,7 +121,7 @@
 
         </div>
 
-        <!-- Keypad (Nostalgia) -->
+        <!-- Physical Keypad (Nostalgia) -->
         <div class="keypad">
             <div class="row"><span>1</span><span>2</span><span>3</span></div>
             <div class="row"><span>4</span><span>5</span><span>6</span></div>
