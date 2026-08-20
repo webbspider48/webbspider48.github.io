@@ -1,120 +1,77 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background-color: #0f0f0f;
+    background: #1a1a1a;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', monospace;
     padding: 20px;
 }
 
-/* The LCD Green Screen - Full screen feel */
-.lcd-screen {
-    background-color: #b3d9a0;
-    border-radius: 16px;
-    padding: 25px 22px;
-    max-width: 600px;
+.phone-wrapper {
+    background: #3a3a3a;
+    padding: 25px 25px 35px 25px;
+    border-radius: 35px 35px 20px 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.9);
     width: 100%;
-    min-height: 85vh;
+    max-width: 380px;
+}
+
+.lcd-screen {
+    background: #b3d9a0;
+    border-radius: 10px;
+    padding: 12px 15px;
+    min-height: 420px;
     color: #1f3b17;
-    box-shadow: 0 0 40px rgba(179, 217, 160, 0.25);
     display: flex;
     flex-direction: column;
+    position: relative;
+    border: 3px solid #2a2a2a;
 }
 
-/* Status Bar */
+.screen-view { display: none; flex-direction: column; height: 100%; min-height: 390px; }
+.screen-view.active { display: flex; }
+
 .status-bar {
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
+    display: flex; justify-content: space-between; font-weight: bold; font-size: 14px; margin-bottom: 8px; letter-spacing: 1px;
 }
 
-/* Inbox Header */
-.msg-header {
-    font-size: 18px;
-    font-weight: bold;
-    border-bottom: 2px dashed #1f3b17;
-    padding-bottom: 8px;
-    margin-bottom: 18px;
+.lock-content {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1; text-align: center;
 }
-
-/* Message Box */
-.message-box {
-    flex-grow: 1;
-    font-size: 15px;
-    line-height: 1.7;
+.lock-icon { font-size: 40px; margin-bottom: 8px; }
+.lock-time { font-size: 30px; font-weight: bold; margin-bottom: 15px; }
+.lock-notification {
+    background: #1f3b17; color: #b3d9a0; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 13px; animation: pulse 2s infinite;
 }
+@keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
 
-.contact {
-    font-weight: bold;
-    font-size: 16px;
-}
+.menu-header { font-size: 16px; font-weight: bold; border-bottom: 2px dashed #1f3b17; padding-bottom: 6px; margin-bottom: 10px; }
+.menu-list { flex-grow: 1; overflow-y: auto; }
+.menu-item { padding: 10px 0; border-bottom: 1px solid #2c4d22; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+.menu-item:hover { background: #a3c990; }
+.badge { background: #1f3b17; color: #b3d9a0; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: auto; }
 
-.time {
-    font-size: 12px;
-    margin-bottom: 18px;
-    color: #2c4d22;
-}
+.msg-header { font-size: 16px; font-weight: bold; border-bottom: 2px dashed #1f3b17; padding-bottom: 6px; margin-bottom: 8px; }
+.message-box { flex-grow: 1; font-size: 14px; line-height: 1.6; overflow-y: auto; }
+.time { font-size: 11px; color: #2c4d22; margin-bottom: 8px; }
+.text-content { white-space: pre-wrap; }
 
-.text-content h1 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 16px;
-    border-bottom: 1px solid #1f3b17;
-    padding-bottom: 8px;
-}
-
-.highlight-name {
-    text-decoration: underline;
-}
-
-.text-content p {
-    margin-bottom: 14px;
-}
-
-/* Signature Block */
-.signature {
-    margin-top: 25px;
-    border-top: 1px dashed #1f3b17;
-    padding-top: 18px;
-    font-size: 15px;
-}
-
-.signature strong {
-    display: block;
-    margin-top: 4px;
-    font-size: 16px;
-}
-
-/* Bottom Soft Keys */
 .soft-keys {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    font-weight: bold;
-    font-size: 16px;
-    border-top: 2px dashed #1f3b17;
-    padding-top: 14px;
+    display: flex; justify-content: space-between; font-weight: bold; font-size: 14px;
+    border-top: 2px dashed #1f3b17; padding-top: 10px; margin-top: 10px;
 }
+.soft-keys span { cursor: pointer; }
+.soft-keys span:hover { text-decoration: underline; }
 
-.key-left, .key-right {
-    cursor: pointer;
+.keypad { margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+.row { display: flex; justify-content: space-between; padding: 0 12px; }
+.row span {
+    background: #5a5a5a; color: white; padding: 8px 14px; border-radius: 5px; font-size: 15px;
+    box-shadow: 0 3px 0 #222; font-family: Arial, sans-serif; cursor: pointer;
 }
+.row span:active { transform: translateY(3px); box-shadow: 0 0px 0 #222; }
 
-.key-right:hover {
-    text-decoration: underline;
-}
-
-/* Blinking Cursor Animation */
-@keyframes blink {
-    50% { opacity: 0; }
-}
+@keyframes blink { 50% { opacity: 0; } }
