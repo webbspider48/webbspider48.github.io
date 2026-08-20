@@ -1,31 +1,54 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const replyKey = document.querySelector('.key-right');
-    const textContainer = document.querySelector('.text-content');
+// Screen switching
+function switchScreen(id) {
+    document.querySelectorAll('.screen-view').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+// Unlock phone
+document.getElementById('unlock-btn').addEventListener('click', () => switchScreen('screen-menu'));
+
+// Go to inbox
+function goToInbox() { switchScreen('screen-inbox'); }
+
+// Open letter with typing effect
+let isTyping = false;
+let charIndex = 0;
+const typingSpeed = 20;
+
+function openLetter() {
+    switchScreen('screen-letter');
+    if (isTyping) return;
+    isTyping = true;
     
-    // Save the original HTML for typing effect
-    const originalHTML = textContainer.innerHTML;
-    textContainer.innerHTML = '';
-
-    let charIndex = 0;
-    const typingSpeed = 18; // Adjust this to make it slower or faster
-
-    function typeWriter() {
-        if (charIndex < originalHTML.length) {
-            textContainer.innerHTML += originalHTML.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeWriter, typingSpeed);
-        } else {
-            // Add blinking cursor at the end
-            textContainer.innerHTML += `<span style="display:inline-block; animation: blink 1s step-end infinite;">_</span>`;
+    const textEl = document.getElementById('text-content');
+    const originalText = textEl.innerText;
+    textEl.innerText = '';
+    
+    setTimeout(() => {
+        function typeWriter() {
+            if (charIndex < originalText.length) {
+                textEl.innerText += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, typingSpeed);
+            } else {
+                // After letter finishes, show Man to Momo
+                setTimeout(() => {
+                    switchScreen('screen-momo');
+                    // Then after Momo, show Love always
+                    setTimeout(() => {
+                        switchScreen('screen-love');
+                    }, 3000);
+                }, 3000);
+            }
         }
-    }
+        typeWriter();
+    }, 500);
+}
 
-    // Wait 0.8 seconds then start typing
-    setTimeout(typeWriter, 800);
-
-    // Reply button easter egg
-    replyKey.addEventListener('click', () => {
+// Reply button easter egg
+document.querySelectorAll('.soft-keys span:last-child').forEach(btn => {
+    btn.addEventListener('click', () => {
         if (navigator.vibrate) navigator.vibrate(150);
-        alert("📳 *vibrates*\n\nShe just got your message. You're a legend, Bigduggmustfall.");
+        alert("📳 *vibrate*\n\nShe just read everything. You're a real one, Bigduggmustfall.");
     });
 });
