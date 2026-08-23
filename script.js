@@ -1,305 +1,113 @@
-/* =====================================================
-   NOKIA LOVE LETTER
-===================================================== */
-
-const CORRECT_PIN = "1234";
-
-let pin = "";
-let typingTimer = null;
-let currentScreen = "screen-lock";
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-const messageText =
-`I've been thinking about you today ngl.
-
-I miss you.
-
-You've been on my mind a lot, and seeing your name pop up still makes me smile.
-
-You're genuinely my favourite notification.
-
-And I already know you looked cute today. You don't even have to tell me.`;
-
-
-/* =====================================================
-   CLOCK
-===================================================== */
+/* =========================
+   REAL TIME CLOCK
+========================= */
 
 function updateClock() {
 
     const now = new Date();
 
     let hours = now.getHours();
+
     let minutes = now.getMinutes();
 
-    minutes = minutes < 10
-        ? "0" + minutes
-        : minutes;
+    const ampm =
+        hours >= 12 ? "PM" : "AM";
 
-    hours = hours % 12 || 12;
+    hours =
+        hours % 12 || 12;
+
+    minutes =
+        minutes < 10
+            ? "0" + minutes
+            : minutes;
 
     const time =
-        `${hours}:${minutes}`;
-
-    const clockIds = [
-        "clock-lock",
-        "clock-menu",
-        "clock-inbox",
-        "clock-letter",
-        "clock-momo",
-        "clock-love"
-    ];
-
-    clockIds.forEach(id => {
-
-        const element =
-            document.getElementById(id);
-
-        if (element) {
-            element.textContent = time;
-        }
-
-    });
-
-    const lockTime =
-        document.getElementById("lock-time");
-
-    if (lockTime) {
-        lockTime.textContent = time;
-    }
+        `${hours}:${minutes} ${ampm}`;
 
 
-    const date =
-        document.getElementById("lock-date");
+    document
+        .querySelectorAll(".live-clock")
+        .forEach(clock => {
 
-    if (date) {
+            clock.textContent = time;
 
-        date.textContent =
+        });
+
+
+    document
+        .getElementById("lock-time-big")
+        .textContent = time;
+
+
+    const dateOptions = {
+
+        weekday: "long",
+
+        day: "numeric",
+
+        month: "long",
+
+        year: "numeric"
+
+    };
+
+
+    document
+        .getElementById("lock-date")
+        .textContent =
             now.toLocaleDateString(
-                "en-US",
-                {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
-                }
+                "en-ZA",
+                dateOptions
             );
-    }
+
+
+    document
+        .getElementById("calendar-day")
+        .textContent =
+            now.getDate();
+
+
+    const calendarOptions = {
+
+        month: "long",
+
+        year: "numeric"
+
+    };
+
+
+    document
+        .getElementById("calendar-date")
+        .textContent =
+            now.toLocaleDateString(
+                "en-ZA",
+                calendarOptions
+            );
+
 }
+
 
 updateClock();
 
-setInterval(updateClock, 1000);
+setInterval(
+    updateClock,
+    1000
+);
 
 
-/* =====================================================
-   VIBRATION
-===================================================== */
 
-function vibrate(length = 35) {
+/* =========================
+   SCREEN SYSTEM
+========================= */
 
-    if ("vibrate" in navigator) {
-        navigator.vibrate(length);
-    }
-}
+let currentScreen =
+    "screen-lock";
 
 
-/* =====================================================
-   PIN
-===================================================== */
-
-function updatePinDisplay() {
-
-    const display =
-        document.getElementById("pin-display");
-
-    let result = "";
-
-    for (let i = 0; i < 4; i++) {
-
-        if (i < pin.length) {
-            result += "• ";
-        } else {
-            result += "_ ";
-        }
-    }
-
-    display.textContent =
-        result.trim();
-}
-
-
-function pressPin(key) {
-
-    if (currentScreen !== "screen-lock") {
-        return;
-    }
-
-
-    if (key === "clear") {
-
-        pin = "";
-
-        updatePinDisplay();
-
-        vibrate();
-
-        return;
-    }
-
-
-    if (key === "enter") {
-
-        if (pin === CORRECT_PIN) {
-
-            vibrate(80);
-
-            pin = "";
-
-            updatePinDisplay();
-
-            switchScreen("screen-menu");
-
-        } else {
-
-            vibrate(180);
-
-            const display =
-                document.getElementById("pin-display");
-
-            display.textContent =
-                "WRONG";
-
-            setTimeout(() => {
-
-                pin = "";
-
-                updatePinDisplay();
-
-            }, 800);
-        }
-
-        return;
-    }
-
-
-    if (/^[0-9]$/.test(key) && pin.length < 4) {
-
-        pin += key;
-
-        updatePinDisplay();
-
-        vibrate();
-    }
-}
-
-
-/* =====================================================
-   PHYSICAL KEYPAD
-===================================================== */
-
-function pressPhysical(key) {
-
-    if (key === "*") {
-
-        pressPin("clear");
-
-        return;
-    }
-
-    if (key === "#") {
-
-        pressPin("enter");
-
-        return;
-    }
-
-    if (/^[0-9]$/.test(key)) {
-
-        pressPin(key);
-    }
-}
-
-
-function pressPhysicalEnter() {
-
-    if (currentScreen === "screen-lock") {
-
-        pressPin("enter");
-
-        return;
-    }
-
-    if (currentScreen === "screen-menu") {
-
-        goToInbox();
-
-        return;
-    }
-
-    if (currentScreen === "screen-inbox") {
-
-        openLetter();
-
-        return;
-    }
-
-    if (currentScreen === "screen-letter") {
-
-        showMomo();
-
-        return;
-    }
-
-    if (currentScreen === "screen-momo") {
-
-        showLove();
-
-        return;
-    }
-}
-
-
-/* =====================================================
-   KEYBOARD SUPPORT
-===================================================== */
-
-document.addEventListener("keydown", event => {
-
-    if (/^[0-9]$/.test(event.key)) {
-
-        pressPhysical(event.key);
-    }
-
-    if (event.key === "*") {
-
-        pressPhysical("*");
-    }
-
-    if (event.key === "#") {
-
-        pressPhysical("#");
-    }
-
-    if (event.key === "Enter") {
-
-        pressPhysicalEnter();
-    }
-
-});
-
-
-/* =====================================================
-   SCREEN SWITCHING
-===================================================== */
-
-function switchScreen(id) {
+function switchScreen(screenId) {
 
     document
-        .querySelectorAll(".screen")
+        .querySelectorAll(".screen-view")
         .forEach(screen => {
 
             screen.classList.remove("active");
@@ -307,161 +115,672 @@ function switchScreen(id) {
         });
 
 
-    const target =
-        document.getElementById(id);
+    const screen =
+        document.getElementById(screenId);
 
-    if (!target) return;
 
-    target.classList.add("active");
+    if (screen) {
 
-    currentScreen = id;
+        screen.classList.add("active");
 
-    vibrate(20);
+        currentScreen =
+            screenId;
+
+    }
+
 }
 
 
-/* =====================================================
-   MENU
-===================================================== */
+
+/* =========================
+   HOME / BACK
+========================= */
+
+function goHome() {
+
+    switchScreen(
+        "screen-menu"
+    );
+
+}
+
+
+function goBack() {
+
+    if (
+        currentScreen === "screen-menu"
+    ) {
+
+        switchScreen(
+            "screen-lock"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        currentScreen === "screen-inbox" ||
+        currentScreen === "screen-contacts" ||
+        currentScreen === "screen-calendar" ||
+        currentScreen === "screen-services"
+    ) {
+
+        goHome();
+
+        return;
+
+    }
+
+
+    if (
+        currentScreen === "screen-letter"
+    ) {
+
+        goToInbox();
+
+        return;
+
+    }
+
+
+    if (
+        currentScreen === "screen-momo"
+    ) {
+
+        openLetter();
+
+        return;
+
+    }
+
+
+    if (
+        currentScreen === "screen-love"
+    ) {
+
+        goToMomo();
+
+    }
+
+}
+
+
+
+/* =========================
+   PIN SYSTEM
+========================= */
+
+let enteredPin = "";
+
+const correctPin =
+    "1234";
+
+
+function updatePinDisplay() {
+
+    const display =
+        document.getElementById(
+            "pin-display"
+        );
+
+
+    let visible =
+        enteredPin
+            .split("")
+            .map(() => "•")
+            .join(" ");
+
+
+    let remaining =
+        4 - enteredPin.length;
+
+
+    for (
+        let i = 0;
+        i < remaining;
+        i++
+    ) {
+
+        visible +=
+            (visible ? " " : "")
+            + "_";
+
+    }
+
+
+    display.textContent =
+        visible;
+
+}
+
+
+function handlePin(key) {
+
+    if (
+        key === "#"
+    ) {
+
+        enteredPin = "";
+
+        updatePinDisplay();
+
+        return;
+
+    }
+
+
+    if (
+        enteredPin.length < 4
+    ) {
+
+        enteredPin += key;
+
+        updatePinDisplay();
+
+    }
+
+
+    if (
+        enteredPin.length === 4
+    ) {
+
+        setTimeout(() => {
+
+            if (
+                enteredPin === correctPin
+            ) {
+
+                enteredPin = "";
+
+                updatePinDisplay();
+
+                goHome();
+
+            }
+
+            else {
+
+                enteredPin = "";
+
+                updatePinDisplay();
+
+
+                const display =
+                    document.getElementById(
+                        "pin-display"
+                    );
+
+
+                display.textContent =
+                    "WRONG";
+
+
+                setTimeout(() => {
+
+                    updatePinDisplay();
+
+                }, 700);
+
+
+                if (
+                    navigator.vibrate
+                ) {
+
+                    navigator.vibrate(
+                        100
+                    );
+
+                }
+
+            }
+
+        }, 250);
+
+    }
+
+}
+
+
+
+/* =========================
+   NAVIGATION
+========================= */
 
 function goToInbox() {
 
-    switchScreen("screen-inbox");
+    switchScreen(
+        "screen-inbox"
+    );
+
 }
 
 
-/* =====================================================
-   OPEN LETTER
-===================================================== */
+function goToContacts() {
+
+    switchScreen(
+        "screen-contacts"
+    );
+
+}
+
+
+function goToCalendar() {
+
+    switchScreen(
+        "screen-calendar"
+    );
+
+}
+
+
+function goToServices() {
+
+    switchScreen(
+        "screen-services"
+    );
+
+}
+
+
+function unlockHint() {
+
+    const display =
+        document.getElementById(
+            "pin-display"
+        );
+
+
+    display.textContent =
+        "ENTER PIN";
+
+
+    setTimeout(() => {
+
+        updatePinDisplay();
+
+    }, 1000);
+
+}
+
+
+
+/* =========================
+   LETTER
+========================= */
+
+const messageText =
+`I've been thinking about you today ngl.
+
+I miss you.
+
+I know I've been a little inconsistent lately since I deleted my Instagram, and I'm really sorry about that.
+
+You've been on my mind a lot though, and seeing your name pop up still makes me smile.
+
+You're genuinely my favourite notification 😂❤️
+
+And I already know you looked cute today. You don't even have to tell me.`;
+
+
+let typingStarted =
+    false;
+
+
+let typingFinished =
+    false;
+
 
 function openLetter() {
 
-    switchScreen("screen-letter");
+    switchScreen(
+        "screen-letter"
+    );
+
 
     const textElement =
-        document.getElementById("text-content");
+        document.getElementById(
+            "text-content"
+        );
 
-    const cursor =
-        document.getElementById("cursor");
 
-    clearTimeout(typingTimer);
+    if (
+        typingFinished
+    ) {
 
-    textElement.textContent = "";
+        textElement.textContent =
+            messageText;
 
-    cursor.style.display = "inline";
+        return;
 
-    let index = 0;
+    }
+
+
+    if (
+        typingStarted
+    ) {
+
+        return;
+
+    }
+
+
+    typingStarted =
+        true;
+
+
+    textElement.textContent =
+        "";
+
+
+    let index =
+        0;
 
 
     function typeWriter() {
 
-        if (index < messageText.length) {
+        if (
+            index <
+            messageText.length
+        ) {
 
             textElement.textContent +=
-                messageText.charAt(index);
+                messageText.charAt(
+                    index
+                );
+
 
             index++;
 
-            typingTimer =
-                setTimeout(typeWriter, 32);
 
-        } else {
+            setTimeout(
+                typeWriter,
+                25
+            );
 
-            cursor.style.display = "inline";
         }
+
+        else {
+
+            typingFinished =
+                true;
+
+        }
+
     }
 
 
-    setTimeout(typeWriter, 350);
+    setTimeout(
+        typeWriter,
+        350
+    );
+
 }
 
 
-/* =====================================================
-   MOMO SCREEN
-===================================================== */
 
-function showMomo() {
+/* =========================
+   MOMO / LOVE FLOW
+========================= */
 
-    clearTimeout(typingTimer);
+function goToMomo() {
 
-    switchScreen("screen-momo");
+    switchScreen(
+        "screen-momo"
+    );
+
 }
 
 
-/* =====================================================
-   FINAL SCREEN
-===================================================== */
+function goToLove() {
 
-function showLove() {
+    switchScreen(
+        "screen-love"
+    );
 
-    switchScreen("screen-love");
 }
 
 
-/* =====================================================
-   SOFT BUTTONS
-===================================================== */
 
-document
-    .querySelector(".soft-button.left")
-    .addEventListener("click", () => {
+/* =========================
+   PHYSICAL KEYPAD
+========================= */
 
-        if (currentScreen === "screen-lock") {
+function pressKey(key) {
 
-            const display =
-                document.getElementById("pin-display");
+    /*
+        LOCK SCREEN
+    */
 
-            display.textContent =
-                "1234";
+    if (
+        currentScreen ===
+        "screen-lock"
+    ) {
 
-            setTimeout(() => {
-                updatePinDisplay();
-            }, 900);
+        if (
+            /^[0-9]$/.test(key)
+        ) {
 
-            return;
+            handlePin(key);
+
         }
 
-        switchScreen("screen-menu");
-    });
+        return;
+
+    }
 
 
-document
-    .querySelector(".soft-button.right")
-    .addEventListener("click", () => {
+    /*
+        GLOBAL KEYS
 
-        if (currentScreen === "screen-menu") {
+        * = HOME
 
-            switchScreen("screen-lock");
+        # = BACK
+    */
 
-            return;
+    if (
+        key === "*"
+    ) {
+
+        goHome();
+
+        return;
+
+    }
+
+
+    if (
+        key === "#"
+    ) {
+
+        goBack();
+
+        return;
+
+    }
+
+
+    /*
+        MAIN MENU
+
+        1 = Messages
+        2 = Contacts
+        3 = Calendar
+        4 = Services
+    */
+
+    if (
+        currentScreen ===
+        "screen-menu"
+    ) {
+
+        if (
+            key === "1"
+        ) {
+
+            goToInbox();
+
         }
 
-        if (currentScreen === "screen-inbox") {
+        if (
+            key === "2"
+        ) {
 
-            switchScreen("screen-menu");
+            goToContacts();
 
-            return;
         }
 
-        if (currentScreen === "screen-letter") {
+        if (
+            key === "3"
+        ) {
 
-            switchScreen("screen-inbox");
+            goToCalendar();
 
-            return;
         }
 
-        if (currentScreen === "screen-momo") {
+        if (
+            key === "4"
+        ) {
 
-            switchScreen("screen-letter");
+            goToServices();
 
-            return;
         }
 
-    });
+        return;
+
+    }
 
 
-/* =====================================================
-   INITIAL STATE
-===================================================== */
+    /*
+        INBOX
 
-updatePinDisplay();
+        1 = Open message
+    */
+
+    if (
+        currentScreen ===
+        "screen-inbox"
+    ) {
+
+        if (
+            key === "1" ||
+            key === "0"
+        ) {
+
+            openLetter();
+
+        }
+
+        return;
+
+    }
+
+
+    /*
+        LETTER
+
+        0 = Next
+    */
+
+    if (
+        currentScreen ===
+        "screen-letter"
+    ) {
+
+        if (
+            key === "0"
+        ) {
+
+            goToMomo();
+
+        }
+
+        return;
+
+    }
+
+
+    /*
+        MOMO
+
+        0 = Next
+    */
+
+    if (
+        currentScreen ===
+        "screen-momo"
+    ) {
+
+        if (
+            key === "0"
+        ) {
+
+            goToLove();
+
+        }
+
+        return;
+
+    }
+
+}
+
+
+
+/* =========================
+   CENTER NAVIGATION BUTTON
+========================= */
+
+function selectCurrent() {
+
+    if (
+        currentScreen ===
+        "screen-lock"
+    ) {
+
+        unlockHint();
+
+    }
+
+
+    else if (
+        currentScreen ===
+        "screen-menu"
+    ) {
+
+        goToInbox();
+
+    }
+
+
+    else if (
+        currentScreen ===
+        "screen-inbox"
+    ) {
+
+        openLetter();
+
+    }
+
+
+    else if (
+        currentScreen ===
+        "screen-letter"
+    ) {
+
+        goToMomo();
+
+    }
+
+
+    else if (
+        currentScreen ===
+        "screen-momo"
+    ) {
+
+        goToLove();
+
+    }
+
+}
