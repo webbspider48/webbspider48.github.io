@@ -3,203 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nokia 3310 — One New Message</title>
+
+    <title>A Message For Momo ❤️</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="scene">
+    <div class="phone-wrapper">
 
-    <div class="phone">
+        <div class="phone-brand">NOKIA</div>
 
-        <!-- TOP OF PHONE -->
-        <div class="phone-top">
-            <div class="speaker">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-            </div>
+        <div class="lcd-frame">
 
-            <div class="nokia-logo">NOKIA</div>
+            <div class="lcd-screen">
 
-            <div class="led"></div>
-        </div>
+                <!-- ================= LOCK SCREEN ================= -->
 
-        <!-- SCREEN HOUSING -->
-        <div class="screen-frame">
+                <section id="screen-lock" class="screen-view active">
 
-            <div class="lcd">
-
-                <!-- ================= LOCK ================= -->
-                <section id="screen-lock" class="screen active">
-
-                    <div class="lcd-status">
+                    <div class="status-bar">
                         <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span class="signal">▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
                         <div>
-                            <span id="clock-lock">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
                         </div>
                     </div>
 
-                    <div class="lock-screen">
+                    <div class="lock-content">
 
-                        <div class="nokia-mark">NOKIA</div>
+                        <div class="message-icon">✉</div>
 
-                        <div class="lock-title">
-                            ONE NEW MESSAGE
+                        <div class="lock-time" id="lock-time-big">
+                            12:41
                         </div>
 
-                        <div class="lock-envelope">
-                            ✉
+                        <div class="lock-date" id="lock-date">
+                            20 August 2026
                         </div>
 
-                        <div id="lock-time" class="big-time">
-                            18:49
+                        <div class="notification">
+                            1 NEW MESSAGE
                         </div>
 
-                        <div id="lock-date" class="date">
-                            23 August 2026
-                        </div>
-
-                        <div class="pin-label">
-                            ENTER PIN
+                        <div class="unlock-text">
+                            Enter PIN using keypad
                         </div>
 
                         <div id="pin-display" class="pin-display">
                             _ _ _ _
                         </div>
 
-                        <div class="pin-pad">
-
-                            <button onclick="pressPin('1')">1</button>
-                            <button onclick="pressPin('2')">2</button>
-                            <button onclick="pressPin('3')">3</button>
-
-                            <button onclick="pressPin('4')">4</button>
-                            <button onclick="pressPin('5')">5</button>
-                            <button onclick="pressPin('6')">6</button>
-
-                            <button onclick="pressPin('7')">7</button>
-                            <button onclick="pressPin('8')">8</button>
-                            <button onclick="pressPin('9')">9</button>
-
-                            <button onclick="pressPin('clear')">C</button>
-                            <button onclick="pressPin('0')">0</button>
-                            <button onclick="pressPin('enter')">OK</button>
-
-                        </div>
-
                     </div>
 
-                    <div class="softbar">
-                        <span>Menu</span>
-                        <span>Unlock</span>
+                    <div class="soft-keys">
+                        <button onclick="goHome()">Menu</button>
+                        <button onclick="unlockHint()">Unlock</button>
                     </div>
 
                 </section>
 
 
-                <!-- ================= MENU ================= -->
-                <section id="screen-menu" class="screen">
+                <!-- ================= MAIN MENU ================= -->
 
-                    <div class="lcd-status">
+                <section id="screen-menu" class="screen-view">
+
+                    <div class="status-bar">
                         <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span class="signal">▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
                         <div>
-                            <span id="clock-menu">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
                         </div>
                     </div>
 
                     <div class="screen-title">
-                        MAIN MENU
+                        Main Menu
                     </div>
 
-                    <div class="menu">
+                    <div class="menu-list">
 
-                        <button class="menu-option selected"
-                                onclick="goToInbox()">
-
-                            <span class="menu-number">01</span>
-
-                            <span class="menu-icon">✉</span>
-
-                            <span>MESSAGES</span>
-
-                            <span class="new-count">1</span>
-
+                        <button class="menu-item selected" onclick="goToInbox()">
+                            <span>1</span>
+                            <span>Messages</span>
+                            <span class="badge">1</span>
                         </button>
 
-                        <button class="menu-option">
-                            <span class="menu-number">02</span>
-                            <span class="menu-icon">♟</span>
-                            <span>CONTACTS</span>
+                        <button class="menu-item" onclick="goToContacts()">
+                            <span>2</span>
+                            <span>Contacts</span>
                         </button>
 
-                        <button class="menu-option">
-                            <span class="menu-number">03</span>
-                            <span class="menu-icon">▣</span>
-                            <span>CALENDAR</span>
+                        <button class="menu-item" onclick="goToCalendar()">
+                            <span>3</span>
+                            <span>Calendar</span>
                         </button>
 
-                        <button class="menu-option">
-                            <span class="menu-number">04</span>
-                            <span class="menu-icon">⚙</span>
-                            <span>SETTINGS</span>
+                        <button class="menu-item" onclick="goToServices()">
+                            <span>4</span>
+                            <span>Services</span>
                         </button>
 
                     </div>
 
-                    <div class="softbar">
-                        <span>Select</span>
-                        <span>Back</span>
+                    <div class="menu-help">
+                        Press 1–4 to select
+                    </div>
+
+                    <div class="soft-keys">
+                        <button>Select</button>
+                        <button onclick="switchScreen('screen-lock')">
+                            Back
+                        </button>
                     </div>
 
                 </section>
 
 
                 <!-- ================= INBOX ================= -->
-                <section id="screen-inbox" class="screen">
 
-                    <div class="lcd-status">
+                <section id="screen-inbox" class="screen-view">
+
+                    <div class="status-bar">
                         <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span class="signal">▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
                         <div>
-                            <span id="clock-inbox">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
                         </div>
                     </div>
 
                     <div class="screen-title">
-                        INBOX
+                        Inbox
                     </div>
 
-                    <div class="inbox-count">
-                        1 NEW MESSAGE
-                    </div>
+                    <div class="inbox-message" onclick="openLetter()">
 
-                    <button class="message-row"
-                            onclick="openLetter()">
-
-                        <div class="message-icon">
+                        <div class="message-symbol">
                             ✉
                         </div>
 
                         <div class="message-info">
 
                             <strong>
-                                BIGDUGGMUSTFALL
+                                Bigduggmustfall ❤️
                             </strong>
 
                             <span>
@@ -208,168 +166,284 @@
 
                         </div>
 
-                        <div class="message-arrow">
-                            ›
-                        </div>
+                        <div class="new-dot"></div>
 
-                    </button>
+                    </div>
 
-                    <div class="inbox-space"></div>
-
-                    <div class="softbar">
-                        <span>Open</span>
-                        <span>Back</span>
+                    <div class="soft-keys">
+                        <button onclick="openLetter()">Open</button>
+                        <button onclick="goHome()">Back</button>
                     </div>
 
                 </section>
 
 
                 <!-- ================= LETTER ================= -->
-                <section id="screen-letter" class="screen">
 
-                    <div class="lcd-status">
+                <section id="screen-letter" class="screen-view">
+
+                    <div class="status-bar">
                         <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span class="signal">▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
                         <div>
-                            <span id="clock-letter">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
                         </div>
                     </div>
 
                     <div class="message-header">
 
-                        <span>NEW MESSAGE</span>
+                        <span>✉ Message</span>
 
-                        <span>01/01</span>
-
-                    </div>
-
-                    <div class="sender">
-                        FROM:
-                        <strong>BIGDUGGMUSTFALL</strong>
-                    </div>
-
-                    <div class="message-time">
-                        TODAY · JUST NOW
-                    </div>
-
-                    <div class="letter-body">
-
-                        <div id="text-content"></div>
-
-                        <span id="cursor" class="cursor">_</span>
+                        <strong>
+                            Bigduggmustfall ❤️
+                        </strong>
 
                     </div>
 
-                    <div class="softbar">
-                        <span>Options</span>
-                        <span onclick="showMomo()">Done</span>
+                    <div class="message-body">
+
+                        <div class="message-time">
+                            Just now
+                        </div>
+
+                        <div id="text-content" class="text-content"></div>
+
+                    </div>
+
+                    <div class="soft-keys">
+                        <button onclick="goToInbox()">Back</button>
+                        <button onclick="goToMomo()">Next</button>
                     </div>
 
                 </section>
 
 
-                <!-- ================= MOMO ================= -->
-                <section id="screen-momo" class="screen">
+                <!-- ================= MOMO SCREEN ================= -->
 
-                    <div class="lcd-status">
+                <section id="screen-momo" class="screen-view">
+
+                    <div class="status-bar">
                         <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span class="signal">▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
                         <div>
-                            <span id="clock-momo">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
                         </div>
                     </div>
 
                     <div class="message-header">
 
-                        <span>MESSAGE</span>
+                        <span>✉ Message</span>
 
-                        <span>02/02</span>
-
-                    </div>
-
-                    <div class="sender">
-                        TO:
-                        <strong>MOMO SMILES</strong>
-                    </div>
-
-                    <div class="momo-screen">
-
-                        <div class="small-heart">
-                            &lt;3
-                        </div>
-
-                        <div class="momo-line">
-                            TO
-                        </div>
-
-                        <div class="momo-name">
-                            MOMO SMILES
-                        </div>
-
-                        <div class="momo-sub">
-                            you know yourself.
-                        </div>
+                        <strong>
+                            Bigduggmustfall ❤️
+                        </strong>
 
                     </div>
 
-                    <div class="softbar">
-                        <span>Options</span>
-                        <span onclick="showLove()">Done</span>
+                    <div class="special-message">
+
+                        <div class="heart">♡</div>
+
+                        <h2>
+                            Man to<br>
+                            Momo Smiles 😊
+                        </h2>
+
+                    </div>
+
+                    <div class="soft-keys">
+                        <button onclick="openLetter()">Back</button>
+                        <button onclick="goToLove()">Next</button>
                     </div>
 
                 </section>
 
 
-                <!-- ================= END ================= -->
-                <section id="screen-love" class="screen">
+                <!-- ================= LOVE SCREEN ================= -->
 
-                    <div class="lcd-status">
+                <section id="screen-love" class="screen-view">
+
+                    <div class="status-bar">
                         <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span class="signal">▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
                         <div>
-                            <span id="clock-love">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
                         </div>
                     </div>
 
-                    <div class="final-screen">
+                    <div class="love-screen">
 
-                        <div class="final-line"></div>
-
-                        <div class="final-small">
-                            MESSAGE SENT
+                        <div class="big-heart">
+                            ♥
                         </div>
 
-                        <div class="final-main">
-                            LOVE ALWAYS
+                        <div>
+                            Love always,
                         </div>
 
-                        <div class="final-name">
-                            BIGDUGGMUSTFALL
-                        </div>
-
-                        <div class="final-heart">
-                            &lt;3
-                        </div>
-
-                        <div class="final-line"></div>
+                        <strong>
+                            Bigduggmustfall ❤️
+                        </strong>
 
                     </div>
 
-                    <div class="softbar">
-                        <span></span>
-                        <span>End</span>
+                    <div class="soft-keys">
+                        <button onclick="goHome()">Menu</button>
+                        <button onclick="switchScreen('screen-lock')">
+                            End
+                        </button>
+                    </div>
+
+                </section>
+
+
+                <!-- ================= CONTACTS ================= -->
+
+                <section id="screen-contacts" class="screen-view">
+
+                    <div class="status-bar">
+                        <div>
+                            <span class="signal">▂▄▆█</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
+                        </div>
+                    </div>
+
+                    <div class="screen-title">
+                        Contacts
+                    </div>
+
+                    <div class="contact-card">
+
+                        <div class="contact-avatar">
+                            B
+                        </div>
+
+                        <div class="contact-details">
+
+                            <strong>
+                                Bigduggmustfall ❤️
+                            </strong>
+
+                            <span>
+                                Your favourite contact
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="soft-keys">
+                        <button>Select</button>
+                        <button onclick="goHome()">Back</button>
+                    </div>
+
+                </section>
+
+
+                <!-- ================= CALENDAR ================= -->
+
+                <section id="screen-calendar" class="screen-view">
+
+                    <div class="status-bar">
+                        <div>
+                            <span class="signal">▂▄▆█</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
+                        </div>
+                    </div>
+
+                    <div class="screen-title">
+                        Calendar
+                    </div>
+
+                    <div class="calendar-card">
+
+                        <div class="calendar-label">
+                            TODAY
+                        </div>
+
+                        <div id="calendar-day" class="calendar-day">
+                            20
+                        </div>
+
+                        <div id="calendar-date" class="calendar-date">
+                            August 2026
+                        </div>
+
+                    </div>
+
+                    <div class="soft-keys">
+                        <button>View</button>
+                        <button onclick="goHome()">Back</button>
+                    </div>
+
+                </section>
+
+
+                <!-- ================= SERVICES ================= -->
+
+                <section id="screen-services" class="screen-view">
+
+                    <div class="status-bar">
+                        <div>
+                            <span class="signal">▂▄▆█</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div>
+                            <span class="live-clock"></span>
+                            <span class="battery">▰</span>
+                        </div>
+                    </div>
+
+                    <div class="screen-title">
+                        Services
+                    </div>
+
+                    <div class="services-content">
+
+                        <div class="service-icon">
+                            ♥
+                        </div>
+
+                        <h3>
+                            Special Delivery
+                        </h3>
+
+                        <p>
+                            This phone has one important message waiting for you.
+                        </p>
+
+                        <button class="open-message" onclick="goToInbox()">
+                            Open Message
+                        </button>
+
+                    </div>
+
+                    <div class="soft-keys">
+                        <button onclick="goToInbox()">Open</button>
+                        <button onclick="goHome()">Back</button>
                     </div>
 
                 </section>
@@ -379,116 +453,66 @@
         </div>
 
 
-        <!-- NAVIGATION -->
-        <div class="navigation">
+        <!-- ================= NAVIGATION ================= -->
 
-            <div class="nav-row">
+        <div class="navigation-panel">
 
-                <button class="soft-button left">
-                    MENU
-                </button>
-
-                <button class="soft-button right">
-                    BACK
-                </button>
-
-            </div>
-
-            <div class="dpad">
-
-                <button class="dpad-up">▲</button>
-
-                <button class="dpad-left">◀</button>
-
-                <button class="dpad-center" onclick="pressPhysicalEnter()">
-                    OK
-                </button>
-
-                <button class="dpad-right">▶</button>
-
-                <button class="dpad-down">▼</button>
-
-            </div>
-
-        </div>
-
-
-        <!-- NUMBER KEYPAD -->
-        <div class="number-pad">
-
-            <button onclick="pressPhysical('1')">
-                <strong>1</strong>
+            <button class="nav-btn" onclick="goHome()">
+                Menu
             </button>
 
-            <button onclick="pressPhysical('2')">
-                <strong>2</strong>
-                <small>ABC</small>
+            <button class="nav-center" onclick="selectCurrent()">
+                ●
             </button>
 
-            <button onclick="pressPhysical('3')">
-                <strong>3</strong>
-                <small>DEF</small>
-            </button>
-
-            <button onclick="pressPhysical('4')">
-                <strong>4</strong>
-                <small>GHI</small>
-            </button>
-
-            <button onclick="pressPhysical('5')">
-                <strong>5</strong>
-                <small>JKL</small>
-            </button>
-
-            <button onclick="pressPhysical('6')">
-                <strong>6</strong>
-                <small>MNO</small>
-            </button>
-
-            <button onclick="pressPhysical('7')">
-                <strong>7</strong>
-                <small>PQRS</small>
-            </button>
-
-            <button onclick="pressPhysical('8')">
-                <strong>8</strong>
-                <small>TUV</small>
-            </button>
-
-            <button onclick="pressPhysical('9')">
-                <strong>9</strong>
-                <small>WXYZ</small>
-            </button>
-
-            <button onclick="pressPhysical('*')">
-                <strong>*</strong>
-            </button>
-
-            <button onclick="pressPhysical('0')">
-                <strong>0</strong>
-                <small>+</small>
-            </button>
-
-            <button onclick="pressPhysical('#')">
-                <strong>#</strong>
+            <button class="nav-btn" onclick="goBack()">
+                Back
             </button>
 
         </div>
 
 
-        <div class="phone-bottom">
+        <!-- ================= PHYSICAL KEYPAD ================= -->
 
-            <div class="charging-port"></div>
+        <div class="keypad">
 
-            <span>3310</span>
+            <div class="keypad-row">
+
+                <button onclick="pressKey('1')">1</button>
+                <button onclick="pressKey('2')">2</button>
+                <button onclick="pressKey('3')">3</button>
+
+            </div>
+
+            <div class="keypad-row">
+
+                <button onclick="pressKey('4')">4</button>
+                <button onclick="pressKey('5')">5</button>
+                <button onclick="pressKey('6')">6</button>
+
+            </div>
+
+            <div class="keypad-row">
+
+                <button onclick="pressKey('7')">7</button>
+                <button onclick="pressKey('8')">8</button>
+                <button onclick="pressKey('9')">9</button>
+
+            </div>
+
+            <div class="keypad-row">
+
+                <button onclick="pressKey('*')">*</button>
+                <button onclick="pressKey('0')">0</button>
+                <button onclick="pressKey('#')">#</button>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
