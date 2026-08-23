@@ -1,121 +1,494 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nokia 3310 — One New Message</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-body {
-    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: 'Courier New', monospace;
-    padding: 20px;
-}
+<body>
 
-/* PHONE BODY (3310 shape) */
-.phone-wrapper {
-    background: linear-gradient(145deg, #4a4a4a, #2e2e2e);
-    padding: 25px 25px 35px 25px;
-    border-radius: 40px 40px 25px 25px;
-    box-shadow: 
-        0 20px 50px rgba(0,0,0,0.9),
-        inset 0 2px 5px rgba(255,255,255,0.1);
-    width: 100%;
-    max-width: 380px;
-    border: 1px solid #5a5a5a;
-    position: relative;
-}
+<div class="scene">
 
-/* LCD SCREEN */
-.lcd-screen {
-    background: #b3d9a0;
-    border-radius: 12px;
-    padding: 15px 18px;
-    min-height: 450px;
-    color: #1f3b17;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    border: 3px solid #1f1f1f;
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
-}
+    <div class="phone">
 
-.screen-view { display: none; flex-direction: column; height: 100%; min-height: 420px; }
-.screen-view.active { display: flex; }
+        <!-- TOP OF PHONE -->
+        <div class="phone-top">
+            <div class="speaker">
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+                <span></span><span></span><span></span>
+            </div>
 
-/* STATUS BAR (Real time) */
-.status-bar {
-    display: flex; justify-content: space-between; font-weight: bold; font-size: 13px; margin-bottom: 8px; letter-spacing: 0.5px;
-    background: #1f3b17; color: #b3d9a0; padding: 4px 8px; border-radius: 4px;
-    border-bottom: 2px solid #1f3b17;
-}
-.left-icons { display: flex; gap: 6px; align-items: center; }
-.signal { letter-spacing: -1px; font-size: 14px; }
-.carrier { font-size: 12px; }
-.right-icons { display: flex; gap: 8px; align-items: center; }
-.live-clock { font-size: 13px; letter-spacing: 1px; }
-.battery-icon { font-size: 14px; }
+            <div class="nokia-logo">NOKIA</div>
 
-/* LOCK SCREEN */
-.lock-content {
-    display: flex; flex-direction: column; align-items: center; justify-content: center; flex-grow: 1; text-align: center;
-}
-.lock-icon { font-size: 45px; margin-bottom: 5px; animation: float 3s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-.lock-time { font-size: 38px; font-weight: bold; margin-bottom: 2px; }
-.lock-date { font-size: 14px; margin-bottom: 15px; color: #2c4d22; }
-.lock-notification {
-    background: #1f3b17; color: #b3d9a0; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 13px; animation: pulse 1.5s infinite; margin-bottom: 15px;
-}
-@keyframes pulse { 0% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0.5; transform: scale(1); } }
+            <div class="led"></div>
+        </div>
 
-/* PIN PAD */
-.pin-container { width: 100%; max-width: 220px; margin-top: 5px; }
-.pin-display {
-    background: #1f3b17; color: #b3d9a0; font-size: 26px; letter-spacing: 8px;
-    padding: 6px 0; border-radius: 6px; margin-bottom: 12px; text-align: center; font-weight: bold;
-}
-.pin-pad { display: flex; flex-direction: column; gap: 6px; }
-.pin-row { display: flex; justify-content: space-between; gap: 6px; }
-.pin-row span {
-    flex: 1; background: #3a5a3a; color: #b3d9a0; padding: 8px 0; border-radius: 6px;
-    font-size: 16px; cursor: pointer; text-align: center; font-family: Arial, sans-serif;
-    border: 1px solid #1f3b17; transition: 0.1s;
-}
-.pin-row span:active { background: #2a4a2a; transform: scale(0.95); }
-.pin-row span:last-child { background: #2a5a2a; }
+        <!-- SCREEN HOUSING -->
+        <div class="screen-frame">
 
-/* MENU & INBOX */
-.menu-header { font-size: 16px; font-weight: bold; border-bottom: 2px dashed #1f3b17; padding-bottom: 6px; margin-bottom: 10px; }
-.menu-list { flex-grow: 1; overflow-y: auto; }
-.menu-item { padding: 10px 0; border-bottom: 1px solid #2c4d22; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 14px; }
-.menu-item:hover { background: #a3c990; }
-.menu-item.unread { font-weight: bold; }
-.badge { background: #1f3b17; color: #b3d9a0; font-size: 11px; padding: 2px 8px; border-radius: 12px; margin-left: auto; }
-.msg-preview { font-size: 11px; color: #2c4d22; margin-left: auto; max-width: 80px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            <div class="lcd">
 
-/* LETTER SCREEN */
-.msg-header { font-size: 16px; font-weight: bold; border-bottom: 2px dashed #1f3b17; padding-bottom: 6px; margin-bottom: 8px; }
-.message-box { flex-grow: 1; font-size: 14px; line-height: 1.7; overflow-y: auto; }
-.time { font-size: 11px; color: #2c4d22; margin-bottom: 8px; }
-.text-content { white-space: pre-wrap; }
-.momo-text { font-size: 18px; text-align: center; margin-top: 40px; }
-.love-text { font-size: 16px; text-align: center; margin-top: 30px; }
+                <!-- ================= LOCK ================= -->
+                <section id="screen-lock" class="screen active">
 
-/* SOFT KEYS */
-.soft-keys {
-    display: flex; justify-content: space-between; font-weight: bold; font-size: 14px;
-    border-top: 2px dashed #1f3b17; padding-top: 10px; margin-top: 12px;
-}
-.soft-keys span { cursor: pointer; }
-.soft-keys span:hover { text-decoration: underline; }
+                    <div class="lcd-status">
+                        <div>
+                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span>VODACOM</span>
+                        </div>
 
-/* PHYSICAL KEYPAD (3310 style) */
-.keypad { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-.row { display: flex; justify-content: space-between; padding: 0 10px; }
-.row span {
-    background: linear-gradient(145deg, #5a5a5a, #3d3d3d); color: white; padding: 10px 16px; border-radius: 8px; font-size: 16px;
-    box-shadow: 0 4px 0 #222, inset 0 1px 1px rgba(255,255,255,0.2); font-family: Arial, sans-serif; cursor: pointer;
-    transition: 0.05s; width: 60px; text-align: center;
-}
-.row span:active { transform: translateY(3px); box-shadow: 0 1px 0 #222; }
+                        <div>
+                            <span id="clock-lock">18:49</span>
+                            <span class="battery">▮▮▮▮</span>
+                        </div>
+                    </div>
 
-@keyframes blink { 50% { opacity: 0; } }
+                    <div class="lock-screen">
+
+                        <div class="nokia-mark">NOKIA</div>
+
+                        <div class="lock-title">
+                            ONE NEW MESSAGE
+                        </div>
+
+                        <div class="lock-envelope">
+                            ✉
+                        </div>
+
+                        <div id="lock-time" class="big-time">
+                            18:49
+                        </div>
+
+                        <div id="lock-date" class="date">
+                            23 August 2026
+                        </div>
+
+                        <div class="pin-label">
+                            ENTER PIN
+                        </div>
+
+                        <div id="pin-display" class="pin-display">
+                            _ _ _ _
+                        </div>
+
+                        <div class="pin-pad">
+
+                            <button onclick="pressPin('1')">1</button>
+                            <button onclick="pressPin('2')">2</button>
+                            <button onclick="pressPin('3')">3</button>
+
+                            <button onclick="pressPin('4')">4</button>
+                            <button onclick="pressPin('5')">5</button>
+                            <button onclick="pressPin('6')">6</button>
+
+                            <button onclick="pressPin('7')">7</button>
+                            <button onclick="pressPin('8')">8</button>
+                            <button onclick="pressPin('9')">9</button>
+
+                            <button onclick="pressPin('clear')">C</button>
+                            <button onclick="pressPin('0')">0</button>
+                            <button onclick="pressPin('enter')">OK</button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="softbar">
+                        <span>Menu</span>
+                        <span>Unlock</span>
+                    </div>
+
+                </section>
+
+
+                <!-- ================= MENU ================= -->
+                <section id="screen-menu" class="screen">
+
+                    <div class="lcd-status">
+                        <div>
+                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div>
+                            <span id="clock-menu">18:49</span>
+                            <span class="battery">▮▮▮▮</span>
+                        </div>
+                    </div>
+
+                    <div class="screen-title">
+                        MAIN MENU
+                    </div>
+
+                    <div class="menu">
+
+                        <button class="menu-option selected"
+                                onclick="goToInbox()">
+
+                            <span class="menu-number">01</span>
+
+                            <span class="menu-icon">✉</span>
+
+                            <span>MESSAGES</span>
+
+                            <span class="new-count">1</span>
+
+                        </button>
+
+                        <button class="menu-option">
+                            <span class="menu-number">02</span>
+                            <span class="menu-icon">♟</span>
+                            <span>CONTACTS</span>
+                        </button>
+
+                        <button class="menu-option">
+                            <span class="menu-number">03</span>
+                            <span class="menu-icon">▣</span>
+                            <span>CALENDAR</span>
+                        </button>
+
+                        <button class="menu-option">
+                            <span class="menu-number">04</span>
+                            <span class="menu-icon">⚙</span>
+                            <span>SETTINGS</span>
+                        </button>
+
+                    </div>
+
+                    <div class="softbar">
+                        <span>Select</span>
+                        <span>Back</span>
+                    </div>
+
+                </section>
+
+
+                <!-- ================= INBOX ================= -->
+                <section id="screen-inbox" class="screen">
+
+                    <div class="lcd-status">
+                        <div>
+                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div>
+                            <span id="clock-inbox">18:49</span>
+                            <span class="battery">▮▮▮▮</span>
+                        </div>
+                    </div>
+
+                    <div class="screen-title">
+                        INBOX
+                    </div>
+
+                    <div class="inbox-count">
+                        1 NEW MESSAGE
+                    </div>
+
+                    <button class="message-row"
+                            onclick="openLetter()">
+
+                        <div class="message-icon">
+                            ✉
+                        </div>
+
+                        <div class="message-info">
+
+                            <strong>
+                                BIGDUGGMUSTFALL
+                            </strong>
+
+                            <span>
+                                I've been thinking...
+                            </span>
+
+                        </div>
+
+                        <div class="message-arrow">
+                            ›
+                        </div>
+
+                    </button>
+
+                    <div class="inbox-space"></div>
+
+                    <div class="softbar">
+                        <span>Open</span>
+                        <span>Back</span>
+                    </div>
+
+                </section>
+
+
+                <!-- ================= LETTER ================= -->
+                <section id="screen-letter" class="screen">
+
+                    <div class="lcd-status">
+                        <div>
+                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div>
+                            <span id="clock-letter">18:49</span>
+                            <span class="battery">▮▮▮▮</span>
+                        </div>
+                    </div>
+
+                    <div class="message-header">
+
+                        <span>NEW MESSAGE</span>
+
+                        <span>01/01</span>
+
+                    </div>
+
+                    <div class="sender">
+                        FROM:
+                        <strong>BIGDUGGMUSTFALL</strong>
+                    </div>
+
+                    <div class="message-time">
+                        TODAY · JUST NOW
+                    </div>
+
+                    <div class="letter-body">
+
+                        <div id="text-content"></div>
+
+                        <span id="cursor" class="cursor">_</span>
+
+                    </div>
+
+                    <div class="softbar">
+                        <span>Options</span>
+                        <span onclick="showMomo()">Done</span>
+                    </div>
+
+                </section>
+
+
+                <!-- ================= MOMO ================= -->
+                <section id="screen-momo" class="screen">
+
+                    <div class="lcd-status">
+                        <div>
+                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div>
+                            <span id="clock-momo">18:49</span>
+                            <span class="battery">▮▮▮▮</span>
+                        </div>
+                    </div>
+
+                    <div class="message-header">
+
+                        <span>MESSAGE</span>
+
+                        <span>02/02</span>
+
+                    </div>
+
+                    <div class="sender">
+                        TO:
+                        <strong>MOMO SMILES</strong>
+                    </div>
+
+                    <div class="momo-screen">
+
+                        <div class="small-heart">
+                            &lt;3
+                        </div>
+
+                        <div class="momo-line">
+                            MAN TO
+                        </div>
+
+                        <div class="momo-name">
+                            MOMO SMILES
+                        </div>
+
+                        <div class="momo-sub">
+                            you know yourself.
+                        </div>
+
+                    </div>
+
+                    <div class="softbar">
+                        <span>Options</span>
+                        <span onclick="showLove()">Done</span>
+                    </div>
+
+                </section>
+
+
+                <!-- ================= END ================= -->
+                <section id="screen-love" class="screen">
+
+                    <div class="lcd-status">
+                        <div>
+                            <span class="signal-bars">▮▮▮▮▮</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div>
+                            <span id="clock-love">18:49</span>
+                            <span class="battery">▮▮▮▮</span>
+                        </div>
+                    </div>
+
+                    <div class="final-screen">
+
+                        <div class="final-line"></div>
+
+                        <div class="final-small">
+                            MESSAGE SENT
+                        </div>
+
+                        <div class="final-main">
+                            LOVE ALWAYS
+                        </div>
+
+                        <div class="final-name">
+                            BIGDUGGMUSTFALL
+                        </div>
+
+                        <div class="final-heart">
+                            &lt;3
+                        </div>
+
+                        <div class="final-line"></div>
+
+                    </div>
+
+                    <div class="softbar">
+                        <span></span>
+                        <span>End</span>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+        <div class="navigation">
+
+            <div class="nav-row">
+
+                <button class="soft-button left">
+                    MENU
+                </button>
+
+                <button class="soft-button right">
+                    BACK
+                </button>
+
+            </div>
+
+            <div class="dpad">
+
+                <button class="dpad-up">▲</button>
+
+                <button class="dpad-left">◀</button>
+
+                <button class="dpad-center" onclick="pressPhysicalEnter()">
+                    OK
+                </button>
+
+                <button class="dpad-right">▶</button>
+
+                <button class="dpad-down">▼</button>
+
+            </div>
+
+        </div>
+
+
+        <!-- NUMBER KEYPAD -->
+        <div class="number-pad">
+
+            <button onclick="pressPhysical('1')">
+                <strong>1</strong>
+            </button>
+
+            <button onclick="pressPhysical('2')">
+                <strong>2</strong>
+                <small>ABC</small>
+            </button>
+
+            <button onclick="pressPhysical('3')">
+                <strong>3</strong>
+                <small>DEF</small>
+            </button>
+
+            <button onclick="pressPhysical('4')">
+                <strong>4</strong>
+                <small>GHI</small>
+            </button>
+
+            <button onclick="pressPhysical('5')">
+                <strong>5</strong>
+                <small>JKL</small>
+            </button>
+
+            <button onclick="pressPhysical('6')">
+                <strong>6</strong>
+                <small>MNO</small>
+            </button>
+
+            <button onclick="pressPhysical('7')">
+                <strong>7</strong>
+                <small>PQRS</small>
+            </button>
+
+            <button onclick="pressPhysical('8')">
+                <strong>8</strong>
+                <small>TUV</small>
+            </button>
+
+            <button onclick="pressPhysical('9')">
+                <strong>9</strong>
+                <small>WXYZ</small>
+            </button>
+
+            <button onclick="pressPhysical('*')">
+                <strong>*</strong>
+            </button>
+
+            <button onclick="pressPhysical('0')">
+                <strong>0</strong>
+                <small>+</small>
+            </button>
+
+            <button onclick="pressPhysical('#')">
+                <strong>#</strong>
+            </button>
+
+        </div>
+
+
+        <div class="phone-bottom">
+
+            <div class="charging-port"></div>
+
+            <span>3310</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
