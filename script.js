@@ -215,7 +215,7 @@ function goBack() {
 let enteredPin = "";
 
 const correctPin =
-    "1234";
+    "0000";
 
 
 function updatePinDisplay() {
@@ -415,13 +415,15 @@ const messageText =
 
 I miss you.
 
-I know I've been a little inconsistent lately since I deleted my Instagram, and I'm really sorry about that.
+I know I've been a little inconsistent with the letters lately and I'm really sorry about that.
 
-You've been on my mind a lot though, and seeing your name pop up still makes me smile.
+You've been on my mind a lot though, and seeing your name pop up or hearing it 😭 makes me smile.
 
 You're genuinely my favourite notification 😂❤️
 
-And I already know you looked cute today. You don't even have to tell me.`;
+I wont lie this weekend was the hardest yohhh
+
+And I havent seen you but i already know you looked cute today. :)`;
 
 
 let typingStarted =
