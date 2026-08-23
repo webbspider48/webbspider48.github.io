@@ -1,494 +1,1041 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nokia 3310 — One New Message</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-<body>
+:root {
+    --phone-blue: #315f8d;
+    --phone-blue-dark: #23496e;
+    --phone-blue-light: #4779a9;
 
-<div class="scene">
+    --lcd: #b9d69f;
+    --lcd-dark: #203a18;
+    --lcd-mid: #527044;
 
-    <div class="phone">
+    --button: #20252a;
+    --button-light: #343a40;
 
-        <!-- TOP OF PHONE -->
-        <div class="phone-top">
-            <div class="speaker">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-            </div>
+    --black: #090b0d;
+}
 
-            <div class="nokia-logo">NOKIA</div>
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            <div class="led"></div>
-        </div>
+    background:
+        radial-gradient(
+            circle at center,
+            #24282d 0%,
+            #111316 45%,
+            #050607 100%
+        );
 
-        <!-- SCREEN HOUSING -->
-        <div class="screen-frame">
+    font-family: "Courier New", monospace;
+    padding: 30px 15px;
+    color: white;
+}
 
-            <div class="lcd">
 
-                <!-- ================= LOCK ================= -->
-                <section id="screen-lock" class="screen active">
+/* =====================================================
+   SCENE
+===================================================== */
 
-                    <div class="lcd-status">
-                        <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
-                            <span>VODACOM</span>
-                        </div>
+.scene {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-                        <div>
-                            <span id="clock-lock">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
-                        </div>
-                    </div>
 
-                    <div class="lock-screen">
+/* =====================================================
+   PHONE
+===================================================== */
 
-                        <div class="nokia-mark">NOKIA</div>
+.phone {
+    width: 370px;
+    max-width: 95vw;
 
-                        <div class="lock-title">
-                            ONE NEW MESSAGE
-                        </div>
+    padding: 22px 22px 28px;
 
-                        <div class="lock-envelope">
-                            ✉
-                        </div>
+    border-radius: 48px 48px 35px 35px;
 
-                        <div id="lock-time" class="big-time">
-                            18:49
-                        </div>
+    background:
+        linear-gradient(
+            135deg,
+            var(--phone-blue-light),
+            var(--phone-blue) 40%,
+            var(--phone-blue-dark)
+        );
 
-                        <div id="lock-date" class="date">
-                            23 August 2026
-                        </div>
+    border: 2px solid #5885ad;
 
-                        <div class="pin-label">
-                            ENTER PIN
-                        </div>
+    box-shadow:
+        0 35px 70px rgba(0, 0, 0, .8),
+        inset 4px 4px 8px rgba(255,255,255,.15),
+        inset -5px -8px 12px rgba(0,0,0,.3);
 
-                        <div id="pin-display" class="pin-display">
-                            _ _ _ _
-                        </div>
+    position: relative;
+}
 
-                        <div class="pin-pad">
 
-                            <button onclick="pressPin('1')">1</button>
-                            <button onclick="pressPin('2')">2</button>
-                            <button onclick="pressPin('3')">3</button>
+/* =====================================================
+   NOKIA TOP
+===================================================== */
 
-                            <button onclick="pressPin('4')">4</button>
-                            <button onclick="pressPin('5')">5</button>
-                            <button onclick="pressPin('6')">6</button>
+.phone-top {
+    height: 70px;
 
-                            <button onclick="pressPin('7')">7</button>
-                            <button onclick="pressPin('8')">8</button>
-                            <button onclick="pressPin('9')">9</button>
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-                            <button onclick="pressPin('clear')">C</button>
-                            <button onclick="pressPin('0')">0</button>
-                            <button onclick="pressPin('enter')">OK</button>
+    padding: 0 20px;
+}
 
-                        </div>
+.nokia-logo {
+    font-family: Arial, sans-serif;
+    font-weight: 900;
+    font-size: 23px;
 
-                    </div>
+    letter-spacing: -1px;
 
-                    <div class="softbar">
-                        <span>Menu</span>
-                        <span>Unlock</span>
-                    </div>
+    color: #e9f1f7;
 
-                </section>
+    text-shadow:
+        1px 2px 1px rgba(0,0,0,.35);
+}
 
+.speaker {
+    width: 58px;
 
-                <!-- ================= MENU ================= -->
-                <section id="screen-menu" class="screen">
+    display: grid;
+    grid-template-columns: repeat(3, 5px);
+    gap: 4px;
+}
 
-                    <div class="lcd-status">
-                        <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
-                            <span>VODACOM</span>
-                        </div>
+.speaker span {
+    width: 5px;
+    height: 5px;
 
-                        <div>
-                            <span id="clock-menu">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
-                        </div>
-                    </div>
+    border-radius: 50%;
 
-                    <div class="screen-title">
-                        MAIN MENU
-                    </div>
+    background: #1b3957;
 
-                    <div class="menu">
+    box-shadow:
+        inset 1px 1px 1px rgba(255,255,255,.15);
+}
 
-                        <button class="menu-option selected"
-                                onclick="goToInbox()">
+.led {
+    width: 7px;
+    height: 7px;
 
-                            <span class="menu-number">01</span>
+    background: #72d3ff;
 
-                            <span class="menu-icon">✉</span>
+    border-radius: 50%;
 
-                            <span>MESSAGES</span>
+    box-shadow:
+        0 0 7px rgba(114,211,255,.7);
+}
 
-                            <span class="new-count">1</span>
 
-                        </button>
+/* =====================================================
+   SCREEN HOUSING
+===================================================== */
 
-                        <button class="menu-option">
-                            <span class="menu-number">02</span>
-                            <span class="menu-icon">♟</span>
-                            <span>CONTACTS</span>
-                        </button>
+.screen-frame {
+    background: #171b1e;
 
-                        <button class="menu-option">
-                            <span class="menu-number">03</span>
-                            <span class="menu-icon">▣</span>
-                            <span>CALENDAR</span>
-                        </button>
+    padding: 12px;
 
-                        <button class="menu-option">
-                            <span class="menu-number">04</span>
-                            <span class="menu-icon">⚙</span>
-                            <span>SETTINGS</span>
-                        </button>
+    border-radius: 17px;
 
-                    </div>
+    box-shadow:
+        inset 0 3px 6px rgba(0,0,0,.8),
+        0 3px 3px rgba(255,255,255,.1);
+}
 
-                    <div class="softbar">
-                        <span>Select</span>
-                        <span>Back</span>
-                    </div>
+.lcd {
+    height: 480px;
 
-                </section>
+    background:
+        radial-gradient(
+            ellipse at center,
+            #c8dfa9 0%,
+            var(--lcd) 70%,
+            #8dac78 100%
+        );
 
+    border: 3px solid #0c0f0b;
 
-                <!-- ================= INBOX ================= -->
-                <section id="screen-inbox" class="screen">
+    border-radius: 8px;
 
-                    <div class="lcd-status">
-                        <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
-                            <span>VODACOM</span>
-                        </div>
+    color: var(--lcd-dark);
 
-                        <div>
-                            <span id="clock-inbox">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
-                        </div>
-                    </div>
+    overflow: hidden;
 
-                    <div class="screen-title">
-                        INBOX
-                    </div>
+    position: relative;
 
-                    <div class="inbox-count">
-                        1 NEW MESSAGE
-                    </div>
+    box-shadow:
+        inset 0 0 30px rgba(20,40,15,.3);
+}
 
-                    <button class="message-row"
-                            onclick="openLetter()">
 
-                        <div class="message-icon">
-                            ✉
-                        </div>
+/* =====================================================
+   SCREEN
+===================================================== */
 
-                        <div class="message-info">
+.screen {
+    display: none;
 
-                            <strong>
-                                BIGDUGGMUSTFALL
-                            </strong>
+    height: 100%;
 
-                            <span>
-                                I've been thinking...
-                            </span>
+    flex-direction: column;
 
-                        </div>
+    padding: 10px;
+}
 
-                        <div class="message-arrow">
-                            ›
-                        </div>
+.screen.active {
+    display: flex;
 
-                    </button>
+    animation: screenIn .18s ease-out;
+}
 
-                    <div class="inbox-space"></div>
+@keyframes screenIn {
 
-                    <div class="softbar">
-                        <span>Open</span>
-                        <span>Back</span>
-                    </div>
+    from {
+        opacity: 0;
+        transform: scale(.985);
+    }
 
-                </section>
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
 
-                <!-- ================= LETTER ================= -->
-                <section id="screen-letter" class="screen">
+/* =====================================================
+   STATUS BAR
+===================================================== */
 
-                    <div class="lcd-status">
-                        <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
-                            <span>VODACOM</span>
-                        </div>
+.lcd-status {
+    height: 28px;
 
-                        <div>
-                            <span id="clock-letter">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
-                        </div>
-                    </div>
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-                    <div class="message-header">
+    font-size: 10px;
 
-                        <span>NEW MESSAGE</span>
+    font-weight: bold;
 
-                        <span>01/01</span>
+    border-bottom: 2px solid var(--lcd-dark);
 
-                    </div>
+    margin-bottom: 10px;
 
-                    <div class="sender">
-                        FROM:
-                        <strong>BIGDUGGMUSTFALL</strong>
-                    </div>
+    padding-bottom: 5px;
+}
 
-                    <div class="message-time">
-                        TODAY · JUST NOW
-                    </div>
+.lcd-status > div {
+    display: flex;
+    align-items: center;
 
-                    <div class="letter-body">
+    gap: 6px;
+}
 
-                        <div id="text-content"></div>
+.signal-bars {
+    letter-spacing: -2px;
+    font-size: 9px;
+}
 
-                        <span id="cursor" class="cursor">_</span>
+.battery {
+    font-size: 9px;
+}
 
-                    </div>
 
-                    <div class="softbar">
-                        <span>Options</span>
-                        <span onclick="showMomo()">Done</span>
-                    </div>
+/* =====================================================
+   LOCK SCREEN
+===================================================== */
 
-                </section>
+.lock-screen {
+    flex: 1;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-                <!-- ================= MOMO ================= -->
-                <section id="screen-momo" class="screen">
+    text-align: center;
+}
 
-                    <div class="lcd-status">
-                        <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
-                            <span>VODACOM</span>
-                        </div>
+.nokia-mark {
+    font-family: Arial, sans-serif;
 
-                        <div>
-                            <span id="clock-momo">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
-                        </div>
-                    </div>
+    font-weight: 900;
 
-                    <div class="message-header">
+    font-size: 13px;
 
-                        <span>MESSAGE</span>
+    letter-spacing: 3px;
 
-                        <span>02/02</span>
+    margin-top: 2px;
 
-                    </div>
+    opacity: .7;
+}
 
-                    <div class="sender">
-                        TO:
-                        <strong>MOMO SMILES</strong>
-                    </div>
+.lock-title {
+    font-size: 11px;
 
-                    <div class="momo-screen">
+    font-weight: bold;
 
-                        <div class="small-heart">
-                            &lt;3
-                        </div>
+    letter-spacing: 1px;
 
-                        <div class="momo-line">
-                            MAN TO
-                        </div>
+    margin-top: 14px;
+}
 
-                        <div class="momo-name">
-                            MOMO SMILES
-                        </div>
+.lock-envelope {
+    font-size: 29px;
 
-                        <div class="momo-sub">
-                            you know yourself.
-                        </div>
+    margin-top: 10px;
 
-                    </div>
+    filter: grayscale(1);
 
-                    <div class="softbar">
-                        <span>Options</span>
-                        <span onclick="showLove()">Done</span>
-                    </div>
+    opacity: .8;
+}
 
-                </section>
+.big-time {
+    font-size: 42px;
 
+    font-weight: bold;
 
-                <!-- ================= END ================= -->
-                <section id="screen-love" class="screen">
+    letter-spacing: -3px;
 
-                    <div class="lcd-status">
-                        <div>
-                            <span class="signal-bars">▮▮▮▮▮</span>
-                            <span>VODACOM</span>
-                        </div>
+    margin-top: 3px;
+}
 
-                        <div>
-                            <span id="clock-love">18:49</span>
-                            <span class="battery">▮▮▮▮</span>
-                        </div>
-                    </div>
+.date {
+    font-size: 10px;
 
-                    <div class="final-screen">
+    margin-top: 2px;
+}
 
-                        <div class="final-line"></div>
+.pin-label {
+    font-size: 10px;
 
-                        <div class="final-small">
-                            MESSAGE SENT
-                        </div>
+    font-weight: bold;
 
-                        <div class="final-main">
-                            LOVE ALWAYS
-                        </div>
+    margin-top: 13px;
+}
 
-                        <div class="final-name">
-                            BIGDUGGMUSTFALL
-                        </div>
+.pin-display {
+    min-width: 125px;
 
-                        <div class="final-heart">
-                            &lt;3
-                        </div>
+    height: 27px;
 
-                        <div class="final-line"></div>
+    margin-top: 4px;
 
-                    </div>
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-                    <div class="softbar">
-                        <span></span>
-                        <span>End</span>
-                    </div>
+    background: var(--lcd-dark);
 
-                </section>
+    color: var(--lcd);
 
-            </div>
+    font-size: 17px;
 
-        </div>
+    letter-spacing: 7px;
 
+    border-radius: 2px;
+}
 
-        <!-- NAVIGATION -->
-        <div class="navigation">
 
-            <div class="nav-row">
+/* =====================================================
+   PIN PAD
+===================================================== */
 
-                <button class="soft-button left">
-                    MENU
-                </button>
+.pin-pad {
+    display: grid;
 
-                <button class="soft-button right">
-                    BACK
-                </button>
+    grid-template-columns: repeat(3, 42px);
 
-            </div>
+    gap: 5px;
 
-            <div class="dpad">
+    justify-content: center;
 
-                <button class="dpad-up">▲</button>
+    margin-top: 7px;
+}
 
-                <button class="dpad-left">◀</button>
+.pin-pad button {
+    height: 25px;
 
-                <button class="dpad-center" onclick="pressPhysicalEnter()">
-                    OK
-                </button>
+    border: 1px solid var(--lcd-dark);
 
-                <button class="dpad-right">▶</button>
+    background: #6d8e5c;
 
-                <button class="dpad-down">▼</button>
+    color: #d5e7c0;
 
-            </div>
+    font-family: inherit;
 
-        </div>
+    font-weight: bold;
 
+    cursor: pointer;
 
-        <!-- NUMBER KEYPAD -->
-        <div class="number-pad">
+    border-radius: 2px;
 
-            <button onclick="pressPhysical('1')">
-                <strong>1</strong>
-            </button>
+    box-shadow:
+        0 2px 0 #263c20;
+}
 
-            <button onclick="pressPhysical('2')">
-                <strong>2</strong>
-                <small>ABC</small>
-            </button>
+.pin-pad button:active {
+    transform: translateY(2px);
 
-            <button onclick="pressPhysical('3')">
-                <strong>3</strong>
-                <small>DEF</small>
-            </button>
+    box-shadow: none;
+}
 
-            <button onclick="pressPhysical('4')">
-                <strong>4</strong>
-                <small>GHI</small>
-            </button>
 
-            <button onclick="pressPhysical('5')">
-                <strong>5</strong>
-                <small>JKL</small>
-            </button>
+/* =====================================================
+   SOFT BAR
+===================================================== */
 
-            <button onclick="pressPhysical('6')">
-                <strong>6</strong>
-                <small>MNO</small>
-            </button>
+.softbar {
+    height: 30px;
 
-            <button onclick="pressPhysical('7')">
-                <strong>7</strong>
-                <small>PQRS</small>
-            </button>
+    border-top: 2px solid var(--lcd-dark);
 
-            <button onclick="pressPhysical('8')">
-                <strong>8</strong>
-                <small>TUV</small>
-            </button>
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 
-            <button onclick="pressPhysical('9')">
-                <strong>9</strong>
-                <small>WXYZ</small>
-            </button>
+    padding: 5px 3px 0;
 
-            <button onclick="pressPhysical('*')">
-                <strong>*</strong>
-            </button>
+    font-size: 10px;
 
-            <button onclick="pressPhysical('0')">
-                <strong>0</strong>
-                <small>+</small>
-            </button>
+    font-weight: bold;
 
-            <button onclick="pressPhysical('#')">
-                <strong>#</strong>
-            </button>
+    margin-top: auto;
+}
 
-        </div>
+.softbar span {
+    cursor: pointer;
+}
 
 
-        <div class="phone-bottom">
+/* =====================================================
+   TITLES
+===================================================== */
 
-            <div class="charging-port"></div>
+.screen-title {
+    font-size: 16px;
 
-            <span>3310</span>
+    font-weight: bold;
 
-        </div>
+    border-bottom: 2px solid var(--lcd-dark);
 
-    </div>
+    padding-bottom: 6px;
 
-</div>
+    margin-bottom: 8px;
+}
 
-<script src="script.js"></script>
 
-</body>
-</html>
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.menu-option {
+    width: 100%;
+
+    height: 52px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--lcd-dark);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-family: inherit;
+
+    font-weight: bold;
+
+    font-size: 12px;
+
+    text-align: left;
+
+    padding: 0 7px;
+
+    cursor: pointer;
+}
+
+.menu-option.selected {
+    background: var(--lcd-dark);
+
+    color: var(--lcd);
+
+    box-shadow:
+        inset 0 0 0 2px var(--lcd);
+}
+
+.menu-number {
+    font-size: 9px;
+
+    opacity: .7;
+
+    width: 20px;
+}
+
+.menu-icon {
+    width: 22px;
+
+    font-size: 15px;
+}
+
+.new-count {
+    margin-left: auto;
+
+    border: 1px solid currentColor;
+
+    padding: 2px 5px;
+
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   INBOX
+===================================================== */
+
+.inbox-count {
+    font-size: 9px;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    opacity: .7;
+}
+
+.message-row {
+    width: 100%;
+
+    min-height: 66px;
+
+    border: 2px solid var(--lcd-dark);
+
+    background: rgba(255,255,255,.08);
+
+    color: var(--lcd-dark);
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 8px;
+
+    gap: 10px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+.message-row:hover {
+    background: rgba(31,58,24,.15);
+}
+
+.message-icon {
+    font-size: 20px;
+}
+
+.message-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.message-info strong {
+    font-size: 11px;
+}
+
+.message-info span {
+    font-size: 9px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.message-arrow {
+    font-size: 24px;
+}
+
+.inbox-space {
+    flex: 1;
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    border-bottom: 2px solid var(--lcd-dark);
+
+    padding-bottom: 5px;
+}
+
+.sender {
+    font-size: 9px;
+
+    margin-top: 7px;
+}
+
+.message-time {
+    font-size: 8px;
+
+    opacity: .7;
+
+    margin-top: 3px;
+
+    border-bottom: 1px dashed var(--lcd-mid);
+
+    padding-bottom: 6px;
+}
+
+.letter-body {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 12px 4px;
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+    white-space: pre-wrap;
+}
+
+.cursor {
+    animation: cursorBlink .7s steps(1) infinite;
+}
+
+@keyframes cursorBlink {
+
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MOMO SCREEN
+===================================================== */
+
+.momo-screen {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.small-heart {
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.momo-line {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    font-weight: bold;
+}
+
+.momo-name {
+    font-size: 22px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin-top: 6px;
+}
+
+.momo-sub {
+    font-size: 9px;
+
+    margin-top: 18px;
+
+    opacity: .7;
+}
+
+
+/* =====================================================
+   FINAL SCREEN
+===================================================== */
+
+.final-screen {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    gap: 13px;
+}
+
+.final-line {
+    width: 80%;
+
+    height: 2px;
+
+    background: var(--lcd-dark);
+}
+
+.final-small {
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+.final-main {
+    font-size: 19px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.final-name {
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.final-heart {
+    font-size: 17px;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.navigation {
+    padding: 17px 20px 10px;
+}
+
+.nav-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.soft-button {
+    border: 0;
+
+    background: transparent;
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-weight: bold;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   D-PAD
+===================================================== */
+
+.dpad {
+    width: 130px;
+
+    height: 72px;
+
+    margin: auto;
+
+    position: relative;
+}
+
+.dpad button {
+    position: absolute;
+
+    border: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #333a40,
+            #171b1e
+        );
+
+    color: #dce3e8;
+
+    box-shadow:
+        0 4px 0 #0b0d0e,
+        inset 0 1px 1px rgba(255,255,255,.15);
+
+    cursor: pointer;
+
+    font-family: Arial, sans-serif;
+}
+
+.dpad button:active {
+    transform: translateY(3px);
+
+    box-shadow:
+        0 1px 0 #0b0d0e;
+}
+
+.dpad-up,
+.dpad-down {
+    width: 42px;
+    height: 27px;
+
+    left: 44px;
+}
+
+.dpad-up {
+    top: 0;
+
+    border-radius: 8px 8px 3px 3px;
+}
+
+.dpad-down {
+    bottom: 0;
+
+    border-radius: 3px 3px 8px 8px;
+}
+
+.dpad-left,
+.dpad-right {
+    width: 45px;
+    height: 34px;
+
+    top: 19px;
+}
+
+.dpad-left {
+    left: 2px;
+
+    border-radius: 8px 3px 3px 8px;
+}
+
+.dpad-right {
+    right: 2px;
+
+    border-radius: 3px 8px 8px 3px;
+}
+
+.dpad-center {
+    width: 48px;
+    height: 42px;
+
+    left: 41px;
+    top: 15px;
+
+    z-index: 3;
+
+    border-radius: 50%;
+
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   NUMBER KEYPAD
+===================================================== */
+
+.number-pad {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+
+    padding: 8px 9px 0;
+}
+
+.number-pad button {
+    height: 47px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--button-light),
+            var(--button)
+        );
+
+    color: #e8edf0;
+
+    box-shadow:
+        0 4px 0 #101214,
+        inset 0 1px 1px rgba(255,255,255,.13);
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+}
+
+.number-pad button:active {
+    transform: translateY(3px);
+
+    box-shadow:
+        0 1px 0 #101214;
+}
+
+.number-pad strong {
+    font-size: 17px;
+}
+
+.number-pad small {
+    font-size: 6px;
+
+    letter-spacing: 1px;
+
+    margin-top: 2px;
+
+    opacity: .65;
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.phone-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 14px 18px 0;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    opacity: .65;
+}
+
+.charging-port {
+    width: 35px;
+
+    height: 5px;
+
+    border-radius: 4px;
+
+    background: #1c3b59;
+
+    box-shadow:
+        inset 0 1px 2px rgba(0,0,0,.7);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 420px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .phone {
+        padding: 15px 15px 22px;
+
+        border-radius: 38px 38px 28px 28px;
+    }
+
+    .phone-top {
+        height: 55px;
+    }
+
+    .screen-frame {
+        padding: 9px;
+    }
+
+    .lcd {
+        height: 450px;
+    }
+
+    .number-pad {
+        gap: 7px;
+    }
+
+    .number-pad button {
+        height: 42px;
+    }
+
+}
