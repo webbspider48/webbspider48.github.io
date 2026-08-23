@@ -423,7 +423,7 @@ You're genuinely my favourite notification 😂❤️
 
 I wont lie this weekend was the hardest yohhh
 
-And I havent seen you but i already know you looked cute today. :)`;
+And I havent seen you but i already know you looked cute today :)`;
 
 
 let typingStarted =
