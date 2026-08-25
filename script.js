@@ -236,7 +236,6 @@ function moveSelection(direction) {
     );
 
 
-
     if (
         navigator.vibrate
     ) {
