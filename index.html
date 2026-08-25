@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>A Message For Momo ❤️</title>
+    <title>For Momo Smiles ❤️</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,46 +13,52 @@
 
     <div class="phone-wrapper">
 
-        <div class="phone-brand">NOKIA</div>
+        <!-- NOKIA LOGO -->
+        <div class="nokia-logo">NOKIA</div>
 
-        <div class="lcd-frame">
+        <!-- PHONE SCREEN -->
+        <div class="screen-frame">
 
             <div class="lcd-screen">
 
-                <!-- ================= LOCK SCREEN ================= -->
+                <!-- =========================
+                     LOCK SCREEN
+                ========================== -->
 
-                <section id="screen-lock" class="screen-view active">
+                <div id="screen-lock" class="screen-view active">
 
                     <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
+
+                        <div class="status-left">
+                            <span>▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
-                        <div>
-                            <span class="live-clock"></span>
-                            <span class="battery">▰</span>
+                        <div class="status-right">
+                            <span class="live-clock">12:41</span>
+                            <span>▰</span>
                         </div>
+
                     </div>
 
                     <div class="lock-content">
 
-                        <div class="message-icon">✉</div>
+                        <div class="birthday-symbol">🎂</div>
 
-                        <div class="lock-time" id="lock-time-big">
+                        <div id="lock-time-big" class="lock-time">
                             12:41
                         </div>
 
-                        <div class="lock-date" id="lock-date">
-                            20 August 2026
+                        <div id="lock-date" class="lock-date">
+                            25 August 2026
                         </div>
 
-                        <div class="notification">
-                            1 NEW MESSAGE
+                        <div class="notification-box">
+                            ✉ 1 NEW BIRTHDAY MESSAGE
                         </div>
 
                         <div class="unlock-text">
-                            Enter PIN using keypad
+                            Enter PIN
                         </div>
 
                         <div id="pin-display" class="pin-display">
@@ -62,27 +68,34 @@
                     </div>
 
                     <div class="soft-keys">
-                        <button onclick="goHome()">Menu</button>
-                        <button onclick="unlockHint()">Unlock</button>
+
+                        <span>Menu</span>
+
+                        <span>Unlock</span>
+
                     </div>
 
-                </section>
+                </div>
 
 
-                <!-- ================= MAIN MENU ================= -->
+                <!-- =========================
+                     MAIN MENU
+                ========================== -->
 
-                <section id="screen-menu" class="screen-view">
+                <div id="screen-menu" class="screen-view">
 
                     <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
+
+                        <div class="status-left">
+                            <span>▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
-                        <div>
+                        <div class="status-right">
                             <span class="live-clock"></span>
-                            <span class="battery">▰</span>
+                            <span>▰</span>
                         </div>
+
                     </div>
 
                     <div class="screen-title">
@@ -91,112 +104,126 @@
 
                     <div class="menu-list">
 
-                        <button class="menu-item selected" onclick="goToInbox()">
-                            <span>1</span>
+                        <div class="menu-item selected">
+                            <span class="menu-icon">✉</span>
                             <span>Messages</span>
                             <span class="badge">1</span>
-                        </button>
+                        </div>
 
-                        <button class="menu-item" onclick="goToContacts()">
-                            <span>2</span>
+                        <div class="menu-item">
+                            <span class="menu-icon">☎</span>
                             <span>Contacts</span>
-                        </button>
+                        </div>
 
-                        <button class="menu-item" onclick="goToCalendar()">
-                            <span>3</span>
+                        <div class="menu-item">
+                            <span class="menu-icon">▣</span>
                             <span>Calendar</span>
-                        </button>
+                        </div>
 
-                        <button class="menu-item" onclick="goToServices()">
-                            <span>4</span>
+                        <div class="menu-item">
+                            <span class="menu-icon">★</span>
                             <span>Services</span>
-                        </button>
+                        </div>
 
-                    </div>
-
-                    <div class="menu-help">
-                        Press 1–4 to select
                     </div>
 
                     <div class="soft-keys">
-                        <button>Select</button>
-                        <button onclick="switchScreen('screen-lock')">
-                            Back
-                        </button>
+
+                        <span>Select</span>
+
+                        <span>Back</span>
+
                     </div>
 
-                </section>
+                </div>
 
 
-                <!-- ================= INBOX ================= -->
+                <!-- =========================
+                     INBOX
+                ========================== -->
 
-                <section id="screen-inbox" class="screen-view">
+                <div id="screen-inbox" class="screen-view">
 
                     <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
+
+                        <div class="status-left">
+                            <span>▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
-                        <div>
+                        <div class="status-right">
                             <span class="live-clock"></span>
-                            <span class="battery">▰</span>
+                            <span>▰</span>
                         </div>
+
                     </div>
 
                     <div class="screen-title">
                         Inbox
                     </div>
 
-                    <div class="inbox-message" onclick="openLetter()">
+                    <div class="menu-list">
 
-                        <div class="message-symbol">
-                            ✉
-                        </div>
+                        <div class="menu-item selected inbox-message">
 
-                        <div class="message-info">
+                            <span class="menu-icon">
+                                ✉
+                            </span>
 
-                            <strong>
-                                Bigduggmustfall ❤️
-                            </strong>
+                            <div class="message-info">
 
-                            <span>
-                                I've been thinking...
+                                <strong>
+                                    Bigduggmustfall ❤️
+                                </strong>
+
+                                <small>
+                                    Happy Birthday Momo...
+                                </small>
+
+                            </div>
+
+                            <span class="badge">
+                                1
                             </span>
 
                         </div>
 
-                        <div class="new-dot"></div>
-
                     </div>
 
                     <div class="soft-keys">
-                        <button onclick="openLetter()">Open</button>
-                        <button onclick="goHome()">Back</button>
+
+                        <span>Open</span>
+
+                        <span>Back</span>
+
                     </div>
 
-                </section>
+                </div>
 
 
-                <!-- ================= LETTER ================= -->
+                <!-- =========================
+                     BIRTHDAY LETTER
+                ========================== -->
 
-                <section id="screen-letter" class="screen-view">
+                <div id="screen-letter" class="screen-view">
 
                     <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
+
+                        <div class="status-left">
+                            <span>▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
-                        <div>
+                        <div class="status-right">
                             <span class="live-clock"></span>
-                            <span class="battery">▰</span>
+                            <span>▰</span>
                         </div>
+
                     </div>
 
                     <div class="message-header">
 
-                        <span>✉ Message</span>
+                        From:
 
                         <strong>
                             Bigduggmustfall ❤️
@@ -204,309 +231,356 @@
 
                     </div>
 
-                    <div class="message-body">
+                    <div class="message-box">
 
                         <div class="message-time">
-                            Just now
+                            Today
                         </div>
 
-                        <div id="text-content" class="text-content"></div>
+                        <div id="text-content" class="text-content">
+                        </div>
 
                     </div>
 
                     <div class="soft-keys">
-                        <button onclick="goToInbox()">Back</button>
-                        <button onclick="goToMomo()">Next</button>
+
+                        <span>Options</span>
+
+                        <span>Next</span>
+
                     </div>
 
-                </section>
+                </div>
 
 
-                <!-- ================= MOMO SCREEN ================= -->
+                <!-- =========================
+                     CONTACTS
+                ========================== -->
 
-                <section id="screen-momo" class="screen-view">
+                <div id="screen-contacts" class="screen-view">
 
                     <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
+
+                        <div class="status-left">
+                            <span>▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
-                        <div>
+                        <div class="status-right">
                             <span class="live-clock"></span>
-                            <span class="battery">▰</span>
-                        </div>
-                    </div>
-
-                    <div class="message-header">
-
-                        <span>✉ Message</span>
-
-                        <strong>
-                            Bigduggmustfall ❤️
-                        </strong>
-
-                    </div>
-
-                    <div class="special-message">
-
-                        <div class="heart">♡</div>
-
-                        <h2>
-                            Man to<br>
-                            Momo Smiles 😊
-                        </h2>
-
-                    </div>
-
-                    <div class="soft-keys">
-                        <button onclick="openLetter()">Back</button>
-                        <button onclick="goToLove()">Next</button>
-                    </div>
-
-                </section>
-
-
-                <!-- ================= LOVE SCREEN ================= -->
-
-                <section id="screen-love" class="screen-view">
-
-                    <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
-                            <span>VODACOM</span>
+                            <span>▰</span>
                         </div>
 
-                        <div>
-                            <span class="live-clock"></span>
-                            <span class="battery">▰</span>
-                        </div>
-                    </div>
-
-                    <div class="love-screen">
-
-                        <div class="big-heart">
-                            ♥
-                        </div>
-
-                        <div>
-                            Love always,
-                        </div>
-
-                        <strong>
-                            Bigduggmustfall ❤️
-                        </strong>
-
-                    </div>
-
-                    <div class="soft-keys">
-                        <button onclick="goHome()">Menu</button>
-                        <button onclick="switchScreen('screen-lock')">
-                            End
-                        </button>
-                    </div>
-
-                </section>
-
-
-                <!-- ================= CONTACTS ================= -->
-
-                <section id="screen-contacts" class="screen-view">
-
-                    <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
-                            <span>VODACOM</span>
-                        </div>
-
-                        <div>
-                            <span class="live-clock"></span>
-                            <span class="battery">▰</span>
-                        </div>
                     </div>
 
                     <div class="screen-title">
                         Contacts
                     </div>
 
-                    <div class="contact-card">
+                    <div class="menu-list">
 
-                        <div class="contact-avatar">
-                            B
-                        </div>
+                        <div class="menu-item selected">
 
-                        <div class="contact-details">
-
-                            <strong>
-                                Bigduggmustfall ❤️
-                            </strong>
+                            <span class="menu-icon">
+                                ☺
+                            </span>
 
                             <span>
-                                Your favourite contact
+                                Bigduggmustfall ❤️
                             </span>
 
                         </div>
 
                     </div>
 
-                    <div class="soft-keys">
-                        <button>Select</button>
-                        <button onclick="goHome()">Back</button>
+                    <div class="contact-details">
+
+                        <div>
+                            Owner
+                        </div>
+
+                        <strong>
+                            Bigduggmustfall
+                        </strong>
+
                     </div>
 
-                </section>
+                    <div class="soft-keys">
+
+                        <span>Select</span>
+
+                        <span>Back</span>
+
+                    </div>
+
+                </div>
 
 
-                <!-- ================= CALENDAR ================= -->
+                <!-- =========================
+                     CALENDAR
+                ========================== -->
 
-                <section id="screen-calendar" class="screen-view">
+                <div id="screen-calendar" class="screen-view">
 
                     <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
+
+                        <div class="status-left">
+                            <span>▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
-                        <div>
+                        <div class="status-right">
                             <span class="live-clock"></span>
-                            <span class="battery">▰</span>
+                            <span>▰</span>
                         </div>
+
                     </div>
 
                     <div class="screen-title">
                         Calendar
                     </div>
 
-                    <div class="calendar-card">
+                    <div class="calendar-content">
 
-                        <div class="calendar-label">
+                        <div class="calendar-icon">
+                            📅
+                        </div>
+
+                        <div class="today-label">
                             TODAY
                         </div>
 
-                        <div id="calendar-day" class="calendar-day">
-                            20
+                        <div id="calendar-date" class="calendar-date">
                         </div>
 
-                        <div id="calendar-date" class="calendar-date">
-                            August 2026
+                        <div class="birthday-reminder">
+                            🎂 MOMO SMILES' BIRTHDAY
                         </div>
 
                     </div>
 
                     <div class="soft-keys">
-                        <button>View</button>
-                        <button onclick="goHome()">Back</button>
+
+                        <span>Options</span>
+
+                        <span>Back</span>
+
                     </div>
 
-                </section>
+                </div>
 
 
-                <!-- ================= SERVICES ================= -->
+                <!-- =========================
+                     SERVICES
+                ========================== -->
 
-                <section id="screen-services" class="screen-view">
+                <div id="screen-services" class="screen-view">
 
                     <div class="status-bar">
-                        <div>
-                            <span class="signal">▂▄▆█</span>
+
+                        <div class="status-left">
+                            <span>▂▄▆█</span>
                             <span>VODACOM</span>
                         </div>
 
-                        <div>
+                        <div class="status-right">
                             <span class="live-clock"></span>
-                            <span class="battery">▰</span>
+                            <span>▰</span>
                         </div>
+
                     </div>
 
                     <div class="screen-title">
                         Services
                     </div>
 
-                    <div class="services-content">
+                    <div class="service-content">
 
                         <div class="service-icon">
-                            ♥
+                            🎁
                         </div>
 
-                        <h3>
-                            Special Delivery
-                        </h3>
+                        <h2>
+                            Birthday Surprise
+                        </h2>
 
                         <p>
-                            This phone has one important message waiting for you.
+                            I didn't want your birthday to pass without doing something for you.
                         </p>
 
-                        <button class="open-message" onclick="goToInbox()">
-                            Open Message
-                        </button>
+                        <p>
+                            So I made you this little Nokia experience 😭😂❤️
+                        </p>
+
+                        <div class="service-footer">
+                            MADE BY BIGDUGGMUSTFALL
+                        </div>
 
                     </div>
 
                     <div class="soft-keys">
-                        <button onclick="goToInbox()">Open</button>
-                        <button onclick="goHome()">Back</button>
+
+                        <span>Open</span>
+
+                        <span>Back</span>
+
                     </div>
 
-                </section>
+                </div>
+
+
+                <!-- =========================
+                     FINAL SCREEN
+                ========================== -->
+
+                <div id="screen-final" class="screen-view">
+
+                    <div class="status-bar">
+
+                        <div class="status-left">
+                            <span>▂▄▆█</span>
+                            <span>VODACOM</span>
+                        </div>
+
+                        <div class="status-right">
+                            <span class="live-clock"></span>
+                            <span>▰</span>
+                        </div>
+
+                    </div>
+
+                    <div class="final-content">
+
+                        <div class="final-cake">
+                            🎂
+                        </div>
+
+                        <h1>
+                            Happy Birthday
+                        </h1>
+
+                        <h2>
+                            Momo Smiles 😊❤️
+                        </h2>
+
+                        <p>
+                            I hope today reminds you how special you are.
+                        </p>
+
+                        <p>
+                            I hope this new year brings you happiness, peace and beautiful memories.
+                        </p>
+
+                        <div class="final-signature">
+
+                            Love always,
+
+                            <br><br>
+
+                            <strong>
+                                Bigduggmustfall ❤️
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="soft-keys">
+
+                        <span>❤️</span>
+
+                        <span>End</span>
+
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
 
 
-        <!-- ================= NAVIGATION ================= -->
+        <!-- =========================
+             NAVIGATION BUTTONS
+        ========================== -->
 
-        <div class="navigation-panel">
+        <div class="navigation">
 
-            <button class="nav-btn" onclick="goHome()">
-                Menu
+            <button id="btn-up" class="nav-btn">
+                ▲
             </button>
 
-            <button class="nav-center" onclick="selectCurrent()">
+            <button id="btn-select" class="select-btn">
                 ●
             </button>
 
-            <button class="nav-btn" onclick="goBack()">
+            <button id="btn-down" class="nav-btn">
+                ▼
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             SOFT BUTTONS
+        ========================== -->
+
+        <div class="action-buttons">
+
+            <button id="btn-left">
+                Menu
+            </button>
+
+            <button id="btn-right">
                 Back
             </button>
 
         </div>
 
 
-        <!-- ================= PHYSICAL KEYPAD ================= -->
+        <!-- =========================
+             PHYSICAL KEYPAD
+        ========================== -->
 
         <div class="keypad">
 
-            <div class="keypad-row">
+            <div class="key-row">
 
-                <button onclick="pressKey('1')">1</button>
-                <button onclick="pressKey('2')">2</button>
-                <button onclick="pressKey('3')">3</button>
-
-            </div>
-
-            <div class="keypad-row">
-
-                <button onclick="pressKey('4')">4</button>
-                <button onclick="pressKey('5')">5</button>
-                <button onclick="pressKey('6')">6</button>
+                <button data-key="1">1</button>
+                <button data-key="2">2</button>
+                <button data-key="3">3</button>
 
             </div>
 
-            <div class="keypad-row">
+            <div class="key-row">
 
-                <button onclick="pressKey('7')">7</button>
-                <button onclick="pressKey('8')">8</button>
-                <button onclick="pressKey('9')">9</button>
+                <button data-key="4">4</button>
+                <button data-key="5">5</button>
+                <button data-key="6">6</button>
+
+            </div>
+
+            <div class="key-row">
+
+                <button data-key="7">7</button>
+                <button data-key="8">8</button>
+                <button data-key="9">9</button>
 
             </div>
 
-            <div class="keypad-row">
+            <div class="key-row">
 
-                <button onclick="pressKey('*')">*</button>
-                <button onclick="pressKey('0')">0</button>
-                <button onclick="pressKey('#')">#</button>
+                <button data-key="*">*</button>
+                <button data-key="0">0</button>
+                <button data-key="#">#</button>
 
             </div>
+
+        </div>
+
+        <div class="phone-brand">
+
+            MADE FOR MOMO SMILES ❤️
 
         </div>
 
